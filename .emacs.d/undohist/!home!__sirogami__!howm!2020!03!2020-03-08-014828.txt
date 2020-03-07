@@ -1,0 +1,2 @@
+
+((digest . "e83c124dbaa5f7738864ad5c0381a5b9") (undo-list nil ("[" . -49) ((marker . 93) . -1) ((marker . 93) . -1) ((marker . 49) . -1) ((marker . 49) . -1) ((marker . 49) . -1) 50 nil ("2020-" . -50) ((marker . 93) . -5) ((marker . 93) . -5) ((marker . 49) . -5) ((marker . 49) . -5) ((marker . 49) . -5) 55 nil ("03-" . -55) ((marker . 93) . -3) ((marker . 93) . -3) ((marker . 49) . -3) ((marker . 49) . -3) ((marker . 49) . -3) 58 nil ("08" . -58) ((marker . 93) . -2) ((marker . 93) . -2) ((marker . 49) . -2) ((marker . 49) . -2) 60 nil undo-tree-canary))

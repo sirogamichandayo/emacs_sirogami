@@ -1,0 +1,19 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+S1='[\u@\h \W]\$ '
+
+# aias
+GST_OP="-I/usr/include/glib-2.0/ -I/usr/lib/glib-2.0/include/ -I/usr/lib/libffi-3.2.1/include/ -I/usr/lib/gstreamer-1.0 -pthread -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0 --cflags"
+
+alias ls='ls -XF'
+alias pacman='sudo pacman'
+
+DATEN=`date +%Y%m%d-%T`
+
+mkdir ~/.trash/$DATEN
+mv $* ~/.trash/$DATEN
+
