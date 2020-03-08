@@ -77,6 +77,16 @@
 ;; forward-list -> "M-." / backward-word -> "M-,"
 (define-key global-map (kbd "M-.") 'forward-list)
 (define-key global-map (kbd "M-,") 'backward-list)
+;;
+
+(setq next-line-width 5)
+(setq previous-line-width 5)
+(define-key global-map (kbd "C-c C-n") (lambda()
+                                     (interactive)
+                                     (next-line next-line-width)))
+(define-key global-map (kbd "C-c C-p") (lambda()
+                                     (interactive)
+                                     (previous-line previous-line-width)))
 ;; forward-sentence -> "M-n" / backward-sentence -> "M-p"
 (define-key global-map (kbd "M-n") 'forward-paragraph)
 (define-key global-map (kbd "M-p") 'backward-paragraph)
@@ -86,7 +96,18 @@
 (define-key global-map (kbd "C-c l") 'toggle-truncate-lines)
 ;; transpose-chars -> "C-t"
 (define-key global-map (kbd "C-t") 'other-window)
-
+;; eval-buffer -> "C-c C-e"
+(define-key global-map (kbd "C-c C-e") 'eval-buffer)
+;; move to top of window
+(define-key global-map (kbd "M-a") (lambda()
+                                     (interactive)
+                                     (move-to-window-line 0)))
+(define-key global-map (kbd "M-e") (lambda()
+                                     (interactive)
+                                     (move-to-window-line -1)))
+(define-key global-map (kbd "M-c") (lambda()
+                                     (interactive)
+                                     (move-to-window-line (/ (window-body-height) 2))))
 ;;;;;;;;;;
 ;; move line
 (defun move-line-down ()
@@ -139,7 +160,7 @@
 
 ;; duplicate thing
 (require 'duplicate-thing)
-(define-key global-map (kbd "M-c") 'duplicate-thing)
+(define-key global-map (kbd "M-z") 'duplicate-thing)
 
 ;; recenter3
 ;; I hate moving to the bottom and top of recenter-top-bottom(C-l).
@@ -158,7 +179,7 @@
     (let ((this-scroll-margin
            (min (max 0 scroll-margin)
                 (truncate (/ (window-body-height) 4.0))))
-          (recenter3-width (truncate (/ (window-body-height) 6.0))))
+          (recenter3-width (truncate (/ (window-body-height) 4.0))))
       (cond ((eq recenter3-last-op 'center2)
              (recenter))
             ((eq recenter3-last-op 'center1)
@@ -169,8 +190,10 @@
              (recenter recenter3-last-op))
             ((floatp recenter3-last-op)
              (recenter (round (* recenter3-last-op (window-height))))))))))
-
 (define-key global-map (kbd "C-l") 'recenter3)
+
+;; 
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -369,7 +392,6 @@
   (dotimes (i (- num_wins 1))
     (split-window-horizontally))
   (balance-windows))
-
 (global-set-key (kbd "C-x C-3") (lambda ()
                            (interactive)
                            (split-window-horizontally-n 3)))

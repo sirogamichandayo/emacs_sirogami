@@ -1,4 +1,16 @@
-((("helm-map" .
+((("window-body-size" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("interactive" .
+   [2 0 0 0 1 0 0 0 0 0 0])
+  ("lambda" .
+   [3 0 0 0 0 0])
+  ("global-map" .
+   [3 0 0 0 0 0 0 0 0 0])
+  ("pp" .
+   [1 0])
+  ("window-height" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("helm-map" .
    [3 0 0 0 0 0 0 0])
   ("cons" .
    [1 0 0 0])
@@ -9,9 +21,9 @@
   ("flycheck" .
    [1 0 0 1 0 0 0 0])
   ("define-key" .
-   [3 0 0 0 0 0 0 0 0 0])
+   [7 0 0 0 0 0 0 0 0 0])
   ("kbd" .
-   [3 0 0])
+   [6 0 0])
   ("backward-kill-word" .
    [1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
   ("global-disable-mouse-mode" .
@@ -19,4 +31,12 @@
   ("set-face-foreground" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
   ("howm-mode-title-face" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])))
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("move-to-window-line" .
+   [2 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0])
+  ("window-header-line-height" .
+   [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("window-body-height" .
+   [5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("zap-to-char" .
+   [1 0 0 0 0 0 0 0 0 0 0])))
