@@ -79,8 +79,8 @@
 (define-key global-map (kbd "M-,") 'backward-list)
 ;;
 
-(setq next-line-width 5)
-(setq previous-line-width 5)
+(setq next-line-width 3)
+(setq previous-line-width 3)
 (define-key global-map (kbd "C-c C-n") (lambda()
                                      (interactive)
                                      (next-line next-line-width)))
@@ -98,6 +98,12 @@
 (define-key global-map (kbd "C-t") 'other-window)
 ;; eval-buffer -> "C-c C-e"
 (define-key global-map (kbd "C-c C-e") 'eval-buffer)
+;; upcase-previous-word -> "M-u"
+(define-key global-map (kbd "M-u") (lambda()
+                                     (interactive)
+                                     (upcase-word 1)
+                                   ))
+
 ;;;;;;;;;;
 ;; move line
 (defun move-line-down ()
@@ -269,14 +275,19 @@
 (set-face-foreground 'font-lock-string-face "SeaGreen3")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; font
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(set-face-attribute 'default nil :height 110)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; edit
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; width of TAB
 (setq-default tab-width 4)
 
-;; Do not use tabs word
-(setq-default indent-tabs-mode nil)
+;; use tabs word
+(setq-default indent-tabs-mode t)
 
 
 ;; display match branket
@@ -286,11 +297,131 @@
 ;; on electric-pair-mode
 (electric-pair-mode 1)
 
+;;;;;;;;;;
+;; c/c++ macro
+(fset 'c-main
+   "int main(int argc, char **argv\C-e\C-m{\C-m")
+(fset 'indent-and-brackets
+   "\C-e\C-m{\C-m")
+;; c
+(defun my-c-mode-hook ()
+    (setq c-basic-offset 4)
+    (c-set-offset 'substatement-open 0)
+    (define-key c-mode-map (kbd "C-c m") 'c-main)
+    (define-key c-mode-map (kbd "C-c [") 'indent-and-brackets)
+    
+    (define-key c-mode-map (kbd "C-c C-n") (lambda()
+                                               (interactive)
+                                               (next-line next-line-width)))
+    (define-key c-mode-map (kbd "C-c C-p") (lambda()
+                                               (interactive)
+                                               (previous-line previous-line-width)))
+    (define-key c-mode-map (kbd "M-a") 'c-beginning-of-defun)
+    (define-key c-mode-map (kbd "M-e") 'c-end-of-defun))
+(add-hook 'c-mode-hook 'my-c-mode-hook)
 ;; c++
 (defun my-c++-mode-hook ()
   (setq c-basic-offset 4)
-  (c-set-offset 'substatement-open 0))
+  (c-set-offset 'substatement-open 0)
+  (define-key c++-mode-map (kbd "C-c m") 'c-main)
+  (define-key c++-mode-map (kbd "C-c [") 'indent-and-brackets)
+  
+  (define-key c++-mode-map (kbd "C-c C-n") (lambda()
+                                             (interactive)
+                                             (next-line next-line-width)))
+  (define-key c++-mode-map (kbd "C-c C-p") (lambda()
+                                             (interactive)
+                                             (previous-line previous-line-width)))
+  (define-key c++-mode-map (kbd "M-a") 'c-beginning-of-defun)
+  (define-key c++-mode-map (kbd "M-e") 'c-end-of-defun))
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
+
+
+;; gst mode
+(defun my-gst-mode-hook ()
+  (add-to-list 'flycheck-clang-include-path "/usr/include/glib-2.0" )
+  (add-to-list 'flycheck-clang-include-path "/usr/lib/x86_64-linux-gnu/glib-2.0/include" )
+  (add-to-list 'flycheck-clang-include-path "/usr/include/gstreamer-1.0")
+
+  (add-to-list 'flycheck-clang-args "-pthread")
+  (add-to-list 'flycheck-clang-args "-lgstreamer-1.0")
+  (add-to-list 'flycheck-clang-args "-lgobject-2.0")
+  (add-to-list 'flycheck-clang-args "-lglib-2.0")
+  (add-to-list 'flycheck-clang-args "-lgstvideo-1.0")
+  (add-to-list 'flycheck-clang-args "-lgstbase-1.0")
+  )
+(define-minor-mode gst-mode ()
+  (interactive)
+  ;;  :lighter " GST"
+  )
+(add-hook 'gst-mode-hook 'my-gst-mode-hook)
+
+;; gtk mode
+(defun my-gtk-mode-hook ()
+  (add-to-list 'flycheck-clang-include-path "/usr/include/gtk-3.0")
+  (add-to-list 'flycheck-clang-include-path "/usr/include/gio-unix-2.0")
+  (add-to-list 'flycheck-clang-include-path "/usr/include/cairo")
+  (add-to-list 'flycheck-clang-include-path "/usr/include/pango-1.0")
+  (add-to-list 'flycheck-clang-include-path "/usr/include/harfbuzz")
+  (add-to-list 'flycheck-clang-include-path "/usr/include/pango-1.0")
+  (add-to-list 'flycheck-clang-include-path "/usr/include/atk-1.0")
+  (add-to-list 'flycheck-clang-include-path "/usr/include/cairo")
+  (add-to-list 'flycheck-clang-include-path "/usr/include/pixman-1")
+  (add-to-list 'flycheck-clang-include-path "/usr/include/freetype2")
+  (add-to-list 'flycheck-clang-include-path "/usr/include/libpng16")
+  (add-to-list 'flycheck-clang-include-path "/usr/include/gdk-pixbuf-2.0")
+  (add-to-list 'flycheck-clang-include-path "/usr/lib/x86_64-linux-gnu/glib-2.0/include")
+
+  (add-to-list 'flycheck-clang-args "-lgtk-3")
+  (add-to-list 'flycheck-clang-args "-lgdk-3")
+  (add-to-list 'flycheck-clang-args "-lpangocairo-1.0")
+  (add-to-list 'flycheck-clang-args "-lpango-1.0")
+  (add-to-list 'flycheck-clang-args "-latk-1.0")
+  (add-to-list 'flycheck-clang-args "-lcairo-gobject")
+  (add-to-list 'flycheck-clang-args "-lcairo")
+  (add-to-list 'flycheck-clang-args "-lgdk_pixbuf-2.0")
+  (add-to-list 'flycheck-clang-args "-lgio-2.0")
+  (add-to-list 'flycheck-clang-args "-lgobject-2.0")
+  (add-to-list 'flycheck-clang-args "-lglib-2.0")
+  )
+(define-minor-mode gtk-mode ()
+  (interactive)
+  ;;  :lighter " GTK"
+  )
+(add-hook 'gtk-mode-hook 'my-gtk-mode-hook)
+
+;; glib mode
+(defun my-glib-mode-hook ()
+  (add-to-list 'flycheck-clang-include-path "/usr/include/glib-2.0")
+  (add-to-list 'flycheck-clang-include-path "/usr/lib/glib-2.0/include")
+
+  (add-to-list 'flycheck-clang-args "-lglib-2.0"))
+
+(define-minor-mode glib-mode ()
+  (interactive)
+  )
+(add-hook 'glib-mode-hook 'my-glib-mode-hook)
+
+;; sdl mode
+(fset 'insert-SDL_
+   "SDL_")
+
+(defun my-sdl-mode-hook ()
+  (add-to-list 'flycheck-clang-include-path "/usr/include/SDL2")
+
+  (add-to-list 'flycheck-clang-args "-D_REENTRANT")
+  (add-to-list 'flycheck-clang-args "-pthread")
+  (add-to-list 'flycheck-clang-args "-lSDL2")
+
+  )
+
+(easy-mmode-define-minor-mode sdl-mode
+							  "SDL"
+							  nil
+							  "SDL"
+							  '(((kbd "C-c d") . insert-SDL_))
+  )
+(add-hook 'sdl-mode-hook 'my-sdl-mode-hook)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other
@@ -388,3 +519,4 @@
 
 ;; disable mouse
 (global-disable-mouse-mode)
+(put 'erase-buffer 'disabled nil)

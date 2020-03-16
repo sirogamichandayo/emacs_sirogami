@@ -286,8 +286,8 @@
 ;; width of TAB
 (setq-default tab-width 4)
 
-;; Do not use tabs word
-(setq-default indent-tabs-mode nil)
+;; use tabs word
+(setq-default indent-tabs-mode t)
 
 
 ;; display match branket
@@ -352,7 +352,8 @@
   )
 (define-minor-mode gst-mode ()
   (interactive)
-  :lighter " GST")
+  ;;  :lighter " GST"
+  )
 (add-hook 'gst-mode-hook 'my-gst-mode-hook)
 
 ;; gtk mode
@@ -385,9 +386,42 @@
   )
 (define-minor-mode gtk-mode ()
   (interactive)
-  :lighter " GTK")
+  ;;  :lighter " GTK"
+  )
 (add-hook 'gtk-mode-hook 'my-gtk-mode-hook)
 
+;; glib mode
+(defun my-glib-mode-hook ()
+  (add-to-list 'flycheck-clang-include-path "/usr/include/glib-2.0")
+  (add-to-list 'flycheck-clang-include-path "/usr/lib/glib-2.0/include")
+
+  (add-to-list 'flycheck-clang-args "-lglib-2.0"))
+
+(define-minor-mode glib-mode ()
+  (interactive)
+  )
+(add-hook 'glib-mode-hook 'my-glib-mode-hook)
+
+;; sdl mode
+(fset 'insert-SDL_
+   "SDL_")
+
+(defun my-sdl-mode-hook ()
+  (add-to-list 'flycheck-clang-include-path "/usr/include/SDL2")
+
+  (add-to-list 'flycheck-clang-args "-D_REENTRANT")
+  (add-to-list 'flycheck-clang-args "-pthread")
+  (add-to-list 'flycheck-clang-args "-lSDL2")
+
+  )
+
+(easy-mmode-define-minor-mode sdl-mode
+							  "SDL"
+							  nil
+							  nil
+  ;;  :lighter " SDL"
+  )
+(add-hook 'sdl-mode-hook 'my-sdl-mode-hook)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other
