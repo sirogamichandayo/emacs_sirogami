@@ -1,0 +1,44 @@
+#include <gst/gst.h>
+#include <gst/audio/audio.h>
+#include <string.h>
+
+#define CHUNK_SIZE 1024         // Amount of bytes we are sending in each buffer
+#define sample_rate 44100       // Samples per second we are sending
+
+// Structure to contain all our information, so we can pass it to callbacks
+typedef struct _CustomData
+{
+    GstElement *pipeline, *app_source, *tee, *audio_queue, *audio_convert1, *audio_resample, *audio_sink;
+    GstElement *video_queue, *audio_convert2, *visual, *video_convert, *video_sink;
+    GstElement *app_queue, *app_sink;
+
+    guint64 num_samples;        // Number of samples generated so far
+    gfloat a, b, c, d;
+
+    guint sourceid;             // To control the GSource
+
+    GMainLoop *main_loop;       // Glib's main Loop
+} CustomData;
+
+// This methid is called by the idle GSource in the mainloop, to feed CHUNK_SIZE bytes into appsrc.
+// The idle hander is added to the mainloop when appsrc requests us to start sending data
+// and is removed when appsrc has enough date
+static gboolean push_data(CustomData *data)
+{
+    GstBuffer *buffer = NULL;
+    GstFlowReturn ret;
+    int i;
+    GstMapInfo map;
+    gint16 *raw = NULL;
+    gint num_samples = CHUNK_SIZE;
+    gfloat freq;
+
+    // Generate some psychodelic waveforms
+    gst_buffer_map(buffer, &map, GST_MAP_WRITE);
+    raw = (gint16 *)map.data;
+    data->c += data->d;
+    data->d -= data->a / 1000;
+    freq = 1100 + 1000 * data->d;
+    for (i = 0; i < num_samples; ++i)
+    
+}

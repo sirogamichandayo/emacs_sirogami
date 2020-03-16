@@ -1,0 +1,30 @@
+#include <gst/gst.h>
+
+int main(int argc, char **argv)
+{
+    GstElement *pipeline, *sink, *src, *converter;
+    GstBus *bus;
+    GstMessage *msg;
+    GstStateChangeReturn ret;
+
+    // initialize GStramer
+    gst_init(&argc, &argv);
+
+    // Create the element
+    src = gst_element_factory_make("decklinkvideosrc", "src");
+    converter = gst_element_factory_make("videoconverter", "converter")
+    sink = gst_element_factory_make("decklinkvideosink", "sink");
+
+    // Create the empty pipeline
+    pipeline = gst_pipeline_new("test-pipeline");
+
+    if (!pipeline || !src || !sink)
+    {
+        g_printerr("Not all element could be created.");
+        exit(-1);
+    }
+
+    // Build the pipeline
+    gst_bin_add_many(GST_BIN(pipeline), src, sink)
+    
+}

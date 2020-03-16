@@ -1,42 +1,238 @@
-((("window-body-size" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("interactive" .
-   [2 0 0 0 1 0 0 0 0 0 0])
-  ("lambda" .
-   [3 0 0 0 0 0])
-  ("global-map" .
-   [3 0 0 0 0 0 0 0 0 0])
-  ("pp" .
-   [1 0])
-  ("window-height" .
+((("video" .
+   [1 0 0 0 0])
+  ("video_format" .
+   [2 0 0 0 0 0 0 0 0 0 0 0])
+  ("device_number" .
    [2 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("helm-map" .
-   [3 0 0 0 0 0 0 0])
-  ("cons" .
-   [1 0 0 0])
-  ("backup-directory-alist" .
-   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0])
-  ("add-to-list" .
-   [1 0 0 0 0 0 0 0 0 0 0])
-  ("flycheck" .
-   [1 0 0 1 0 0 0 0])
-  ("define-key" .
-   [7 0 0 0 0 0 0 0 0 0])
-  ("kbd" .
-   [6 0 0])
-  ("backward-kill-word" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
-  ("global-disable-mouse-mode" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0])
-  ("set-face-foreground" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
-  ("howm-mode-title-face" .
+  ("gst_message_unref" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("gst_element_state_get_name" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("gst_message_parse_state_changed" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("pending_state" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("new_state" .
+   [3 0 0 0 0 0 0 0 0])
+  ("old_state" .
+   [3 0 0 0 0 0 0 0 0])
+  ("g_free" .
+   [1 0 0 0 0 0])
+  ("g_clear_error" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("message" .
+   [1 0 0 0 0 0 0])
+  ("src" .
+   [2 0 0])
+  ("debug_info" .
+   [5 0 0 0 0 0 0 0 0 0])
+  ("gst_message_parse_error" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("err" .
+   [4 0 0])
+  ("GError" .
+   [1 0 0 0 0 0])
+  ("GstMessageType" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("gst_bus_timed_pop_filtered" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0])
+  ("gst_element_get_bus" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("gst_element_set_state" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("print_pad_capabilities" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
+  ("gst_bin_add_many" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("gst_pipeline_new" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("gst_element_factory_create" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("print_pad_templates_information" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("exit" .
+   [5 0 0 0])
+  ("gst_element_factory_find" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("sink_factory" .
+   [5 0 0 0 0 0 0 0 0 0 0 0])
+  ("source_factory" .
+   [4 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("gst_init" .
+   [1 0 0 0 0 0 0 0])
+  ("terminate" .
+   [4 0 0 0 0 0 0 0 0])
+  ("gboolean" .
+   [2 0 0 0 0 0 0 0])
+  ("ret" .
+   [3 0 0])
+  ("GstStateChangeReturn" .
    [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("move-to-window-line" .
-   [2 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0])
-  ("window-header-line-height" .
-   [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("msg" .
+   [10 0 0])
+  ("GstMessage" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("GstBus" .
+   [1 0 0 0 0 0])
+  ("GstElementFactory" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("gst_object_unref" .
+   [5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("gst_pad_get_current_caps" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("g_printerr" .
+   [9 0 0 0 0 0 0 0 0 0])
+  ("pad_name" .
+   [3 0 0 0 0 0 0 0])
+  ("gst_element_get_static_pad" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("pad" .
+   [5 0 0])
+  ("NULL" .
+   [7 0 0 0])
+  ("GstPad" .
+   [1 0 0 0 0 0])
+  ("gchar" .
+   [3 0 0 0 0])
+  ("element" .
+   [2 0 0 0 0 0 0])
+  ("GstElement" .
+   [2 0 0 0 0 0 0 0 0 0])
+  ("print_caps" .
+   [2 0 0 0 0 0 0 0 0 0])
+  ("print" .
+   [2 0 0 0 0])
+  ("static_caps" .
+   [1 0 0 0 0 0 0 0 0 0 0])
+  ("GstCaps" .
+   [2 0 0 0 0 0 0])
+  ("string" .
+   [1 0 0 0 0 0])
+  ("name_template" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("direction" .
+   [1 0 0 0 0 0 0 0 0])
+  ("GstState" .
+   [2 0 0 0 0 0 0 0])
+  ("padtemplate" .
+   [9 0 0 0 0 0 0 0 0 0 0])
+  ("pads" .
+   [5 0 0 0])
+  ("factory" .
+   [3 0 0 0 0 0 0])
+  ("Capabilities" .
+   [1 0 0 0 0 0 0 0 0 0 0 0])
+  ("it" .
+   [1 0])
+  ("g_quark_to_string" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("gpointer" .
+   [1 0 0 0 0 0 0 0])
+  ("print_field" .
+   [1 0 0 0 0 0 0 0 0 0 0])
+  ("gst_structure_get_name" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("pfx" .
+   [2 0 0])
+  ("g_print" .
+   [14 0 0 0 0 0 0])
+  ("gst_caps_get_structure" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("structure" .
+   [4 0 0 0 0 0 0 0 0])
+  ("GstStructure" .
+   [1 0 0 0 0 0 0 0 0 0 0 0])
+  ("caps" .
+   [13 0 0 0])
+  ("in" .
+   [1 0])
+  ("flycheck-clang-args" .
+   [3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("flycheck-clang-include-path" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("flycheck-clang-includes" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("gst" .
+   [8 0 0])
+  (":height" .
+   [1 0 0 0 0 0 0])
+  ("nil" .
+   [1 0 0])
+  ("default" .
+   [1 0 0 0 0 0 0])
+  ("set-face-attribute" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("zap-to-char" .
+   [1 0 0 0 0 0 0 0 0 0 0])
   ("window-body-height" .
    [5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("zap-to-char" .
-   [1 0 0 0 0 0 0 0 0 0 0])))
+  ("window-header-line-height" .
+   [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("move-to-window-line" .
+   [2 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0])
+  ("howm-mode-title-face" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("set-face-foreground" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("global-disable-mouse-mode" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0])
+  ("backward-kill-word" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("kbd" .
+   [6 0 0])
+  ("define-key" .
+   [7 0 0 0 0 0 0 0 0 0])
+  ("flycheck" .
+   [1 0 0 1 0 0 0 0])
+  ("add-to-list" .
+   [6 0 0 0 0 0 0 0 0 0 0])
+  ("backup-directory-alist" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0])
+  ("cons" .
+   [1 0 0 0])
+  ("helm-map" .
+   [3 0 0 0 0 0 0 0])
+  ("window-height" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("pp" .
+   [1 0])
+  ("global-map" .
+   [3 0 0 0 0 0 0 0 0 0])
+  ("lambda" .
+   [3 0 0 0 0 0])
+  ("interactive" .
+   [2 0 0 0 1 0 0 0 0 0 0])
+  ("window-body-size" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("expand-file-name" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("CustomData" .
+   [2 0 0 0 0 0 0 0 0 0])
+  ("data" .
+   [13 0 0 0])
+  ("argc" .
+   [2 0 0 0])
+  ("argv" .
+   [2 0 0 0])
+  ("source" .
+   [8 0 0 0 0 0])
+  ("convert" .
+   [2 0 0 0 0 0 0])
+  ("gst_element_factory_make" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
+  ("resample" .
+   [2 0 0 0 0 0 0 0])
+  ("sink" .
+   [11 0 0 0])
+  ("pipeline" .
+   [10 0 0 0 0 0 0 0])
+  ("defun" .
+   [1 0 0 0 0])
+  ("std" .
+   [2 0 0])
+  ("bus" .
+   [5 0 0])
+  ("iostream" .
+   [1 0 0 0 0 0 0 0])
+  ("is_exist_signal" .
+   [2 0 0 0 1 0 0 0 0 0 0 0 0 0 0])))

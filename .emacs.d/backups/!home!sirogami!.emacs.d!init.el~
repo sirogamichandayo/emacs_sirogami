@@ -485,4 +485,3 @@
 
 ;; disable mouse
 (global-disable-mouse-mode)
-(put 'erase-buffer 'disabled nil)

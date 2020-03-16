@@ -1,0 +1,68 @@
+#include <gst/gst.h>
+
+struct CustomData
+{
+    GstElement *playbin;        // Our one and only element
+    gboolean playing;           // Are we in the PLAYING state?
+    gboolean terminate;         // Sould we terminate execution?
+    gboolean seek_enabled;      // Is seeking enabled for thie media?
+    gboolean seek_done;         // Have we perfomed the seek already?
+    gint64 duration;            // How long does thie media last, in nanoseconds
+};
+
+static void handle_message(CustomData *data, GstMessage *msg);
+
+int main(int argc, char **argv)
+{
+    CustomData data;
+    GstBus *bus;
+    GstMessage *msg;
+    GstStateChangeReturn ret;
+
+    data.playing = FALSE;
+    data.terminate = FALSE;
+    data.seek_enabled = false;
+    data.seek_done = false;
+    data.duration = GST_CLOCK_TIME_NONE;
+
+    // Initialize GStreamer
+    gst_init(&argc, &argv);
+
+    // Create the elements
+    data.playbin = gst_element_factory_make("playbin", "playbin");
+
+    if (!data.playbin)
+    {
+        g_printerr("Not all elements could be created.\n");
+        exit(-1);
+    }
+
+    // Set the URI to play
+    g_object_set(data.playbin, "uri", "https://www.freedesktop.org/sortware/gstreamer-sdk/data/media/sintel_trailer-", NULL);
+
+
+    // Start playing
+    ret = gst_element_set_state(data.playbin, GST_STATE_PLAYING);
+    if (ret == GST_STATE_CHANGE_FAILURE)
+    {
+        g_printerr("Unable to set the pipeline to the playing state.\n");
+        gst_object_unref(data.playbin);
+        exit(-1);
+    }
+
+    // Listen to the bus
+    bus = gst_element_get_bus(data.playbin);
+    do
+    {
+        msg = gst_bus_timed_pop_filtered(bus, 100 * GST_MSECOND,
+                                         static_cast<GstMessageType>
+                                         (GST_MESSAGE_STATE_CHANGED | GST_MESSAGE_ERROR | GST_MESSAGE_EOS | GST_MESSAGE_DURATION));
+
+        // Parse message
+        if (msg != NULL)
+        {
+            handle_message(&data, msg);
+        }
+        
+    }
+}
