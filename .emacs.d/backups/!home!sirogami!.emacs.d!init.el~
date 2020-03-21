@@ -1,9 +1,6 @@
 ;;; test
 
 
-
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; base
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -286,8 +283,8 @@
 ;; width of TAB
 (setq-default tab-width 4)
 
-;; Do not use tabs word
-(setq-default indent-tabs-mode nil)
+;; use tabs word
+(setq-default indent-tabs-mode t)
 
 
 ;; display match branket
@@ -333,9 +330,12 @@
                                              (interactive)
                                              (previous-line previous-line-width)))
   (define-key c++-mode-map (kbd "M-a") 'c-beginning-of-defun)
-  (define-key c++-mode-map (kbd "M-e") 'c-end-of-defun))
-(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+  (define-key c++-mode-map (kbd "M-e") 'c-end-of-defun)
 
+  (add-to-list 'flycheck-clang-args "-Wall")
+  (setq flycheck-clang-language-standard "c++17")
+  (setq flycheck-gcc-language-standard "c++17"))
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 ;; gst mode
 (defun my-gst-mode-hook ()
@@ -352,7 +352,8 @@
   )
 (define-minor-mode gst-mode ()
   (interactive)
-  :lighter " GST")
+  ;;  :lighter " GST"
+  )
 (add-hook 'gst-mode-hook 'my-gst-mode-hook)
 
 ;; gtk mode
@@ -385,9 +386,42 @@
   )
 (define-minor-mode gtk-mode ()
   (interactive)
-  :lighter " GTK")
+  ;;  :lighter " GTK"
+  )
 (add-hook 'gtk-mode-hook 'my-gtk-mode-hook)
 
+;; glib mode
+(defun my-glib-mode-hook ()
+  (add-to-list 'flycheck-clang-include-path "/usr/include/glib-2.0")
+  (add-to-list 'flycheck-clang-include-path "/usr/lib/glib-2.0/include")
+
+  (add-to-list 'flycheck-clang-args "-lglib-2.0"))
+
+(define-minor-mode glib-mode ()
+  (interactive)
+  )
+(add-hook 'glib-mode-hook 'my-glib-mode-hook)
+
+;; sdl mode
+(fset 'insert-SDL_
+   "SDL_")
+
+(defun my-sdl-mode-hook ()
+  (add-to-list 'flycheck-clang-include-path "/usr/include/SDL2")
+
+  (add-to-list 'flycheck-clang-args "-D_REENTRANT")
+  (add-to-list 'flycheck-clang-args "-pthread")
+  (add-to-list 'flycheck-clang-args "-lSDL2")
+
+  )
+
+(easy-mmode-define-minor-mode sdl-mode
+							  "SDL"
+							  nil
+							  nil
+  ;;  :lighter " SDL"
+  )
+(add-hook 'sdl-mode-hook 'my-sdl-mode-hook)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other
@@ -453,10 +487,46 @@
 (when (require 'elscreen nil t)
   (elscreen-start))
 
+;; point undo
+(require 'ring)
+(require 'edmacro)
+
+(defvar-local jump-back!--marker-ring nil)
+
+(defun jump-back!--ring-update ()
+  (let ((marker (point-marker)))
+    (unless jump-back!--marker-ring
+      (setq jump-back!--marker-ring (make-ring 30)))
+    (ring-insert jump-back!--marker-ring marker)))
+
+(run-with-idle-timer 1 t 'jump-back!--ring-update)
+
+(defun jump-back! ()
+  (interactive)
+  (if (ring-empty-p jump-back!--marker-ring)
+      (error "No further undo information")
+    (let ((marker (ring-ref jump-back!--marker-ring 0))
+          (repeat-key (vector last-input-event)))
+      (ring-remove jump-back!--marker-ring 0)
+      (if (= (point-marker) marker)
+          (jump-back!)
+        (goto-char marker)
+        (message "(Type %s to repeat)" (edmacro-format-keys repeat-key))
+        (set-temporary-overlay-map
+         (let ((km (make-sparse-keymap)))
+           (define-key km repeat-key 'jump-back!)
+           km))))))
+
+(define-key global-map (kbd "M-/") 'jump-back!)
+
+
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (with-eval-after-load 'flycheck
   (flycheck-pos-tip-mode))
+(define-key global-map (kbd "C-M-.") 'flycheck-next-error)
+(define-key global-map (kbd "C-M-,") 'flycheck-previous-error)
+(define-key global-map (kbd "C-c d") 'flycheck-list-errors)
 
 ;; howm
 (setq howm-directory (concat user-emacs-directory "howm"))
@@ -485,3 +555,4 @@
 
 ;; disable mouse
 (global-disable-mouse-mode)
+(put 'erase-buffer 'disabled nil)

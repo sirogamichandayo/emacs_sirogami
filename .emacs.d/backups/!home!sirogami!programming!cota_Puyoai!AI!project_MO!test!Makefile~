@@ -1,0 +1,16 @@
+TARGET =
+
+OBJS = ../src/tools/debug.o ../src/recognition/image_processing.o ../src/recognition/color.o  \
+		../src/recognition/state_main.o
+
+
+$(TARGET): $(OBJS) $(TARGET).cpp
+	$(CC) $(OBJS) $< -o $@ 
+%.o: %.cpp
+	$(CC) -c $@
+
+.PHONY: clean
+clean:
+	$(RM) $(TARGET) $(OBJS) $(DEPS)
+
+-include $(DEPS)

@@ -1,0 +1,25 @@
+#include <iostream>
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
+
+int main()
+{
+	std::filesystem::path p = "test";
+
+  // パスから、ファイル名を除いたディレクトリ、ファイル名、
+  // 拡張子を除いたファイル名、拡張子を抽出
+  std::cout << "directory : " << p.parent_path() << std::endl;
+  std::cout << "filename  : " << p.filename() << std::endl;
+  std::cout << "stem      : " << p.stem() << std::endl;
+  std::cout << "extension : " << p.extension() << std::endl;
+
+  // パスが絶対パスか相対パスか判定
+  if (p.is_absolute()) {
+    std::cout << p << "は絶対パス" << std::endl;
+  }
+  else {
+    std::cout << p << "は相対パス" << std::endl;
+  }
+}

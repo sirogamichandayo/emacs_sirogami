@@ -1,9 +1,6 @@
 ;;; test
 
 
-
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; base
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -302,13 +299,16 @@
 (fset 'c-main
    "int main(int argc, char **argv\C-e\C-m{\C-m")
 (fset 'indent-and-brackets
-   "\C-e\C-m{\C-m")
+	  "\C-e\C-m{\C-m")
+(fset 'c-include
+	  "#include ")
 ;; c
 (defun my-c-mode-hook ()
     (setq c-basic-offset 4)
     (c-set-offset 'substatement-open 0)
     (define-key c-mode-map (kbd "C-c m") 'c-main)
     (define-key c-mode-map (kbd "C-c [") 'indent-and-brackets)
+	(define-key c-mode-map (kbd "C-c i") 'c-include)
     
     (define-key c-mode-map (kbd "C-c C-n") (lambda()
                                                (interactive)
@@ -325,6 +325,7 @@
   (c-set-offset 'substatement-open 0)
   (define-key c++-mode-map (kbd "C-c m") 'c-main)
   (define-key c++-mode-map (kbd "C-c [") 'indent-and-brackets)
+  (define-key c-mode-map (kbd "C-c i") 'c-include)
   
   (define-key c++-mode-map (kbd "C-c C-n") (lambda()
                                              (interactive)
@@ -333,9 +334,12 @@
                                              (interactive)
                                              (previous-line previous-line-width)))
   (define-key c++-mode-map (kbd "M-a") 'c-beginning-of-defun)
-  (define-key c++-mode-map (kbd "M-e") 'c-end-of-defun))
-(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+  (define-key c++-mode-map (kbd "M-e") 'c-end-of-defun)
 
+  (add-to-list 'flycheck-clang-args "-Wall")
+  (setq flycheck-clang-language-standard "c++17")
+  (setq flycheck-gcc-language-standard "c++17"))
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 ;; gst mode
 (defun my-gst-mode-hook ()
@@ -487,10 +491,46 @@
 (when (require 'elscreen nil t)
   (elscreen-start))
 
+;; point undo
+(require 'ring)
+(require 'edmacro)
+
+(defvar-local jump-back!--marker-ring nil)
+
+(defun jump-back!--ring-update ()
+  (let ((marker (point-marker)))
+    (unless jump-back!--marker-ring
+      (setq jump-back!--marker-ring (make-ring 30)))
+    (ring-insert jump-back!--marker-ring marker)))
+
+(run-with-idle-timer 1 t 'jump-back!--ring-update)
+
+(defun jump-back! ()
+  (interactive)
+  (if (ring-empty-p jump-back!--marker-ring)
+      (error "No further undo information")
+    (let ((marker (ring-ref jump-back!--marker-ring 0))
+          (repeat-key (vector last-input-event)))
+      (ring-remove jump-back!--marker-ring 0)
+      (if (= (point-marker) marker)
+          (jump-back!)
+        (goto-char marker)
+        (message "(Type %s to repeat)" (edmacro-format-keys repeat-key))
+        (set-temporary-overlay-map
+         (let ((km (make-sparse-keymap)))
+           (define-key km repeat-key 'jump-back!)
+           km))))))
+
+(define-key global-map (kbd "M-/") 'jump-back!)
+
+
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (with-eval-after-load 'flycheck
   (flycheck-pos-tip-mode))
+(define-key global-map (kbd "C-M-.") 'flycheck-next-error)
+(define-key global-map (kbd "C-M-,") 'flycheck-previous-error)
+(define-key global-map (kbd "C-c d") 'flycheck-list-errors)
 
 ;; howm
 (setq howm-directory (concat user-emacs-directory "howm"))

@@ -1,0 +1,16 @@
+#include <iostream>
+
+#include "../src/recognition/state_main.h"
+#include "../src/recognition/screen_shot.h"
+#include "../src/log/log.h"
+#include "../src/tools/debug/debug.h"
+
+#include "opencv2/opencv.hpp"
+#include "opencv2/highgui.hpp"
+#include <unistd.h>
+#include <vector>
+
+int main(int argc, char **argv)
+{
+	ScreenShot scr(137)
+}
