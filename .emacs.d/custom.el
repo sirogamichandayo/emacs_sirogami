@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(rings disable-mouse howm mykie flycheck-pos-tip flycheck elscreen popwin undo-tree undohist moccur-edit auto-complete helm-c-moccur helm-descbinds helm heroku-theme heroku))))
+	(dashboard gtags package-utils imenu-list rings disable-mouse howm mykie flycheck-pos-tip flycheck elscreen popwin undo-tree undohist moccur-edit auto-complete helm-c-moccur helm-descbinds helm heroku-theme heroku))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

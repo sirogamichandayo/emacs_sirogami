@@ -1,2 +1,3 @@
 
-((digest . "9e75687ace3f3b7044dcdc1ede8e05b1") (undo-list nil (53 . 54) nil (51 . 53) (t 24179 19120 51851 696000)))
+((digest . "d33ef91aede243747d1d1e0d1c4a357e") (undo-list nil ("
+" . 366) ((marker . 1222) . -1) ((marker . 1222) . -1) ((marker . 366) . -1) ((marker) . -1) ("	extern bool " . -366) ((marker . 366) . -13) ((marker . 366) . -8) ((marker . 366) . -8) ((marker . 366) . -12) ((marker . 366) . -12) ((marker . 366) . -13) ((marker . 366) . -13) ((marker . 366) . -13) ((marker . 366) . -13) ((marker . 366) . -1) ((marker . 366) . -1) ((marker . 366) . -1) ((marker . 366) . -13) ((marker . 366) . -13) ((marker) . -13) 379 nil ("_" . -379) ((marker . 366) . -1) ((marker . 366) . -1) ((marker . 366) . -1) ((marker . 366) . -1) ((marker . 366) . -1) 380 nil undo-tree-canary))

@@ -3,7 +3,6 @@
 
 namespace fs = std::filesystem;
 
-
 int main()
 {
 	std::filesystem::path p = "test";

@@ -1,0 +1,16 @@
+#include <map>
+#include <vector>
+
+template <typename Key, typename V>
+auto my_find(std::map<Key, V>& m, const Key& key)
+{
+    return m.find(key);
+}
+
+template <typename Key, typename V>
+auto my_find(std::vector<std::pair<Key, V>>& v, const Key& key)
+{
+    return std::find_if(v.begin(), v.end(), [&](const auto& p) {
+        return p.first == key;
+    });
+}

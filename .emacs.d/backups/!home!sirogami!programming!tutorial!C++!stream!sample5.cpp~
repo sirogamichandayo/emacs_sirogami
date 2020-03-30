@@ -1,0 +1,12 @@
+#include <iostream>
+#include <sstream>
+
+int main(int argc, char **argv)
+{
+	std::string s("test");
+	std::istringstream iss(s);
+
+	int i;
+	iss >> i;
+	std::cout << i << std::endl;
+}

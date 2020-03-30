@@ -7,10 +7,20 @@
 
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui.hpp"
-#include <unistd.h>
-#include <vector>
+
+namespace pic_ = pic::hd;
 
 int main(int argc, char **argv)
 {
-	ScreenShot scr(137)
+	// // Initialize
+	ScreenShot scr(pic_::X, pic_::Y, pic_::WIDTH, pic_::HEIGHT);
+	State env(scr, pic_::pic_rect_list);
+
+	// // ScreenShot
+	// env.step();
+
+	// // Get img
+	// cv::Mat img;
+	// env.getImg(&img, true);
+	// debug::showForDebug(img, 3000);
 }

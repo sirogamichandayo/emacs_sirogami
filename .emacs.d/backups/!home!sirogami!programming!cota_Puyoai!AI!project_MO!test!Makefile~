@@ -1,16 +1,7 @@
-TARGET =
+CC=g++
+OP=-g3
+ARGS = `pkg-config --cflags opencv` `pkg-config --libs opencv` -lX11 -lstdc++fs -lpython2.7 -std=c++1z
+FILE=
 
-OBJS = ../src/tools/debug.o ../src/recognition/image_processing.o ../src/recognition/color.o  \
-		../src/recognition/state_main.o
-
-
-$(TARGET): $(OBJS) $(TARGET).cpp
-	$(CC) $(OBJS) $< -o $@ 
-%.o: %.cpp
-	$(CC) -c $@
-
-.PHONY: clean
-clean:
-	$(RM) $(TARGET) $(OBJS) $(DEPS)
-
--include $(DEPS)
+test:$(FILE).cpp ../src/recognition/color.cpp ../src/recognition/state_main.cpp
+	$(CC) -o $(FILE) $(ARGS) $(OP) $(FILE).cpp ../src/recognition/color.cpp ../src/recognition/state_main.cpp

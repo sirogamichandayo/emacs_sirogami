@@ -1,0 +1,23 @@
+#include "../src/recognition/state_main.h"
+#include "../src/recognition/screen_shot.h"
+#include "../src/log/log.h"
+#include "../src/tools/debug/debug.h"
+
+#include "opencv2/opencv.hpp"
+#include "opencv2/highgui.hpp"
+
+#include <vector>
+#include <string>
+#include <iostream>
+
+int main(int argc, char **argv)
+{
+	debug::initializeDir("/home/sirogami/programming/cota_Puyoai/screenshot_check/");
+	ScreenShot scr(pic::full_hd::X, pic::full_hd::Y,
+				   pic::full_hd::WIDTH, pic::full_hd::HEIGHT);
+	State env(&scr, &pic::full_hd::PIC_RECT_LIST);
+
+	std::vector<int> all_puyo_1p(game::ALL_PUYO_NUM), all_puyo_2p(game::ALL_PUYO_NUM);
+	env.step();
+	env.getState(get_mode::ALL_PUYO_1P, &all_puyo_1p);
+}

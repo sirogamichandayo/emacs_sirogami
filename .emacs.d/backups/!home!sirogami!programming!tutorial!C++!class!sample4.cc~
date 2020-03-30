@@ -1,0 +1,12 @@
+#include <iostream>
+
+struct A
+{
+	A() = default;
+	A(const A&) = delete;
+};
+
+struct B : A
+{
+	B()
+}

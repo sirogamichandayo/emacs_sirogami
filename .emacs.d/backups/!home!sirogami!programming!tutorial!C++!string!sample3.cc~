@@ -1,0 +1,29 @@
+//    RGBカラーを表す構造体
+struct Color {
+    Color(float r, float g, float b)
+        : red(r)
+        , green(g)
+        , blue(b)
+    {}
+ 
+    // 赤色のインスタンスを生成
+    static Color RED() {
+        return Color(1, 0, 0);
+    }
+ 
+    // 緑色のインスタンスを生成
+    static Color GREEN() {
+        return Color(0, 1, 0);
+    }
+ 
+    float red;
+    float green;
+    float blue;
+}
+ 
+ 
+int main() {
+    Color font_color = Color::RED(); // 赤作りますよ
+    Color bg_color = Color::GREEN(); // 緑作りますよ
+    return 0;
+}

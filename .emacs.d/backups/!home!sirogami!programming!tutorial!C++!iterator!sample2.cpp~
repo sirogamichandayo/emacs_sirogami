@@ -1,0 +1,22 @@
+#include <vector>
+#include <iostream>
+
+void pointer_function(const int* num)
+{
+	std::cout << *num << std::endl;
+}
+
+int main()
+{
+	int N = 10;
+	std::vector<int> vec(N);
+	auto begin = vec.begin();
+	auto end = vec.end();
+
+	int i = 0;
+	for (;begin!=end; ++begin)
+		*begin = i;
+
+	auto I = vec.begin();
+	pointer_function(std::data(I));
+}

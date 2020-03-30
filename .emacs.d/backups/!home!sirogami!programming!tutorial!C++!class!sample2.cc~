@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+class B {
+public:
+  virtual void f() 
+  {
+    cout << __PRETTY_FUNCTION__ << endl;
+  }
+};
+
+class C1 : public B {
+public:
+  void f() 
+  {
+    cout << __PRETTY_FUNCTION__  << endl;
+  }
+};
+
+int main(int argc, char const* argv[])
+{
+  B b;
+  C1 c1;
+
+  b.f();
+  c1.f();
+}

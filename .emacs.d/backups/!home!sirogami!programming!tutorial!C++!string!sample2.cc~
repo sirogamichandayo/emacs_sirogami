@@ -1,0 +1,118 @@
+#include <iostream>
+
+// フツーこんなのなしだけどstringを継承したデバッグ用のクラス
+class mystring : public std::string {
+public:
+    // コンストラクタ
+    mystring() : std::string()
+    {
+        std::cout << "mystring constructor"
+            << " mystring() called!" << std::endl;
+    }
+    mystring(const char *str) : std::string(str)
+    {
+        std::cout << "mystring constructor"
+            << " mystring(const char *str) called!" << std::endl;
+    }
+    mystring(const std::string &s) : std::string(s)
+    {
+        std::cout << "mystring constructor"
+            << " mystring(const std::string &s) called!" << std::endl;
+    }
+
+    // コピーコンストラクタ
+    mystring(const mystring &rhs) : std::string(rhs.c_str())
+    {
+        std::cout << "mystring copy constructor"
+            << " mystring(const mystring &rhs) called!" << std::endl;
+    }
+
+    // 代入演算子
+    mystring &operator=(const char *str)
+    {
+        std::cout << "mystring assignment operator"
+            << " mystring &operator=(const char *str) called!" << std::endl;
+        std::string::operator=(str);
+        return *this;
+    }
+    mystring &operator=(const std::string& s)
+    {
+        std::cout << "mystring assignment operator"
+            << " mystring &operator=(const std::string& s) called!" << std::endl;
+        std::string::operator=(s);
+        return *this;
+    }
+    mystring &operator=(const mystring& rhs)
+    {
+        std::cout << "mystring assignment operator"
+            << " mystring &operator=(const mystring& rhs) called!" << std::endl;
+        std::string::operator=(rhs.c_str());
+        return *this;
+    }
+};
+
+// ダメです！呼び元で破棄されたオブジェクトを参照している
+//mystring &test1()
+//{
+//    mystring str = "test";
+//    std::cout << "function test1 called!!" << std::endl;
+//    return str;
+//}
+
+// 問題ないコードだけど使用者にメモリ解放の責任を負わせる
+mystring *test2()
+{
+    std::cout << "function test2 called!!" << std::endl;
+    // C++ is not Java!!
+    mystring *str = new mystring("test");
+    return str;
+}
+
+mystring test3()
+{
+    std::cout << "function test3 called!!" << std::endl;
+    mystring str = "test";
+    return str;    
+}
+
+mystring test4()
+{
+    std::cout << "function test4 called!!" << std::endl;
+    return mystring("test");
+}
+
+// 参照をもらって書き換えてかつreturn
+mystring &test5(mystring &s)
+{
+    s = "test";
+    return s;
+}
+
+// 参照をもらって書き換えるパターン
+void test6(mystring &s)
+{
+    s = "test";
+}
+
+
+int main()
+{
+    // これはやっちゃダメ
+    //mystring str1 = test1();
+    //std::cout << *str1 << std::endl;
+
+    // あんまりよくない ということで却下
+    //std::cout << "テスト2" << std::endl;
+    //mystring* str2 = test2();
+    //std::cout << "[" << *str2 << "]" << std::endl;
+
+    std::cout << "テスト3a" << std::endl;
+    mystring str3_a = test3();
+    std::cout << "[" << str3_a << "]" << std::endl;
+
+    std::cout << "テスト4a" << std::endl;
+    mystring str4_a = test4();
+    std::cout << "[" << str4_a << "]" << std::endl;
+
+    return 0;
+}

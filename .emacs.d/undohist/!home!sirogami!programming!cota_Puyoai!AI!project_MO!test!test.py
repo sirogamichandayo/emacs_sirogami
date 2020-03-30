@@ -1,0 +1,2 @@
+
+((digest . "170b936e43c23117f67ac29da1807e35") (undo-list nil (26 . 44) (t 24187 4790 782243 962000) nil (611 . 612) 342 nil (327 . 342) nil (314 . 327) nil ("h" . -314) ((marker . 44) . -1) ("o" . -315) ((marker . 44) . -1) ("s" . -316) ((marker . 44) . -1) 317 nil (298 . 317) nil (290 . 298) nil (269 . 290) nil ("samples" . -269) ((marker . 44) . -7) 276 nil (nil rear-nonsticky nil 544 . 545) (nil fontified nil 1 . 545) (1 . 545) (t . -1)))

@@ -1,0 +1,12 @@
+#include <iostream>
+
+template <class T, class... U>
+size_t count_paramer(T t, U ...u)
+{
+	return (1 + sizeof...(u));
+}
+
+int main(int argc, char **argv)
+{
+	
+}

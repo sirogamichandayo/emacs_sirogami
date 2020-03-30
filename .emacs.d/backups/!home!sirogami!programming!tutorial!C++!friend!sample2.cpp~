@@ -1,0 +1,27 @@
+#include <iostream>
+
+class Y {};
+
+class A
+{
+	int num;
+	class B {};
+	enum {a = 100};
+	friend class X;
+	friend Y;
+};
+
+class X : A::B
+{
+	A::B mx;
+	class Y
+	{
+		A::B my;
+	};
+	int v[A::a];
+};
+
+int main(int argc, char **argv)
+{
+	
+}

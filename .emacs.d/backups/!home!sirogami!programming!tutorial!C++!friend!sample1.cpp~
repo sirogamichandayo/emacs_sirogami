@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+class Coodinate
+{
+public:
+	Coodinate(int x, int y) {std::cout << __pretty_function__ << std::endl;}
+  
+private:
+	int x_, y_;	
+};
+
+int main()
+{
+}
+	

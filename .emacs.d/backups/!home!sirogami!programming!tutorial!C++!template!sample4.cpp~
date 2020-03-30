@@ -1,0 +1,21 @@
+#include <vector>
+
+template <template <typename...> typename Container>
+class X {
+  // コンテナのクラステンプレートをテンプレートパラメータで受け取って、
+  // 要素型はあとで指定する。
+  Container<int> c_;
+public:
+  void add(int x)
+  {
+    c_.push_back(x);
+  }
+};
+
+int main()
+{
+  X<std::vector> x;
+  x.add(3);
+  x.add(1);
+  x.add(4);
+}

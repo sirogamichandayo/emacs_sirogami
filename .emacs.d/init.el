@@ -67,13 +67,14 @@
 ;; forward-word -> "C-." / backward-word -> "C-,"
 (define-key global-map (kbd "C-.") 'forward-word)
 (define-key global-map (kbd "C-,") 'backward-word)
-;; kill-word -> "C-u"
+;; backward-kill-word -> "M-u"
 (define-key global-map (kbd "C-u") 'backward-kill-word)
 ;; kill-whole-line -> "C-k"
 (define-key global-map (kbd "C-k") 'kill-whole-line)
 ;; forward-list -> "M-." / backward-word -> "M-,"
 (define-key global-map (kbd "M-.") 'forward-list)
 (define-key global-map (kbd "M-,") 'backward-list)
+
 ;;
 
 (setq next-line-width 3)
@@ -300,8 +301,21 @@
    "int main(int argc, char **argv\C-e\C-m{\C-m")
 (fset 'indent-and-brackets
 	  "\C-e\C-m{\C-m")
-(fset 'c-include
-	  "#include ")
+(fset 'c-include-angle-brackets
+	  "#include <>\C-b")
+(fset 'c-include-quort
+	  "#include \"\"\C-b")
+(fset 'c++-constexpr
+	  "constexpr ")
+(fset 'c-pretty-function
+	  "__PRETTY_FUNCTION__ ")
+(fset 'c++-pretty-function-and-std-output
+	  "std::cout << __PRETTY_FUNCTION__ << std::endl;")
+(fset 'c++-std-output
+	  [?s ?t ?d ?: ?: ?c ?o ?u ?t ?  ?< ?< ?  ?< ?< ?\S-  ?s ?t ?d ?: ?: ?e ?n ?d ?l ?\; ?\C-, ?\C-, ?\C-b ?\C-b ?\C-b])
+
+
+
 ;; c
 (defun my-c-mode-hook ()
     (setq c-basic-offset 4)
@@ -315,17 +329,20 @@
                                                (next-line next-line-width)))
     (define-key c-mode-map (kbd "C-c C-p") (lambda()
                                                (interactive)
-                                               (previous-line previous-line-width)))
-    (define-key c-mode-map (kbd "M-a") 'c-beginning-of-defun)
-    (define-key c-mode-map (kbd "M-e") 'c-end-of-defun))
+                                               (previous-line previous-line-width))))
 (add-hook 'c-mode-hook 'my-c-mode-hook)
 ;; c++
 (defun my-c++-mode-hook ()
   (setq c-basic-offset 4)
   (c-set-offset 'substatement-open 0)
-  (define-key c++-mode-map (kbd "C-c m") 'c-main)
-  (define-key c++-mode-map (kbd "C-c [") 'indent-and-brackets)
-  (define-key c-mode-map (kbd "C-c i") 'c-include)
+  (define-key c++-mode-map (kbd "C-c c m") 'c-main)
+  (define-key c++-mode-map (kbd "C-c c [") 'indent-and-brackets)
+  (define-key c++-mode-map (kbd "C-c c i q") 'c-include-quort)
+  (define-key c++-mode-map (kbd "C-c c i ,") 'c-include-angle-brackets)
+  (define-key c++-mode-map (kbd "C-c c c") 'c++-constexpr)
+  (define-key c++-mode-map (kbd "C-c c p f") 'c-pretty-function)
+  (define-key c++-mode-map (kbd "C-c c p o") 'c++-pretty-function-and-std-output)
+  (define-key c++-mode-map (kbd "C-c c o") 'c++-std-output)
   
   (define-key c++-mode-map (kbd "C-c C-n") (lambda()
                                              (interactive)
@@ -333,8 +350,12 @@
   (define-key c++-mode-map (kbd "C-c C-p") (lambda()
                                              (interactive)
                                              (previous-line previous-line-width)))
-  (define-key c++-mode-map (kbd "M-a") 'c-beginning-of-defun)
-  (define-key c++-mode-map (kbd "M-e") 'c-end-of-defun)
+
+  (define-key c++-mode-map (kbd "C-M-n") 'c-end-of-defun)
+  (define-key c++-mode-map (kbd "C-M-p") 'c-beginning-of-defun)
+
+  (define-key c++-mode-map (kbd "C-TAB") 'c-indent-line-or-region)
+
 
   (add-to-list 'flycheck-clang-args "-Wall")
   (setq flycheck-clang-language-standard "c++17")
@@ -560,3 +581,22 @@
 ;; disable mouse
 (global-disable-mouse-mode)
 (put 'erase-buffer 'disabled nil)
+
+;; imenu
+(define-key global-map (kbd "C-x i") 'imenu-list)
+
+;; gtabs
+(require 'gtags)
+(define-key global-map (kbd "C-c g t") 'gtags-find-tag)
+(define-key global-map (kbd "C-c g r") 'gtags-find-rtag)
+(define-key global-map (kbd "C-c g s") 'gtags-find-symbol)
+(define-key global-map (kbd "C-c g /") 'gtags-pop-stack)
+(setq gtags-select-mode-hook
+	  '(lambda ()
+		 (local-set-key (kbd "C-m") 'gtags-select-tag)))
+
+;; title
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+(setq dashboard-banner-logo-title "Urusainaxa bukkorosuyo?")
+(setq dashboard-startup-banner "~/.emacs.d/picture/tica.png")
