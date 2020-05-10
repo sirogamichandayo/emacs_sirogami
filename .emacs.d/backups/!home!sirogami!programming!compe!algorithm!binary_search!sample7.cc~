@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+ll N;
+vector<ll> H, S;
+
+int main(int argc, char **argv)
+{
+	cin >> N;
+	H.resize(N), S.resize(N);
+	
+}

@@ -1,0 +1,19 @@
+#include <iostream>
+
+template <typename T>
+T hoge(const T &a, const T &b)
+{
+	return a + b;
+}
+
+template <>
+int hoge(const int &a, const int &b)
+{
+	return a * b;
+}
+
+int main(int argc, char **argv)
+{
+	std::cout << hoge(10, 10) << std::endl;
+	std::cout << hoge(10.0, 10.0)<< std::endl;
+}

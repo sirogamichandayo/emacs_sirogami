@@ -1,0 +1,4 @@
+#include <bits/stdc++h>
+
+int dy4[4]{-1, 0, 1, 0};
+int dx4[4]{0, 1, 0, -1};

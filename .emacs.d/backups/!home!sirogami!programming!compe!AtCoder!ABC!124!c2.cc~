@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	string str; cin >> str;
+
+	ll ref = 1ll << 60;
+	for (int start = 0; start <= 1; ++start)
+	{
+		ll val{start};
+		ll i{start};
+		ll c{0} ;
+		for (; i < (int)str.size(); ++i)
+		{
+			if (val != (str[i] - '0')) ++c;
+			val = 1 - val;
+		}
+		ref = min(ref, c);
+	}
+	std::cout << ref << std::endl;
+}

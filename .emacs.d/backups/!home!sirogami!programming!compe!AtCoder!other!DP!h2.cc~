@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+constexpr ll MOD = 100000007;
+
+ll H, W;
+char field[1010][1010];
+ll dp[1010][1010];
+
+int main(int argc, char **argv)
+{
+	ll H, W; cin >> H >> W;
+	for (ll i = 0; i < H; ++i)
+		for (ll j = 0;j < W; ++j)
+			cin >> field[i][j];
+
+	dp[0][0] = 1;
+	for (ll i = 0; i < H; ++i)
+	{
+		for (ll j = 0; j < W; ++j)
+		{
+			if (i+1 < H && field[i+1][j] == '.')
+				(field[i+1][j] += field[i][j]) %= MOD;
+			if (j+1 < W && field[i][j+1] == '.')
+				(field[i][j+1] += field[i][j]) %= MOD;
+		}
+	}
+
+	std::cout << << std::endl;
+}

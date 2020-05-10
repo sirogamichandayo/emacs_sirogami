@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll n, m; cin >> n >> m;
+	vector<ll> p(m), y(m); for (ll i = 0; i < m; ++i) cin >> p[i] >> y[i], --p[i];
+
+	
+}

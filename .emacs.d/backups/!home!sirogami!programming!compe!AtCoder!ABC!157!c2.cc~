@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll N, M; cin >> N >> M;
+	vector<ll> s(M), c(M);
+	for (ll i = 0; i < M; ++i) cin >> s[i] >> c[i], --s[i];
+
+	string str(N, ' ');
+
+	for (ll i = 0; i < M; ++i)
+	{
+		char &cc = str[s[i]];
+		if (cc != ' ')
+		{
+			std::cout << -1 << std::endl;
+			return 0;
+		}
+		cc = c[i];
+	}
+	std::cout << str << std::endl;
+}

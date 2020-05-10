@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+ll INF = 1ll << 60;
+
+template<class T> bool chmin(T &a, T b){if(a>b){a=b;return true;}return false;}
+template<class T> bool chmax(T &a, T b){if(a<b){a=b;return true;}return false;}
+
+constexpr ll MAX_N_LARGE{210};
+constexpr ll MAX_N_SMALL
+constexpr ll MAX_V{}

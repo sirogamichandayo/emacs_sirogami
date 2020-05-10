@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+
+int main(int argc, char **argv)
+{
+	string s1, s2;
+	vector<char> c{'a', 't', 'c', 'o', 'd', 'e', 'r'};
+	cin >> s1 >> s2;
+
+	bool ok{true};
+	for (ll i = 0; i < (ll)s1.size(); ++i)
+	{
+		if (s1[i] == s2[i]) continue;
+
+		if (s1[i] == '@')
+		{
+			auto it = find(c.begin(), c.end(), s2[i]);
+			if (it == c.end()) ok = false;
+		}
+		else if (s2[i] == '@')
+		{
+			auto it = find(c.begin(), c.end(), s1[i]);
+			if (it == c.end()) ok = false;
+		}
+		else
+			ok = false;
+	}
+	string res;
+	if (ok)
+		res = "You can win";
+	else
+		res = "You will lose";
+	std::cout << res << std::endl;
+}

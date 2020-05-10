@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+string s, t;
+ll dp[3010][3010];
+
+int main(int argc, char **argv)
+{
+	cin >> s >> t;
+	dp[0][0] = 0;
+
+	for (ll i = 0; i < (int)s.size(); ++i)
+	{
+		for (ll j = 0; j < (int)t.size(); ++j)
+		{
+			if (s[i] == t[j]) dp[i+1][j+1] = max({dp[i][j]+1, dp[i+1][j], dp[i][j+1], dp[i+1][j+1]});
+			else dp[i+1][j+1] = max({dp[i][j+1], dp[i+1][j], dp[i+1][j+1]});
+		}
+	}
+	
+	std::cout << dp[s.size()][t.size()] << std::endl;
+}

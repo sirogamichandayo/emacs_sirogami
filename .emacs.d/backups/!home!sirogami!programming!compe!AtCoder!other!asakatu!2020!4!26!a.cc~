@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<50;
+
+int main(int argc, char **argv)
+{
+	ll H, W; cin >> H >> W;
+	vector<vector<char>> vec(H, vector<char>(W));
+	for (ll i = 0; i < h; ++i)
+		for (ll j = 0; j < w; ++j)
+			cin >> vec[i][j];
+
+	
+							 
+}

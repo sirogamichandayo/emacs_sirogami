@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+struct grid{ll to; ll cost;};
+using Graph = vector<vector<grid>>;
+
+int main(int argc, char **argv)
+{
+	ll n, m, s, t; cin >> n >> m >> s >> t;
+	vector<ll> U(m), V(m), A(m), B(m);
+	for (ll i = 0; i < m; ++i)
+	{
+		cin >> U[i] >> V[i] >> A[i] >> B[i];
+		--U[i], --V[i];
+	}
+
+	Graph GO(m), BACK(m);
+	for (ll i = 0; i < m; ++i)
+	{
+		GO[U[i]].push_back(grid{V[i], A[i]});
+		GO[V[i]].push_back(grid{U[i], A[i]});
+		BACK[U[i]].push_back(grid{V[i], B[i]});
+		BACK[V[i]].push_back(grid{U[i], B[i]});
+	}
+
+	for (ll time = 0; time < m; ++time)
+	{
+		
+	}
+		
+	
+}

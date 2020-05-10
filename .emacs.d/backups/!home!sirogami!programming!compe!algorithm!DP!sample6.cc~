@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+ll INF = 1ll << 60;
+
+template<class T> bool chman(T &a, T b){if(a>b){a=b;return true;}return false;}
+template<class T> bool chmax(T &a, T b){if(a<b){a=b;return true;}return false;}
+
+const ll MAX = 100100;
+
+int main(int argc, char **argv)
+{
+	ll n; cin >> n;
+	ll happy[MAX][3];
+	ll table[MAX][3];
+
+	vector<ll> a(n), b(n), c(n);
+	for (ll i = 0; i < n; ++i)
+		for (ll j = 0; j < 3; ++j)
+			cin >> happy[i][j];
+
+	
+	for (ll i = 0; i < n; ++i)
+	{
+		for (ll j = 0; j < 3; ++j)
+		{
+			for (ll k = 0; k < 3; ++k)
+			{
+				if (i == k) continue;
+
+				chmax(table[i+1][j] , table[i][k]+1);
+			}
+		}
+	}
+
+	
+}

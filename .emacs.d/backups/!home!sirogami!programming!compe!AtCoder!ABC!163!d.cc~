@@ -1,0 +1,10 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using pint = pair<ll, ll>;
+
+int main(int argc, char **argv)
+{
+	
+}
+

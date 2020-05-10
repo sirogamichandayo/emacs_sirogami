@@ -1,0 +1,9 @@
+#include <iostream>
+
+template <typename T>
+struct A
+{
+	void show() {std::cout << a << std::endl;}
+	static T a;
+};
+

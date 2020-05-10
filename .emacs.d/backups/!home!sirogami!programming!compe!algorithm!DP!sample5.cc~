@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+ll INF = 1ll << 60;
+
+template<class T> bool chmin(T &a, T b)
+{
+	if (a > b)
+	{
+		a = b;
+		return true;
+	}
+	return false;
+}
+
+template<class T> bool chmax(T &a, T b)
+{
+	if (a < b)
+	{
+		a = b;
+		return true;
+	}
+	return false;
+}
+
+const ll MAX = 100100;
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+
+	ll dp[MAX];
+	for (ll i = 0; i < MAX; ++i) dp[i] = 0;
+
+	for (ll i = 0; i < N; ++i)
+	{
+		chmin(dp[i+1], dp[i] + 1);
+
+		for (ll j = 1; i+(j*6) <= N; ++j)
+			chmin(dp[i+(j*6)], dp[i]+1);
+		for (ll j = 1; i+(j*9) <= N; ++j)
+			chmin(dp[i+(j*9)], dp[i]+1);
+	}
+
+	std::cout << dp[n-1] << std::endl;
+}

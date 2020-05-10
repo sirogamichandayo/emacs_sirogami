@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std;
+
+struct Coordinate
+{
+	Coordinate(const int x, const int y) : x_(x), y_(y) {};
+	friend std::ostream &operator<<(std::ostream &os, const Coordinate &coo)
+	{
+		os << "x=" << coo.x_ << " "
+		   << "y=" << coo.y_ << " "
+		   << "\n";
+		return os;
+	}
+	int x_, y_;
+};
+
+
+int main(int argc, char **argv)
+{
+	Coordinate  c(10, 10);
+	std::cout << c << std::endl;
+}

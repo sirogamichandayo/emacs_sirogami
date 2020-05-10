@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int A, B, X;
+
+int main(int argc, char **argv)
+{
+	cin >> A >> B >> X;
+
+	int c = 0;
+	for (int i = A; i <= B; ++i)
+	{
+		if (i % X == 0) ++c;
+	}
+	std::cout << c << std::endl;
+}

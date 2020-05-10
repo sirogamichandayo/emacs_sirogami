@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int A, B, C;
+
+int main(int argc, char **argv)
+{
+	cin >> A >> B >> C;
+	ll A_ = A;
+
+	while (true)
+	{
+		A += A_;
+		if (A % B == C)
+		{
+			std::cout << "YES"<< std::endl;
+			return 0;
+		}
+	};
+	
+}

@@ -1,0 +1,12 @@
+#ifndef A_H
+#define A_H
+
+#include <memory>
+class B;
+
+class A
+{
+	std::shared_ptr<B> b;
+};
+
+#endif

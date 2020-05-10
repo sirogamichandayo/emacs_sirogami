@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	ll T; cin >> T;
+	ll N; cin >> N;
+	vector<ll> A(N);
+	for (ll i = 0; i < N; ++i)
+		cin >> A[i], A[i] += T;
+
+	ll M; cin >> M;
+	vector<ll> B(M);
+	for (ll i = 0; i < M; ++i) cin >> B[i];
+
+	sort(A.begin(), A.end());
+	sort(B.begin(), B.end());
+
+	bool ok{true};
+	for (ll i = 0; i < M; ++i)
+	{
+		ll t = B[i];
+
+		auto it = upper_bound(A.begin(), A.end(), t) - 1;
+		std::cout << "it : "<< *it << std::endl;
+		if (*it-T <= t && t <= *it)
+			A.erase(it);
+		else
+			ok = false;
+	}
+	std::cout << (ok ? "Yes" : "No") << std::endl;
+}

@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	ll H, W; cin >> H >> W;
+	pair<ll, ll> s, g;
+	cin >> s.second >> s.first;
+	cin >> g.second >> g.first;
+	
+}

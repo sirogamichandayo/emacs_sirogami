@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+struct UnionFind
+{
+	vector<ll> par;
+	UnionFind(ll N) : par(N)
+	{
+		for (ll i = 0; i < N; ++i) par[i] = i;
+	}
+
+	
+}
+
+int main(int argc, char **argv)
+{
+	
+}

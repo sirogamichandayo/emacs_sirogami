@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+template<class T>
+void chmax(T &a, T b)
+{
+	if (a < b) a = b;
+}
+
+ll N;
+constexpr ll DP_MAX = 100010;
+ll dp[DP_MAX][3];
+vector<ll> A, B, C;
+
+int main(int argc, char **argv)
+{
+	cin >> N;
+	A.resize(N), B.resize(N), C.resize(N);
+	for (ll i = 0; i < N; ++i) cin >> A[i] >> B[i] >> C[i];
+	for (ll i = 0; i < DP_MAX; ++i)
+		for (ll j = 0; j < 3; ++j)
+			dp[i][j] = -(1ll<<50);
+	dp[0][0] = dp[0][1] = dp[0][2] = 0;
+
+	for (ll i = 0; i < N; ++i)
+	{
+		chmax(dp[i+1][0], max(dp[i][1]+A[i+1], dp[i][2]+A[i+1]));
+		chmax(dp[i+1][1], max(dp[i][0]+B[i+1], dp[i][2]+B[i+1]));
+		chmax(dp[i+1][2], max(dp[i][0]+C[i+1], dp[i][1]+C[i+1]));
+	}
+	std::cout << max({dp[N-1][0], dp[N-1][1], dp[N-1][2]})<< std::endl;
+}

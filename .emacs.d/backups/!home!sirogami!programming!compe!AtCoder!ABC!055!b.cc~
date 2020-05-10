@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int N;
+unsigned int mod = 1000000007;
+
+int solve()
+{
+	
+}
+
+int main(int argc, char **argv)
+{
+	
+}

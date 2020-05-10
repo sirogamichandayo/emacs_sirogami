@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+template<class T>
+bool chmin(T &a, T b)
+{
+	if (a > b)
+	{
+		a = b;
+		return false;
+	}
+	return true;
+}
+
+template<class T>
+bool chmax(T &a, T b)
+{
+	if (a < b)
+	{
+		a = b;
+		return false;
+	}
+	return true;
+}
+
+template<class T>
+bool chmax(T &a, initializer_list<T> l)
+{
+	return chmax(a, *max_element(l.begin(), l.end()));
+}
+
+template<class T>
+bool chmin(T &a, initializer_list<T> l)
+{
+	return chmin(a, *min_element(l.begin(), l.end));
+}
+
+tuple<ll, ll, ll> dp[1010][1010];
+
+int main(int argc, char **argv)
+{
+	std::cout << pow(2, 1000)<< std::endl;
+}

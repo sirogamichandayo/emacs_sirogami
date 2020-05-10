@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll extGCD(ll a, ll b, ll &x, ll &y)
+{
+	if (b == 0)
+	{
+		x = 1, y = 0;
+		return a;
+	}
+
+	ll d = extGCD(b, a%b, x, y);
+	ll tmp = x;
+	x = y;
+	y = tmp - a/b * x;
+	return d;
+}
+
+int main(int argc, char **argv)
+{
+	ll x, y;
+	ll g = extGCD(100, 33, x, y); // 100x + 33y = GCD(100, 33) = 1
+	std::cout << 100 << "*" << x << " + " << 33 << "*" << y << " = " << d << std::endl;
+}

@@ -1,0 +1,28 @@
+#include <iostream>
+
+using namespace std;
+
+namespace A_not_avoid_adl
+{
+	class X {};
+	template<class T> void show(X) {std::cout << __PRETTY_FUNCTION__ << std::endl;}
+}
+
+namespace B_avoid_adl
+{
+	class X {};
+	namespace empty
+	{
+		template<class T> void show(X) {std::cout << __PRETTY_FUNCTION__ << std::endl;}
+	}
+	using namespace empty;
+}
+
+template<class T> void show(T) {std::cout << __PRETTY_FUNCTION__ << std::endl;}
+
+int main(int argc, char **argv)
+{
+	show(A_not_avoid_adl::X);
+	
+}
+

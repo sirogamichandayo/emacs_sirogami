@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll a, b, x;
+
+ll digitPoor(ll n)
+{
+	assert(n >= 0);
+	ll digit = 1;
+	for (ll i = 10;; i *= 10, ++digit)
+		if (i > n) return digit;
+}
+
+int main(int argc, char **argv)
+{
+	cin >> a >> b >> x;
+
+	
+	
+}

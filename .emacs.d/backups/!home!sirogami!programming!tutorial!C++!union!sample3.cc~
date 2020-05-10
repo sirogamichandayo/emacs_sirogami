@@ -1,0 +1,16 @@
+#include <iostream>
+
+union UIntInByte
+{
+	int i;
+	unsigned char c[4];
+};
+
+int main(int argc, char **argv)
+{
+	UIntInByte a;
+	a.i = 1;
+
+	for (int i = 0; i < 4; ++i)
+		std::cout << a.c[i] << std::endl;
+}

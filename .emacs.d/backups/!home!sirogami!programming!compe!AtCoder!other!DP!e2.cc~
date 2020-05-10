@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+constexpr ll MAX_V = 1000*100+10;
+ll dp[110][MAX_V];
+
+int main(int argc, char **argv)
+{
+	ll N, W;
+	vector<ll> weight(N), value(N);
+	for (ll i = 0; i < N; ++i) cin >> weight[i] >> value[i];
+
+	for (ll i = 0; i <= N; ++i) for (ll v = 0; v < MAX_V; ++v) dp[i][v] = 1ll << 60;
+
+	dp[0][0] = 0;
+	for (ll i = 0; i < N; ++i)
+	{
+		for (ll v = 0; v < MAX_V; ++v)
+		{
+			dp[i+1][v] = min(dp[i+1][v], dp[i][v]);
+			if (v-value[i]>=0)dp[i+1][v] = min(dp[i+1][v], dp[i][v-value[i]]+weight[i]);
+		}
+	}
+	ll res{0};
+	for (ll v = 0; v < MAX_V; ++v)
+	{
+		if (dp[N][v] <= W) res = v;
+	}
+	std::cout << res << std::endl;
+}

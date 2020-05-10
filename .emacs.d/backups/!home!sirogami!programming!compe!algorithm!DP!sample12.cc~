@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll N, A;
+vector<ll> a;
+ll dp[110][10010];
+
+int main(int argc, char **argv)
+{
+	cin >> N >> A;
+	a.resize(N); for (ll i = 0; i < N; ++i) cin >> a[i];
+	for (ll i = 0; i < 110; ++i) for (ll j = 0; j < 10010; ++j) dp[i][j] = 1ll << 60;
+	dp[0][0] = 0;
+
+	
+	
+}

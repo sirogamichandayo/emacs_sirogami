@@ -1,0 +1,6 @@
+template<typename T1>
+struct A
+{
+	template <class T2>
+	void g1(T1, T2);
+};

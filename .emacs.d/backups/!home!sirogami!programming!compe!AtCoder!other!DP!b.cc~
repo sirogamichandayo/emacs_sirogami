@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+template<class T>
+void chmin(T &a, T b)
+{
+	if (a > b) a = b;
+}
+
+ll N, K;
+vector<ll> H;
+ll dp[100010];
+
+int main(int argc, char **argv)
+{
+	cin >> N >> K;
+	H.resize(N); for (ll i = 0; i < N; ++i) cin >> H[i];
+
+	for (ll i = 0; i < 100010; ++i) H[i] = 1ll << 60;
+	dp[0] = 0;
+
+	for (ll i = 0; i < N; ++i)
+	{
+		for (ll k = 1; k <= K; ++k)
+		{
+			chmin(dp[i+k], dp[i] + abs(H[i] - H[i+k]));
+		}
+	}
+	std::cout << dp[N-1] << std::endl;
+}

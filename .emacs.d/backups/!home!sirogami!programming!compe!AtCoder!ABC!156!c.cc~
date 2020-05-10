@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<ll> X(N); for (ll i = 0; i < N: ++i) cin >> X[i];
+
+	ll res{1ll<<60}
+}

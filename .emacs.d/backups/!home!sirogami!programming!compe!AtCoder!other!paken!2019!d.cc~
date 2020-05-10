@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+template<class T>
+void chmin(T &a, T b) {if (a > b) a = b;}
+template<class T>
+void chmin(T &a, initializer_list<T> l) {chmin(a, *min_element(l.begin(), l.end()));}
+ll dp[1010][3];
+char grid[5][1010];
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	for (ll i = 0; i < 5; ++i)
+		for (ll j = 0; j < N; ++j)
+			cin >> grid[i][j];
+
+	memset(dp, 0, sizeof dp);
+
+	for (ll c = 0; c < N: ++c)
+	{
+		chmin(dp[n+1][0], dp[n][1], dp[n][2]);
+		chmin(dp[n+1][1], dp[n][2], dp[n][0]);
+		chmin(dp[n+1][2], dp[n][0], dp[n][1]);
+	}
+		
+}

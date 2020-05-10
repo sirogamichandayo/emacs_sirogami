@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+
+int main(int argc, char **argv)
+{
+	ll bingo[3][3];
+	for (ll i = 0; i < 3; ++i)
+		for (ll j = 0; j < 3; ++j)
+			cin >> bingo[i][j];
+	ll N; cin >> N;
+	vector<ll> num(N);
+	bool match[3][3];
+	memset(match, 0, sizeof(match));
+
+	for (ll i = 0; i < 3; ++i)
+		for (ll j = 0; j < 3; ++j)
+		{
+			ll t = bingo[i][j];
+			auto it = find(num.begin(), num.end(), t);
+			if (it == num.end()) break;
+
+			match[i][j] = true;
+		}
+
+	for (ll x = 0; x < 3; ++x)
+	{
+		bool flag1{true}, flag2{true};
+		for (ll y = 0; y < 3; ++y)
+		{
+			flag1 = match[x][y];
+			flag2 = match[y][x];
+		}
+		if (flag1 || flag2)
+		{
+			std::cout << "Yes"<< std::endl;
+			return 0;
+		}
+	}
+
+	bool flag1{true}, flag2{true};
+	for (ll x = 0; x < 3; ++x)
+	{
+		flag1 = match[x][x];
+		flag2 = match[3-x][x];
+
+	}
+	if (flag1 || flag2)
+		std::cout << "Yes"<< std::endl;
+	std::cout << "No"<< std::endl;
+}

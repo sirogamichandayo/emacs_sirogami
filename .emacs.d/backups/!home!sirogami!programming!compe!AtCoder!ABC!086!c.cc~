@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int N;
+vector<int> T_vec;
+vector<int> X_vec;
+vector<int> Y_vec;
+
+int dx[4]{1, 0, -1, 0}; 
+int dy[4]{0, 1, 0, -1};
+
+bool solve()
+{
+	int x{0}, y{0};
+
+	int distance;
+
+	int t = 0;
+	while (t < T_vec[N-1])
+	{
+		
+		++t;
+	}
+}
+
+int main(int argc, char **argv)
+{
+	cin >> N;
+	T_vec.resize(N);
+	X_vec.resize(N);
+	Y_vec.resize(N);
+
+	for (int i = 0; i < N; ++i)
+		cin >> T_vec[i] >> X_vec[i] >> Y_vec[i];
+
+	
+}

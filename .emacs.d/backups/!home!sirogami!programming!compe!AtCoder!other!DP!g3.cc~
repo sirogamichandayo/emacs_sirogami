@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using Graph = vector<vector<ll>>;
+
+ll N, M;
+Graph G;
+vector<ll> deg;
+ll dp[100010];
+
+int main(int argc, char **argv)
+{
+	cin >> N >> M;
+	G.resize(M);
+	deg.resize(N, 0);
+	
+	for (ll i = 0; i < M; ++i)
+	{
+		ll a, b; cin >> a >> b; --a, --b;
+		G[a].push_back(b);
+		++deg[b];
+	}
+
+	queue<ll> que;
+	for (ll v = 0; v < N; ++v) if (deg[v] == 0) que.push(v);
+
+	while (!que.empty())
+	{
+		ll cv = que.front(); que.pop();
+		for (auto nv : G[cv])
+		{
+			--deg[nv];
+			if (deg[nv] == 0)
+			{
+				que.push(nv);
+				dp[nv] = max(dp[nv], dp[cv]+1);
+			}
+		}
+	}
+
+	ll res{0};
+	for (ll i = 0; i < N; ++i) res = max(res, dp[i]);
+	std::cout << res << std::endl;
+}

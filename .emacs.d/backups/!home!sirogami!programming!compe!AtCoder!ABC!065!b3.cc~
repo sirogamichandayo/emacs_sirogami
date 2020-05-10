@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	int n;
+	cin >> n;
+
+	vector<int> a(n+1);
+
+	for (int i = 1; i < n + 1; ++i)
+		cin >> a[i];
+
+	int count = 0;
+	bool f = false;
+
+	int target = 1;
+	while (count < n)
+	{
+		target = a[target];
+		count++;
+
+		if (target == 1)
+		{
+			f = true;
+			break;
+		}
+	}
+
+	if (f) std::cout << count << std::endl;
+	else std::cout << -1 << std::endl;
+}

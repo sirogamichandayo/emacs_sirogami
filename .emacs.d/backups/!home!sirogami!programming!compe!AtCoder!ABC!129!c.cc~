@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+ll INF = 1ll << 60;
+
+template<class T> bool chmin(T &a, T b){if(a>b){a=b;return true;}return false;}
+template<class T> bool chmax(T &a, T b){if(a<b){a=b;return true;}return false;}
+
+constexpr ll MAX_N = 100010;
+ll dp[MAX_N];
+
+
+bool is_exist(ll num, vector<ll> &v)
+{
+	auto it = v.find(num);
+	return (it == v.end() ? false : true);
+}
+
+int main(int argc, char **argv)
+{
+	ll N, M;
+	cin >> N >> M;
+	vector<ll> a(M);
+	for (int i = 0; i < M; ++i) cin >> a[i];
+
+	// Initialzie
+	dp[0] = 0;
+
+	for (int i = 0; i < N; ++i)
+	{
+		if ()
+	}
+}

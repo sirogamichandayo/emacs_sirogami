@@ -1,0 +1,33 @@
+template <typename T>
+struct A
+{
+	struct B {};
+	template <class U> struct C {};
+};
+
+template <>
+struct A<int>
+{
+	void f(int);
+};
+
+void A<int>::f([[maybe_unused]] int a) {};
+
+template <>
+struct A<char>::B
+{
+	void f();
+};
+
+void A<char>::B::f() {}
+
+template <>
+template <class U> struct A<char>::C
+{
+	void f();
+};
+
+template <>
+template <class U> void A<char>::C<U>::f()	{};
+	
+	

@@ -1,0 +1,16 @@
+template <typename T>
+struct A
+{
+	enum class Card {red, blue, green};
+};
+
+template <>
+struct A<int>
+{
+	enum class Ball {red, blue, green};
+};
+
+int main(int argc, char **argv)
+{
+	
+}

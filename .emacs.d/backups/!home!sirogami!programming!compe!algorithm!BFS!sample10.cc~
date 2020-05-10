@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+ll f[110][110];
+bool d[110][110];
+
+int dx[4]{1, 0, -1, 0};
+int dy[4]{0, 1, 0, -1};
+
+int main(int argc, char **argv)
+{
+	ll W, H; cin >> W >> H;
+	for (ll h = 0; h < H+2; ++h)
+		for (ll w = 0; w < W+2; ++w)
+		{
+			if (h == 0 || h == H + 1 || w == 0 || w == W + 1)
+				f[h][w] = 0;
+			else
+				cin >> f[h][w];
+		}
+	std::cout << "pass"<< std::endl;
+
+	queue<pair<ll, ll>> que;
+	que.push(pair<ll, ll>(0, 0));
+	memset(d, 0, sizeof d);
+	ll res{0};
+
+	while (!que.empty())
+	{
+		auto now = que.front(); que.pop();
+		ll h = now.first;
+		ll w = now.second;
+
+		for (ll i = 0; i < 4; ++i)
+		{
+			ll nh = h + dy[i];
+			ll nw = w + dx[i];
+
+			if (nh < 0 || nh > H+1 || nw < 0 || nw > W+1) continue; // out of range;
+			if (d[nh][nw]) continue;
+			if (f[nh][nw])
+			{
+				++res;
+				continue;
+			}
+			que.push(pair<ll, ll>(nh, nw));
+			d[nh][nw] = true;
+		}
+	}
+
+	for (ll h = 0; h < H+2; ++h)
+	{
+		for (ll w = 0; w < W+2; ++w)
+			std::cout << f[h][w] << " ";
+		std::cout << std::endl;
+	}
+	std::cout << res << std::endl;
+}

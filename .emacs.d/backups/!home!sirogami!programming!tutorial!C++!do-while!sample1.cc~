@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	vector<int> v{1, 2, 3};
+
+	int i = 0; 
+	do
+	{
+		if (i == 3) continue;
+		if (i == 10) break;
+		std::cout << i << std::endl;
+	} while (++i);
+		
+}

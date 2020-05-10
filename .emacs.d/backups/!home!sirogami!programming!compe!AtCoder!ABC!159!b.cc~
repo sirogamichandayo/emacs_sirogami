@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	string str; cin >> str;
+	ll N = str.size();
+
+	bool ok{true};
+	
+	string rev = str;
+	reverse(rev.begin(), rev.end());
+	if (rev != str)
+		ok = false;
+
+	string tmp = str.substr(0, (N-2)/2-1);
+	rev = tmp;
+	reverse(rev.begin(), rev.end());
+	if (rev != tmp)
+		ok = false;
+
+	tmp = str.substr((N+3)/2-1, N-1);
+	rev = tmp;
+	reverse(rev.begin(), rev.end());
+	if (rev != tmp)
+		ok = false;
+
+	std::cout << (ok ? "Yes" : "no")<< std::endl;
+	
+   
+}

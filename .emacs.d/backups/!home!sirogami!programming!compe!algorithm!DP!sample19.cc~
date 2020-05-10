@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using ll = long long;
+using namespace std;
+
+template<class T>
+void chmin(T &a, T b) {if (a > b) a = b;}
+
+template<class T>
+void chmin(T &a, initializer_list<T> list)
+{
+	chmin(a, *max_element(list.begin(), list.end));
+}
+
+ll dp[1010][1010];
+
+int main(int argc, char **argv)
+{
+	ll M, N; cin >> M >> N;
+	vector<ll> A(M), B(N);
+	for (ll i = 0; i < M; ++i) cin >> A[i];
+	for (ll i = 0; i < N; ++i) cin >> B[i];
+	vector<vector<ll>> c(M, vector<ll>(N));
+	for (ll i = 0; i < M; ++i)
+		for (ll j = 0; j < N; ++j)
+			cin >> c[i][j];
+	memset(dp, 0, sizeof dp);
+	for (ll i = 0; i < N; ++i)
+	{
+		for (ll j = 0; j < M; ++j)
+		{
+			chmin(dp[i+1][j+1], {dp[i][j], dp[i+1][j], dp[i][j+1]});
+			dp[i+1][j+1] += c[i][j];
+		}
+	}
+}

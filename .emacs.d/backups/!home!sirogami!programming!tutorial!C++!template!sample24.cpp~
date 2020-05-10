@@ -1,0 +1,24 @@
+#include <iostream>
+
+template <typename T>
+struct A
+{
+	struct B
+	{
+		static void show() {std::cout << "not int" << std::endl;}
+	};
+};
+
+template <>
+struct A<int>::B
+{
+	static void show() {std::cout << "int" << std::endl;}
+};
+
+int main(int argc, char **argv)
+{
+	A<double>::B::show();
+	A<void>::B::show();
+	A<int>::B::show();
+}
+

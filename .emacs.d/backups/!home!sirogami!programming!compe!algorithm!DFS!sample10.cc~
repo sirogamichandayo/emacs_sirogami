@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+using Graph = vector<vector<ll>>;
+
+bool field[100][100];
+bool f[100][100];
+ll N, M;
+
+
+int main(int argc, char **argv)
+{
+	G
+}

@@ -1,0 +1,30 @@
+#include <iostream>
+//    RGBカラーを表す構造体
+struct Color {
+    Color(float r, float g, float b)
+        : red(r)
+        , green(g)
+        , blue(b)
+    {std::cout << "construcor" << std::endl;}
+
+        ~Color() {std::cout << "destructor" << std::endl;} 
+
+        Color(const Color& color) {std::cout << "move constructor" << std::endl;}
+        
+    // 赤色のインスタンスを生成
+    static Color RED() {
+        Color c Color(1, 0, 0);
+        return c;
+    }
+ 
+    float red;
+    float green;
+    float blue;
+};
+ 
+ 
+int main() {
+    Color font_color = Color::RED(); // 赤作りますよ
+   
+    return 0;
+}

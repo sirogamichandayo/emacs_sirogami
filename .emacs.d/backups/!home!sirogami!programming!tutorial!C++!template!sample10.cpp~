@@ -1,0 +1,32 @@
+#include <iostream>
+#include <sstream>
+#include <ostream>
+
+using namespace std;
+
+template <typename T>
+class Coordinate;
+
+template <>
+class Coordinate<int>
+{
+	Coordinate(const int &x, const int &y) : x_(x), y_(y) {};
+
+	friend ostream &operator<<(ostream &os, const Coordinate &coo)
+	{
+		os << "X : " << coo.x_ << " "
+		   << "Y : " << coo.y_ << " ";
+		
+		return os;	
+	}
+	
+private:
+	int x_, y_;
+};
+
+int main(int argc, char **argv)
+{
+	Coordinate<int> coo(10, 10);
+	Coordinate<float> coo1;
+	
+}

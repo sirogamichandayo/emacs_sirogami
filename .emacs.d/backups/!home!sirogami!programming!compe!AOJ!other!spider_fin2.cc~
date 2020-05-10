@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ld = long double;
+using pint = pair<int, int>;
+using pid = pair<ld, int>;
+
+constexpr ll INF = 1e+9;
+struct grid{ll to; ld cost;};
+using Graph = vector<vector<grid>>;
+
+int main(int argc, char **argv)
+{
+	while (true)
+	{
+		ll N; cin >> N;
+		if (N == 0) break;
+		vector<ll> id(N), x(N), y(N);
+		for (ll i = 0; i < N; ++i) {cin >> id[i] >> x[i] >> y[i]; --id[i];};
+
+		Graph G(N);
+		for (ll i = 0; i < N; ++i)
+		{
+			for (ll j = 0; j < N; ++j)
+			{
+				if (id[i] == id[j]) continue;
+				ld dist = (pow(x[i]-x[j], 2) + pow(y[i]-y[j], 2));
+
+				if (dist <= 2500.0)
+				{
+					G[id[i]].push_back(grid{id[j], dist});
+				}
+			}
+		}
+
+		priority_queue<pid, vector<pid>, greater<pid>> que;
+		
+		ll M; cin >> M;
+		for (ll i = 0; i < M; ++i)
+		{
+			vector<ld> dist(N, (ld)INF);
+			ll s, g; cin >> s >> g; --s, --g;
+			dist[s] = 0.0;
+			que.push(pid(0.0, s));
+
+			while (!que.empty())
+			{
+				pid p = que.top(); que.pop();
+				ll v = p.second;
+				if (dist[v] < p.first) continue;
+
+				for (auto &nv : G[v])
+				{
+					if (dist[nv.to] > dist[v] + nv.cost)
+					{
+						dist[nv.to] = dist[v] + nv.cost;
+						que.push(pid(dist[nv.to], nv.to));
+					}
+				}
+			}
+
+			// output
+			if (dist[g] != (ld)INF)
+			{
+				ll cv{g}; // current
+				ld d;
+				vector<ll> res{cv};
+				while (cv != s)
+				{
+					d = dist[cv];
+					for (auto &bv : G[cv]) // before
+					{
+						if (d == dist[bv.to] + bv.cost)
+						{
+							d -= bv.cost;
+							cv = bv.to;
+							res.push_back(cv);
+							break;
+						}
+					}
+				}
+				reverse(res.begin(), res.end());
+				std::cout << res[0]+1;
+				for (ll i = 1; i < (ll)res.size(); ++i)
+					std::cout << " " << res[i]+1;
+				std::cout << std::endl;
+			}
+			else
+				std::cout << "NA" << std::endl;
+		}
+	}
+
+	return 0;
+}

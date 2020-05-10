@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+template<class T>
+void chmax(T &a, T b) {if (a < b) a = b;} 
+
+ll dp[110][10010];
+
+int main(int argc, char **argv)
+{
+	ll N, W; cin >> N >> W;
+	vector<ll> value(N), weight(N);
+	for (ll i = 0; i < N; ++i) cin >> value[i] >> weight[i];
+
+	for (ll i = 0; i < N; ++i)
+	{
+		for (ll w = 0; w <= W; ++w)
+		{
+			chmax(dp[i+1][w], dp[i][w]);
+			if (w-weight[i]>=0)chmax(dp[i+1][w], dp[i+1][w-weight[i]]+value[i]);
+		}
+			
+	}
+	
+}

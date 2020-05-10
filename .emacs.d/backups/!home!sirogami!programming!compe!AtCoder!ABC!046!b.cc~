@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int N, K;
+
+int main(int argc, char **argv)
+{
+	cin >> N >> K;
+
+	ulong int ans = K;
+	
+	for (int i = i; i < N; ++i)
+	{
+		ans *= K-1;
+	}
+}

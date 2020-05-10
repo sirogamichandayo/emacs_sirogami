@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll N, K;
+vector<ll> B;
+
+int main(int argc, char **argv)
+{
+	cin >> N >> K;
+	B.resize(N); for (ll i = 0; i < N; ++i) cin >> B[i];
+
+	ll cn{0};
+	for (ll i = 0; i < N; ++i)
+	{
+		if (B[i] <= 0)
+			++cn;
+		if (cn >= K)
+		{
+			for (ll j = i-K; j <= i; ++j)
+				B[j] = 0;
+		}
+	}
+	for (auto &e : B)
+		std::cout << e << " ";
+	std::cout << std::endl;
+
+	for (ll i = 0; i < N-K+1; ++i)
+	{
+		ll sum = accumulate(next(B.begin(), i), next(B.begin(), i+K), 0ll);
+		if (sum < 0)
+		{
+			for (ll j = i; j < i+K; ++j)
+				B[j] = 0;
+		}
+	}
+	std::cout << accumulate(B.begin(), B.end(), 0ll) << std::endl;
+	
+}

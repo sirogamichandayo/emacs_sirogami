@@ -1,0 +1,19 @@
+template <class T1> class A {
+    template<class T2> class B {
+        template<class T3> void mf1(T3); // メンバテンプレート。
+        void mf2(); // 非テンプレートメンバ。
+     };
+};
+ 
+// 特殊化。
+template<> // 特殊化される A のため。
+template<class X> // 特殊化されない B のため。
+class A<int>::B {
+    template <class T> void mf1(T);
+};
+ 
+// 特殊化。
+template<> // 特殊化される A のため。
+template<> // 特殊化される B のため。
+template<class T> // 特殊化されない mf1 のため。
+void A<int>::B<double>::mf1(T t) { }

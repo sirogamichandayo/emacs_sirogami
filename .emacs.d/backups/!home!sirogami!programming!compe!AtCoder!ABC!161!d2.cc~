@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<long long> num2digit(long long num)
+{
+	vector<long long> v;
+
+	while (true)
+	{
+		long long a = num % 10;
+		v.push_back(a);
+		num /= 10;
+		if (num == 0) break;
+	}
+	return v;
+}
+
+int main(int argc, char **argv)
+{
+	long long k;
+	cin >> k;
+
+	int num = 1;
+	while (true)
+	{
+		vector<long long> v = num2digit(num);
+		int num_digit = v.size();
+		
+		
+	}
+}

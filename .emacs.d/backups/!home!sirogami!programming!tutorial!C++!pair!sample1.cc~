@@ -1,0 +1,10 @@
+#include <iostream>
+#include <pair>
+
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	pair<int, int> p = pair<int, int>(1, 2);
+	
+}

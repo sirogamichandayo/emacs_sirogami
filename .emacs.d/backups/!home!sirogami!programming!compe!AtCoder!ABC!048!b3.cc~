@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+unsigned long long A, B, X;
+
+int main(int argc, char **argv)
+{
+	cin >> A >> B >> X;
+	if (A % X != 0)
+	{
+		A = A + X + (A % X);
+	}
+	B = B - (B % X);
+
+	cout << (B - A) / x + 1 << endl;
+}

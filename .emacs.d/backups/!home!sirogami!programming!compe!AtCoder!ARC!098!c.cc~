@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	String S; cin >> S;
+	vector<ll> w(N, 0), e(N, 0);
+
+	for (ll i = 0; i < N; ++i)
+	{
+		if (s[i] == 'W')
+			w[i] = 1;
+		else
+			e[i] = 1;
+	}
+
+	vector<ll> sumw(N+1, 0), sume(N+1, 0);
+	for (ll i = 0; i < N; ++i)
+	{
+		sumw[i+1] = sumw[i] + w[i];
+		sume[i+1] = sume[i] + s[i];
+	}
+
+	
+}

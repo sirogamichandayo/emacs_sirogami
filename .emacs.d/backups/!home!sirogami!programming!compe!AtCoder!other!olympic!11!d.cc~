@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 10000;
+ll dp[10010][4][4];
+int main(int argc, char **argv)
+{
+	ll N, K; cin >> N >> K;
+	vector<int> S(N+1, -1);
+	for (ll i = 0; i < K ;++i)
+	{
+		ll a, b; cin >> a >> b;
+		--b;
+		S[a] = b;
+	}
+
+	if (S[1] != -1)
+	{
+		dp[1][S[0]][1] = 1;
+	}
+	else
+	{
+		dp[1][0][1] = dp[1][1][1] = dp[1][2][1] = 1;
+		std::cout << "pass "<< std::endl;
+	}
+	
+	for (ll i = 0; i < N; ++i)
+	{
+		if (S[i] != -1)
+		{
+			for (ll b = 0; b < 3; ++b)
+			{
+				ll tmp{0};
+				for (ll c = 0; c < 3; ++c)
+				{
+					if (S[i] == b && S[i] == c) continue;
+					(tmp += dp[i][b][c]) %= MOD;
+				}
+				(dp[i+1][S[i]][b] += tmp) %= MOD;
+			}
+		}
+		else
+		{
+			for (ll a = 0; a < 3; ++a)
+			{
+				for (ll b = 0; b < 3; ++b)
+				{
+					ll tmp{0};
+					for (ll c = 0; c < 3; ++c)
+					{
+						if (a == b && a == c) continue;
+						(tmp += dp[i][b][c]) %= MOD;
+					}
+					(dp[i+1][a][b] += tmp) %= MOD;
+				}
+			}
+		}
+	}
+
+	ll res{0};
+	for (ll i = 0; i < 3; ++i)
+		for (ll j = 0; j < 3; ++j)
+			(res += dp[N][i][j]) %= MOD;
+	std::cout << res << std::endl;
+}

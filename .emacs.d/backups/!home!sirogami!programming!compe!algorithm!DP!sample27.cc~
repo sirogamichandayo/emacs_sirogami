@@ -1,0 +1,13 @@
+#include <iostream>
+
+int fib(int a)
+{
+	if (a == 1 || a == 0)
+		return 0;
+	return fib(a-1) + fib(a-2);
+}
+
+int main(int argc, char **argv)
+{
+	std::cout << fib(10) << std::endl;
+}

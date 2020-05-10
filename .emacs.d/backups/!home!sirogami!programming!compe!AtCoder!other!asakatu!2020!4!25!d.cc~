@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+
+using Graph = vector<vector<ll>>;
+
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	Graph G(N);
+	for (ll i = 0; i < N-1; ++i)
+	{
+		ll a, b; cin >> a >> b;
+		--a, --b;
+		G[a].push_back(b);
+		G[b].push_back(a);
+	}
+
+	
+}

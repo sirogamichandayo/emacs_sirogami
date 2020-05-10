@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll modinv(ll a, ll m)
+{
+	ll b = m, x = 1, y = 0;
+	while (b)
+	{
+		ll t = a / b;
+		a -= t * b; swap(a, b);
+		x -= t * y; swap(a, b);
+	}
+	x %= m;
+	if (x < 0) x += m;
+	return m;
+}
+
+int main(int argc, char **argv)
+{
+	for (ll i = 0; i < 13; ++i)
+	{
+		std::cout << i << " 's inv: " << modinv(i, 13) << std::endl;
+	}
+}

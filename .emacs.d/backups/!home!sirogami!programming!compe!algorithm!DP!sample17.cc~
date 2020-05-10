@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+constexpr ll INF = 1ll<<60;
+template<class T>
+void chmin(T &a, T b) {if (a > b) a = b;}
+
+ll dp[110][10010];
+
+int main(int argc, char **argv)
+{
+	ll N, A; cin >> N >> A;
+	vector<ll> a(N);
+	for (ll i = 0; i < N; ++i) cin >> a[i];
+
+	// initialzie
+	for (ll i = 0; i < 110; ++i) for (ll j = 0; j < 10010; ++j) dp[i][j] = INF;
+	dp[0][0] = 0;
+
+	for (ll i = 0; i < N; ++i)
+	{
+		for (ll aa = 0; aa <= A; ++aa)
+		{
+			chmin(dp[i+1][aa], dp[i][aa]);
+			if (aa-a[i]>=0)chmin(dp[i+1][aa], dp[i][aa-a[i]]);
+		}
+	}
+	std::cout << dp[N][A] << std::endl;
+}

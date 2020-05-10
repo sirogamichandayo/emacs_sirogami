@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<ll> V(N);
+	for (ll i = 0; i < N; ++i) cin >> V[i];
+
+	ll res{0}, right{0};
+
+	for (ll left = 0; left < N; ++left)
+	{
+		while (right < N && (V[right] < V[right+1]))
+		{
+			++right;
+		}
+		res += right - left;
+
+		if (right == left) --right;
+	}
+	std::cout << res << std::endl;
+}

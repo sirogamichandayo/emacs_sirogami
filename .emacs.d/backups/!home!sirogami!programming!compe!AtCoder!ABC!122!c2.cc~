@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	int n, q; cin >> n >> q;
+	string str; cin >> str;
+
+	vector<int> flags(n-1, 0);
+	for (int i = 0; i < n-1; ++i)
+	{
+		if (str[i] == 'A' && str[i+1] == 'C')
+			flags[i] = 1;
+	}
+
+	vector<int> com(n, 0);
+	for (int i = 0; i < n; ++i)
+		com[i+1] = com[i] + flags[i];
+
+	for (int i = 0; i < q; ++i)
+	{
+		int l, r;
+		cin >> l >> r;
+		--l;
+		--r;
+		std::cout << com[r] - com[l] << std::endl;
+	}
+	
+}

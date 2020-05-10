@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<ll> A(N);
+	for (ll i = 0; i < N; ++i) cin >> A[i];
+
+	sort(A.begin(), A.end());
+	ll ma = A.back();
+	double h = ma * 0.5;
+	ll t;
+	double abs_t{INF};
+
+	for (ll i = 0; i < N; ++i)
+	{
+		if (abs_t > abs(A[i] - h))
+		{
+			abs_t = abs(A[i] - h);
+			t = A[i];
+		}
+	}
+
+	std::cout << ma << " " << t << std::endl;
+}

@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using Graph = vector<vector<ll>>;
+
+template<class T>
+void chmax(T &a, T b)
+{
+	if (a < b) a = b;
+}
+
+Graph G;
+ll N, M;
+vector<ll> x, y;
+
+ll solve(ll v)
+{
+	return 0;
+}
+
+int main(int argc, char **argv)
+{
+	cin >> N >> M;
+	x.resize(M), y.resize(M);
+
+	G.resize(N, vector<ll>());
+	for (ll i = 0; i < M; ++i)
+	{
+		ll a, b; cin >> a >> b; --a, --b;
+		G[a].push_back(b);
+	}
+
+	ll res{0};
+	for (ll i = 0; i < N; ++i) chmax(res, solve(i));
+	std::cout << res << std::endl;
+}
+

@@ -1,0 +1,4 @@
+template <typename T>
+struct X {};
+
+template <> X Q<int>::x;

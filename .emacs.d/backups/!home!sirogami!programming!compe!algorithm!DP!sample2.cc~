@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+ll INF = 1ll << 60;
+
+template<class T> bool chmin(T &a, T b)
+{
+	if (a > b)
+	{
+		a = b;
+		return true;
+	}
+	return false;
+}
+
+template<class T> bool chmax(T &a, T b)
+{
+	if (a < b)
+	{
+		a = b;
+		return true;
+	}
+	return false;
+}
+
+const ll MAX = 100010;
+
+int main(int argc, char **argv)
+{
+	ll n; cin >> n;
+	
+}

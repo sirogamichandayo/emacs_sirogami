@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+ll dp[310][310];
+
+int main(int argc, char **argv)
+{
+	ll N, M; cin >> N >> M;
+	for (ll i = 0; i < 310; ++i)for (ll j = 0; j < 310; ++j) dp[i][j] = (i!=j)*INF;
+
+	for (ll i = 0; i < M; ++i)
+	{
+		ll a, b, t; cin >> a >> b >> t;
+		--a, --b;
+		dp[a][b] = dp[b][a] = t;
+	}
+
+	for (ll k = 0; k < N; ++k)
+		for (ll i = 0; i < N; ++i)
+			for (ll j= 0; j < N; ++j)
+				dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j]);
+
+	ll t;
+	ll res{INF};
+	for (ll i = 0; i < N; ++i)
+	{
+		ll tmp{0};
+		for (ll j = 0; j < N; ++j)
+		{
+			tmp = max(tmp, dp[i][j]);
+		}
+		if (res > tmp)
+		{
+			t = i;
+			res = tmp;
+		}
+	}
+	std::cout << res << std::endl;
+}

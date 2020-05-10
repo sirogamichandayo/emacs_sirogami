@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll N, M; cin >> N >> M;
+	string S, T; cin >> S >> T;
+
+	bool flag{true};
+	string X(N*M, " ");
+			 
+
+	std::cout << (lag ? N*M : -1) << std::endl;)
+}

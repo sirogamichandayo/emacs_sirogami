@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+struct A
+{
+	void show() {std::cout << __PRETTY_FUNCTION__ << std::endl;}
+	#define show_m show
+
+	void show_loop()
+	{
+		for (int i = 0; i < 10; ++i)
+		{
+			show_m();
+		}
+	}
+};

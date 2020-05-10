@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int N, M;
+vector<int> v(1000);
+
+int main(int argc, char **argv)
+{
+	cin >> N >> M;
+	for (int i = 0; i < N; ++i)
+		cin >> v[i];
+
+	int sum = accumulate(v.begin(), v.end(), 0);
+	
+	vector<int> select(M);
+	int count = 0;
+	while (count != M)
+	{
+		int max = 1 / (4 * M) * sum;
+		for (int i = 0; i < N; ++i)
+		{
+			
+		}
+	}
+
+ exit:
+	
+}

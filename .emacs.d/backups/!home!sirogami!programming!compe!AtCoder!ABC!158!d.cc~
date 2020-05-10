@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	string str; cin >> str;
+	ll Q; cin >> Q;
+
+
+	for (ll i = 0; i < Q; ++i)
+	{
+		ll t; cin >> t;
+		ll f; char c;
+
+		
+		if (t == 1)
+		{
+			reverse(str.begin(), str.end());
+		}
+		else if (t == 2)
+		{
+			cin >> f >> c;
+			if (f == 1)
+			{
+				str.insert(str.begin(), c);
+			}
+			else
+			{
+				str += c;
+			}
+			
+		}
+	}
+	std::cout << str << std::endl;
+}

@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+template<class InputIterator>
+void show_vec(InputIterator first, InputIterator last)
+{
+	for (;first != last; ++first)
+		std::cout << *first << std::endl;
+	std::cout << std::endl;
+}
+
+int main(int argc, char **argv)
+{
+	constexpr int N = 10;
+	vector<int> v(N);
+
+	for (int i = 0; i < N; ++i)
+	{
+		v.push_back(i);
+	}
+
+	
+}

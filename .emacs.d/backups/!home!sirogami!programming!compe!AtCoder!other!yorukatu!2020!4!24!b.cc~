@@ -1,0 +1,16 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	ll N, K; cin >> N >> K;
+	vector<ll> h(N);
+	for (ll i = 0; i < N: ++i)
+		cin >> h[i];
+
+	
+		
+}

@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<vector<ll>> G(N);
+	vector<pair<ll, ll>> to;
+	for (ll i = 0; i < N-1; ++i)
+	{
+		ll a, b; cin >> a >> b; --a, --b;
+		G[a].push_back(b);
+		G[b].push_back(a);
+		to.emplace_back(a, b);
+	}
+
+	vector<bool> reach(N, false);
+	map<pair<ll, ll>, ll> to_color;
+	vector<ll> cv(N);
+
+	queue<ll> que;
+	que.push(0);
+	reach[0] = true;
+	ll K{0};
+	while (!que.empty())
+	{
+		ll now = que.front(); que.pop();
+		K = max(K, (ll)G[now].size());
+		ll cur{1};
+		for (auto &nv : G[now])
+		{
+			if (reach[nv]) continue;
+			if (cur == cv[now]) ++cur;
+			cv[nv] = to_color[make_pair(now, nv)] = to_color[make_pair(nv, now)] = cur++;
+			que.push(nv);
+		}
+	}
+
+	std::cout << K << std::endl;
+	for (auto &p : to) std::cout << to_color[p] << std::endl;
+}

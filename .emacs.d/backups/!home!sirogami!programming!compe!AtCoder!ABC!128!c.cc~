@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll n, m;
+	cin >> n >> m;
+	vector<ll> k(m), p(m);
+	ll s[20][20];
+
+	for (int i = 0; i < m; ++i)
+	{
+		cin >> k[i];
+		for (int j = 0; j < k[i]; ++j)
+		{
+			cin >> s[i][j];
+		}
+	}
+	for (int i = 0; i < m; ++i)
+		cin >> p[i];
+
+
+	for (ll bits = 0; bits < n^2; ++bits)
+	{
+		
+	}
+	
+	
+}

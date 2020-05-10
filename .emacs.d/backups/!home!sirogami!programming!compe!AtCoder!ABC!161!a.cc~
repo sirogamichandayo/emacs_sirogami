@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void swap(int &a, int &b)
+{
+	a ^= b;
+	b ^= a;
+	a ^= b;
+}
+
+int main(int argc, char **argv)
+{
+	int tmp;
+	int a, b, c;
+	cin >> a >> b >> c;
+
+	swap(a, b);
+	swap(a, c);
+
+	std::cout << a << " " << b << " " << " " << c << std::endl;
+}

@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<ll> X(N), Y(N);
+	for (ll i = 0; i < N; ++i) cin >> X[i] >> Y[i];
+
+	vector<vector<bool>> field(8, vector<bool>(8, true));
+
+	
+}

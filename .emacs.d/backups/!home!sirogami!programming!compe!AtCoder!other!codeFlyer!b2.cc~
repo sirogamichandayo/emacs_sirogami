@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll N, Q, c, d;
+vector<ll> X;
+vector<ll> sum;
+
+int main(int argc, char **argv)
+{
+	cin >> N >> Q;
+	X.resize(N); for (ll i = 0; i < N; ++i) cin >> X[i];
+	sum.resize(N+1, 0); for (ll i = 0; i < N; ++i) sum[i+1] = sum[i] + X[i];
+
+	for (ll i = 0; i < Q; ++i)
+	{
+		cin >> c >> d;
+		ll res{0};
+
+		ll left = upper_bound(X.begin(), X.end(), d-c) - X.begin();
+		ll mid = upper_bound(X.begin(), X.end(), d) - X.begin();
+		ll right = upper_bound(X.begin(), x.end(), d+c) - X.begin();
+
+
+		std::cout << res << std::endl;
+	}
+}

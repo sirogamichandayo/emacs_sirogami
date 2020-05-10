@@ -159,6 +159,7 @@
 ;; recenter3
 ;; I hate moving to the bottom and top of recenter-top-bottom(C-l).
 ;; Replace recenter-top-bottom to recenter3
+(setq recenter3-width-rate 4.0)
 (setq recenter3-positions '(center1 center2 center3))
 (defun recenter3 (&optional arg)
   (interactive "P")
@@ -173,7 +174,7 @@
     (let ((this-scroll-margin
            (min (max 0 scroll-margin)
                 (truncate (/ (window-body-height) 4.0))))
-          (recenter3-width (truncate (/ (window-body-height) 4.0))))
+          (recenter3-width (truncate (/ (window-body-height) recenter3-width-rate))))
       (cond ((eq recenter3-last-op 'center2)
              (recenter))
             ((eq recenter3-last-op 'center1)
@@ -261,6 +262,8 @@
 (setq hl-line-face 'my-hl-line-face)
 (global-hl-line-mode 0)
 
+
+
 ;; color(base)
 (set-face-foreground 'default "gray90")
 (set-face-background 'default "gray30")
@@ -272,6 +275,12 @@
 (set-face-foreground 'font-lock-function-name-face "LightBlue3")
 (set-face-foreground 'font-lock-string-face "SeaGreen3")
 
+(setq hl-todo-keyword-faces
+      '(("TODO"   . "#FF0000")
+        ("FIXME"  . "#FF0000")
+        ("DEBUG"  . "#FF0000")
+        ("GOTCHA" . "#FF4500")
+        ("STUB"   . "#1E90FF")))	  
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; font
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -297,6 +306,7 @@
 
 ;;;;;;;;;;
 ;; c/c++ macro
+
 (fset 'c-main
    "int main(int argc, char **argv\C-e\C-m{\C-m")
 (fset 'indent-and-brackets
@@ -307,14 +317,46 @@
 	  "#include \"\"\C-b")
 (fset 'c++-constexpr
 	  "constexpr ")
+(fset 'c-continue
+	  "continue;\C-m")
 (fset 'c-pretty-function
 	  "__PRETTY_FUNCTION__ ")
 (fset 'c++-pretty-function-and-std-output
 	  "std::cout << __PRETTY_FUNCTION__ << std::endl;")
 (fset 'c++-std-output
 	  [?s ?t ?d ?: ?: ?c ?o ?u ?t ?  ?< ?< ?  ?< ?< ?\S-  ?s ?t ?d ?: ?: ?e ?n ?d ?l ?\; ?\C-, ?\C-, ?\C-b ?\C-b ?\C-b])
-
-
+(fset 'c++-using-namespace-std
+	  "using namespace std;\C-m")
+(fset 'c-unsigned
+	  "unsigned ")
+(fset 'c++-unused-variable
+	  "[[maybe_unused]] ")
+(fset 'c-return
+	  "return ")
+(fset 'c++-static-cast
+	  "static_cast<>()\C-b\C-b\C-b")
+(fset 'c++-template
+	  "template<>\C-b")
+(fset 'compe-change-min-max
+   "template<class T>\C-mbool chmin(T &a, T b\C-e\C-m{\C-mif (a > b\C-e\C-m{\C-mif\C-h\C-ha = b;\C-mreturn false;\C-n\C-mreturn true;\C-n\C-m\C-mtemplate<class T>\C-mbool chmax(T &a, T b\C-e\C-m{\C-mif (a < b\C-e\C-m{\C-ma = b;\C-mreturn false;\C-n\C-mreturn true;\C-n\C-m\C-mtemplate<class T>\C-mbool chmax(T &a, initializer_list<T> l\C-e\C-m{\C-mreturn chmax(a, *min_\C-umax_element(l.begin(), l.end()\C-e;\C-n\C-m\C-mtemplate(clas\C-u\C-f\C-h\C-h<class T>\C-mbool chmin(T &a, initializer_list<T> l\C-e\C-m{\C-mreturn chmin(a, *min_element(l.begin(), l.end\C-e;")
+(fset 'compe-base
+	  [?# ?i ?n ?c ?l ?u ?d ?e ?  ?< ?b ?i ?t ?s ?/ ?s ?t ?d ?c ?+ ?+ ?. ?h ?> ?\C-m ?u ?s ?i ?n ?g ?  ?n ?a ?m ?e ?s ?p ?a ?c ?e ?  ?s ?t ?d ?\; ?\C-m ?u ?s ?i ?n ?g ?  ?l ?l ?  ?= ?  ?l ?o ?n ?g ?  ?l ?o ?n ?g ?\; ?\C-m ?c ?o ?n ?s ?t ?e ?x ?p ?r ?  ?l ?l ?  ?m ?o ?d ?\C-, ?\M-u ?  ?= ?  ?1 ?0 ?0 ?0 ?0 ?0 ?0 ?0 ?0 ?0 ?\C-h ?7 ?\; ?\C-m])
+(fset 'compe-dx4-dy4
+	  "int dx[4\C-e{0, 1, 0, -1\C-e;\C-mint dy[4\C-f{1, 0, -1, 0\C-e;\C-m")
+(fset 'c++-vector-ll
+	  "vector<ll> ")
+(fset 'c++-vector-pair-ll-ll
+	  "vector<pair<ll, ll>> ")
+(fset 'c++-pair-ll-ll
+	  "pair<ll, ll>(,)\C-b\C-b")
+(fset 'c++-pair-first
+	  ".first")
+(fset 'c++-pair-second
+	  ".second")
+(fset 'c++-std-count-res
+	  "std::cout << res << std::endl;")
+(fset 'c++-std-output-yes-no
+   "std::cout << (ok ? \"Yes\C-f : \"No\C-f\C-f << std::endl;")
 
 ;; c
 (defun my-c-mode-hook ()
@@ -331,18 +373,51 @@
                                                (interactive)
                                                (previous-line previous-line-width))))
 (add-hook 'c-mode-hook 'my-c-mode-hook)
+
 ;; c++
 (defun my-c++-mode-hook ()
   (setq c-basic-offset 4)
   (c-set-offset 'substatement-open 0)
-  (define-key c++-mode-map (kbd "C-c c m") 'c-main)
   (define-key c++-mode-map (kbd "C-c c [") 'indent-and-brackets)
+  
   (define-key c++-mode-map (kbd "C-c c i q") 'c-include-quort)
   (define-key c++-mode-map (kbd "C-c c i ,") 'c-include-angle-brackets)
-  (define-key c++-mode-map (kbd "C-c c c") 'c++-constexpr)
+  
+  (define-key c++-mode-map (kbd "C-c c c s") 'c++-constexpr)
+  
+  (define-key c++-mode-map (kbd "C-c c c o") 'c-continue)
+  
   (define-key c++-mode-map (kbd "C-c c p f") 'c-pretty-function)
-  (define-key c++-mode-map (kbd "C-c c p o") 'c++-pretty-function-and-std-output)
-  (define-key c++-mode-map (kbd "C-c c o") 'c++-std-output)
+  
+  (define-key c++-mode-map (kbd "C-c c p f") 'c++-pair-first)
+  (define-key c++-mode-map (kbd "C-c c p s") 'c++-pair-second)
+  (define-key c++-mode-map (kbd "C-c c p l l") 'c++-pair-ll-ll)
+  
+  (define-key c++-mode-map (kbd "C-c c o p") 'c++-pretty-function-and-std-output)
+  (define-key c++-mode-map (kbd "C-c c o o") 'c++-std-output)
+  (define-key c++-mode-map (kbd "C-c c o r") 'c++-std-output-res)
+  (define-key c++-mode-map (kbd "C-c c o y n") 'c++-std-output-yes-no)
+  
+  (define-key c++-mode-map (kbd "C-c c m") 'c-main)
+  
+  (define-key c++-mode-map (kbd "C-c c u s") 'c++-using-namespace-std)
+  
+  (define-key c++-mode-map (kbd "C-c c u n") 'c-unsigned)
+  
+  (define-key c++-mode-map (kbd "C-c c n v") 'c++-unused-variable)
+  
+  (define-key c++-mode-map (kbd "C-c c r") 'c-return)
+  
+  (define-key c++-mode-map (kbd "C-c c s t") 'c++-static)
+  
+  (define-key c++-mode-map (kbd "C-c c t") 'c++-template)
+  
+  (define-key c++-mode-map (kbd "C-c c c c m") 'compe-change-min-max)
+  (define-key c++-mode-map (kbd "C-c c c c b") 'compe-base)
+  (define-key c++-mode-map (kbd "C-c c c c x y") 'compe-dx4-dy4)
+  
+  (define-key c++-mode-map (kbd "C-c c v l") 'c++-vector-ll)
+  (define-key c++-mode-map (kbd "C-c c v p l l") 'c++-vector-pair-ll-ll)
   
   (define-key c++-mode-map (kbd "C-c C-n") (lambda()
                                              (interactive)
@@ -355,7 +430,6 @@
   (define-key c++-mode-map (kbd "C-M-p") 'c-beginning-of-defun)
 
   (define-key c++-mode-map (kbd "C-TAB") 'c-indent-line-or-region)
-
 
   (add-to-list 'flycheck-clang-args "-Wall")
   (setq flycheck-clang-language-standard "c++17")
@@ -507,6 +581,9 @@
 (define-key point-history-show-mode-map (kbd "C-n") 'point-history-next-line)
 (define-key point-history-show-mode-map (kbd "C-p") 'point-history-prev-line)
 
+;; helm-show-kill-ring
+(define-key global-map (kbd "C-x o") 'helm-show-kill-ring)
+
 ;; elscreen
 (setq elscreen-prefix-key (kbd "C-o"))
 (when (require 'elscreen nil t)
@@ -598,4 +675,6 @@
 ;; title
 (require 'dashboard)
 (dashboard-setup-startup-hook)
+(setq dashboard-banner-logo-title "Urusainaxa bukkorosuyo?")
 (setq dashboard-startup-banner "~/.emacs.d/picture/tica.png")
+

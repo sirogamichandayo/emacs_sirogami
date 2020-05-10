@@ -1,0 +1,16 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+using ll = long long;
+
+ll func(ll a, ll b)
+{
+	return b * ceil(a/static_cast<double>(b));
+}
+
+int main(int argc, char **argv)
+{
+	std::cout << func(2, 3)<< std::endl;
+	std::cout << func(1, 4)<< std::endl;
+	std::cout << func(0, 4) << std::endl;
+}

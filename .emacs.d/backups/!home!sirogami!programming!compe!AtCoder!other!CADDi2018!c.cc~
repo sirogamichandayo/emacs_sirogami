@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+vector<ll> factorization(ll num)
+{
+	vector<pair<ll, ll>> v;
+	v.reserve(1000000000);
+	for (ll i = 2; i*i < num; ++i)
+	{
+		if (n % p != 0) continue;
+		int num = 0;
+		while (n % p == 0) {++num; n /= p;}
+		res.push_back(make_pair(p, num));
+	}
+	if (n != 1) res.push_back(make_pair(n, 1));
+	return res;
+}
+

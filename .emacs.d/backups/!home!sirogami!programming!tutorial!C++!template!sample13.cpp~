@@ -1,0 +1,7 @@
+#include <iostream>
+
+template <class T> class X;
+template <> class X<int> {};
+
+X<int>* p;
+X<int> x;

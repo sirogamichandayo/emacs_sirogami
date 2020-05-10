@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	int k, n;
+	cin >> k >> n;
+	vector<int> a(n+1);
+	
+	
+}

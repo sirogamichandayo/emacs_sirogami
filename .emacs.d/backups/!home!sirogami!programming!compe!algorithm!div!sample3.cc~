@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll modinv(ll a, ll m)
+{
+	ll b = m, u = 1, v = 0;
+	while (b)
+	{
+		ll t = a / b;
+		a -= t * b; swap(a, b);
+		u -= t * v; swap(u, v);
+	}
+	u %= m;
+	if (u < 0) u += m;
+	return u;
+}
+
+int main(int argc, char **argv)
+{
+	const int MOD = 1000000007;
+
+    long long a = 12345678900000;
+    long long b = 100000;
+
+    // a を 10000000007 で割ってから b の逆元をかけて計算
+    a %= MOD;
+    cout << a * modinv(b, MOD) % MOD << endl;
+}

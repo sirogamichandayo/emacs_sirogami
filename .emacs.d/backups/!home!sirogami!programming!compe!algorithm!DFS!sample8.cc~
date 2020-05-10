@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+ll field[60][60];
+bool f[60][60];
+ll W, H;
+
+void dfs(ll w, ll h)
+{
+	if (f[w][h]) return;
+	f[w][h] = true;
+	for (ll i = -1; i <= 1; ++i)
+		for (ll j = -1; j <= 1; ++j)
+			dfs(w+i, h+j);
+}
+
+int main(int argc, char **argv)
+{
+	
+}

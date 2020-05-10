@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long N;
+
+void solve(int current, int bits, int &counter)
+{
+	if (current >= N) return;
+	if (bits & 0b111) ++counter;
+
+	solve(current*10 + 3, bits | 0b001, counter);
+	solve(current*10 + 5, bits | 0b010, counter);
+	solve(current*10 + 7, bits | 0b101, counter);
+}
+
+int main(int argc, char **argv)
+{
+	cin >> N;
+	int ans = 0;
+	solve(0, 0, ans);
+	std::cout << ans << std::endl;
+}

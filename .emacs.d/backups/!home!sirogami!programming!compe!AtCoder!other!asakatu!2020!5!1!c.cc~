@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	ll w, h, x, y;
+	double res = (w * h) / (double)2;
+	std::cout << res << " ";
+	if (w/2 == x && h/2 == y)
+		std::cout << 1;
+	else
+		std::cout << 0;
+}

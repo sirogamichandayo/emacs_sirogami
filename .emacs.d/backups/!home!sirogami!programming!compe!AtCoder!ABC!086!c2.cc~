@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> t(20000);
+vector<int> x(20000);
+vector<int> y(20000);
+
+int main(int argc, char **argv)
+{
+	
+}

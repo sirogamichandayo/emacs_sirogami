@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using Graph = vector<vector<ll>>;
+
+
+Graph G;
+vector<ll> dist;
+void dfs(ll v, ll d)
+{
+	dist[v] = d;
+
+	for (auto &nv : G[v])
+	{
+		if (dist[nv] != -1) continue;
+		dfs(nv, d+1);
+	}
+}
+
+int main(int argc, char **argv)
+{
+	ll N, X, Y; cin >> N >> X >> Y; --X, --Y;
+	G.resize(N);
+
+	for (ll i = 0; i < N-1; ++i)
+	{
+		G[i].push_back(i+1);
+		G[i+1].push_back(i);
+	}
+	G[X].push_back(Y);
+	G[Y].push_back(X);
+
+	for (ll v = 0; v < N; ++v)
+	{
+		dist.assign(N, -1);
+		dfs(v, 0);
+
+		ll min = *min_element(dist.begin(), dist.end());
+		ll res{0};
+		for (ll vv = 0; vv < N; ++vv)
+		{
+			if (min == dist[vv]) ++res;
+		}
+		std::cout << res << std::endl;
+	}
+}

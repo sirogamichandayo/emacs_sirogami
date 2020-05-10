@@ -1,0 +1,13 @@
+#ifndef A_H
+#define A_H
+
+#include <memory>
+
+#include "B.hpp"
+
+class A
+{
+	std::shared<B> b;
+};
+
+#endif

@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll N, K; cin >> N >> K;
+
+	ll ans;
+	if (K & 1)
+	{
+		ll tmp = N/K;
+		ans = pow(tmp, 3);
+	}
+	else
+	{
+		ll tmp1 = N/K;
+		ll tmp2 = (N+K*0.5)/K;
+		ans = pow(tmp1, 3) + pow(tmp1, 3);
+	}
+	std::cout << ans << std::endl;
+}

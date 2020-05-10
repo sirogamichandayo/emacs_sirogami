@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<ll> A(N+1), B(N);
+	for (ll i = 0; i < N+1; ++i)
+		cin >> A[i];
+	for (ll i = 0; i < N; ++i)
+		cin >> B[i];
+
+	
+}

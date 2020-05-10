@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll fib(ll num)
+{
+	if (num == 0 || num == 1)
+		return 1;
+	return fib(num-1) + fib(num-2);
+}
+
+int main(int argc, char **argv)
+{
+	ll n; cin >> n;
+	std::cout << fib(n) << std::endl;
+}

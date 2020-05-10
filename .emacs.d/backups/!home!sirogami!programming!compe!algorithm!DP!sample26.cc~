@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+template<class T>
+void chmax(T &a, T b) {if (a < b) a = b;}
+template<class T>
+void chmax(T &a, initializer_list<T> list) {chmax(a, *max_element(list.begin(), list.end()));}
+ll dp[1010][1010];
+int main(int argc, char **argv)
+{
+	ll n; cin >> n;
+	for (ll i = 0; i < n; ++i)
+	{
+		string a, b; cin >> a >> b;
+		memset(dp, 0, sizeof dp);
+		for (ll i = 0; i < a.size(); ++i)
+		{
+			for (ll j = 0; j < b.size(); ++j)
+			{
+				
+				if (a[i] == b[j])
+					chmax(dp[i+1][j+1], dp[i][j]+1);
+				chmax(dp[i+1][j+1], {dp[i+1][j], dp[i][j+1]});
+			}
+		}
+
+		std::cout << dp[a.size()][b.size()] << std::endl;
+	}
+}

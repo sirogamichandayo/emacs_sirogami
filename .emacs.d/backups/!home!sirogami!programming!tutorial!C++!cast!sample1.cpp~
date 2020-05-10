@@ -1,0 +1,9 @@
+#include <memory>
+#include <cassert>
+#include <cstding>
+
+int main(int argc, char **argv)
+{
+	std::shared_ptr<std::int8_t*> p(new std::int_t*{1, 1, 1, 1});
+	std::s
+}

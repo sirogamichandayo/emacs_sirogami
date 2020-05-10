@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	string S, T; cin >> S >> T;
+	int N = (int)S.size();
+	vector<pair<char, char>> arrow;
+	for (int i = 0; i < N; ++i)
+		arrow.push_back(pair<char, char>(S[i], T[i]));
+
+	sort(S.begin(), S.end());
+	sort(T.begin(), T.end());
+	std::cout << S << std::endl;
+	std::cout << T << std::endl;
+}

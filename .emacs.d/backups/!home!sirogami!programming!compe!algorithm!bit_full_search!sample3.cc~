@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	ll N, M; cin >> N >> M;
+	vector<ll> K(M);
+	vector<vector<ll>> S(M);
+	for (ll i = 0; i < M; ++i)
+	{
+		cin >> K[i];
+		S[i].resize(K[i]);
+		for (ll i = 0; i < K[i]; ++i)
+		{
+			
+		}
+	}
+}

@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll N, M;
+	cin >> N >> M;
+	vector<ll> A(N); for (ll i = 0; i < N; ++i) cin >> A[i];
+	vector<pair<ll, ll>> P(M);
+	for (ll i = 0; i < M; ++i)
+	{
+		ll b, c; cin >> b >> c;
+		P[i] = pair<ll, ll>(b, c);
+	}
+
+	sort(A.begin(), A.end());
+	sort(P.begin(), P.end(), [](auto &a, auto &b)
+							 {
+								 return a.second < b.second;
+							 });
+
+
+	ll sum{0};
+	ll K{0};
+	for (auto &p : P)
+	{
+		for (ll i = 0; i < p.first; ++i, ++K)
+		{
+			sum += max(A[K], p.second);
+		}
+	}
+	std::cout << sum << std::endl;
+}

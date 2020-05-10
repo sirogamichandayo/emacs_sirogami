@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+using Graph = vector<vector<int>>;
+
+// DFS
+vector<bool> seen;
+void dfs(const Graph &G, int v)
+{
+	seen[v] = true;
+
+	for (auto n_v : G[v])
+	{
+		if (seen[v]) continue;
+		dfs(G, n_v);
+	}
+
+	std::cout << "pass : " << v << std::endl;
+}
+
+int main(int argc, char **argv)
+{
+	
+}
+
+	

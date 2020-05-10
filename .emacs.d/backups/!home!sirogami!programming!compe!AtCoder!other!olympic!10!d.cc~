@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll dp[110][25];
+
+int main(int argc, char **argv)
+{
+	ll n; cin >> n;
+	vector<ll> a(n); for (ll i = 0; i < n; ++i) cin >> a[i];
+	memset(dp, 0, sizeof dp);
+	dp[0][0] = 1;
+
+	for (ll i = 0; i < n-1; ++i)
+	{
+		for (ll j = 0; j <= 20; ++j)
+		{
+			// add
+			if (j-a[i] >= 0)dp[i+1][j] += dp[i][j-a[i]];
+			if (j+a[i] <= 20)dp[i+1][j] += dp[i][j+a[i]];
+		}
+	}
+	
+}

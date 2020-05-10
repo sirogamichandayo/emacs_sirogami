@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+constexpr ll MAX_V = 20;
+
+ll V, E;
+ll dist[MAX_V][MAX_V];
+ll dp[(1<<MAX_V)+1][MAX_V];
+
+int main(int argc, char **argv)
+{
+	cin >> V >> E;
+	for (ll i = 0; i < E; ++i)
+	{
+		ll s, t, d;
+		cin >> s >> t >> d;
+		dist[s][t] = d;
+	}
+
+	for (ll i = 0; i < (1<<V); ++i) for (ll j = 0; j < V; ++j) dp[i][j] = INF;
+
+	dp[(1<<MAX_V)-1][0] = 0;
+	for (ll bits = 0; bits < (1<<V); ++bits)
+	{
+		for (ll i = 0; i < V; ++i)
+		{
+			for (ll j = 0; j < V; ++j)
+			{
+				if (!(bits & (1 << j)))
+					dp[bits][i] = min(dp[bits][i], dp[bits|(1 << j)][j] + dist[i][j]);
+			}
+		}
+	}
+
+	std::cout << (dp[0][0] == INF ? -1 : dp[0][0]) << std::endl;
+}
+

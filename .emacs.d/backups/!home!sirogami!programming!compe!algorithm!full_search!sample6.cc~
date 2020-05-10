@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<pair<int, int>> coo(N);
+	for (ll i = 0; i < N; ++i)
+	{
+		ll a, b; cin >> a >> b;
+		coo.emplace_back(a, b);
+	}
+
+	
+}

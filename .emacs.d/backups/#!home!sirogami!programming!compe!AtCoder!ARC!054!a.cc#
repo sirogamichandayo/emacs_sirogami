@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	long double L, X, Y, S, D;
+	cin >> L >> X >> Y >> S >> D;
+
+	long double rs = X + Y;
+	long double ls = max((long double)0.000000000000000000000001, Y-X);
+
+	long double res;
+	if (S >= D)
+	{
+			res = min((S-D)/ls, (L-(S-D))/rs);
+	}
+	else
+	{
+			res = min((D-S)/rs, (L-(D-S))/ls);
+	}	
+	std::cout << fixed << setprecision(15) << res << std::endl;
+}

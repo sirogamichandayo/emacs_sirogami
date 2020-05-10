@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int N;
+vector<int> a(20000);
+
+
+int main(int argc, char **argv)
+{
+	cin >> N;
+	for (int i = 1; i < N+1; ++i) cin >> a[i];
+
+	
+}

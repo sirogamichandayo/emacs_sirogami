@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<ll> TARGET(N); for (ll i = 0; i < 3; ++i) cin >> TARGET[i];
+	vector<ll> L(N); for (ll i = 0; i < N; ++i) cin >> L[i];
+
+	vector<ll> bits(3);
+
+	for (bits[0] = 1; bits[0] < (1 << N); ++bits[0])
+	{
+		for (bits[1] = 1; bits[1] < (1 << N); ++bits[1])
+		{
+			if (bits[0] & bits[1]) continue;
+			for (bits[2] = 1; bits[2] < (1 << N); ++bits[2])
+			{
+				if (bits[1] & bits[2] || bits[0] & bits[2]) continue;
+
+				
+				
+			}
+		}
+	}
+	
+}

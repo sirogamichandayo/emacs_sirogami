@@ -1,0 +1,10 @@
+#include <iostream>
+
+class A
+{
+	template <typename T>
+	class B
+	{
+		static void show() {std::cout << "T"<< std::endl;}
+	};
+};

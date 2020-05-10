@@ -1,0 +1,17 @@
+#include <iostream>
+
+template <typename T_A>
+struct A
+{
+	template <typename T_B>
+	static void show() {std::cout << "T "<< std::endl;}
+};
+
+// static
+template<> template <typename T_B>
+void A<int>::show() {std::cout << "int T"<< std::endl;}
+
+// static
+template<> template <>
+void A<int>::show<int>() {std::cout << "int int"<< std::endl;}
+

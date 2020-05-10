@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+using pint = pair<int, int>;
+
+int main(int argc, char **argv)
+{
+	int MAX = 15;
+	int n; cin >> n;
+	vector<int> testi_num_vec(MAX);
+	vector<vector<pint>> testi_vec(vector<pair>(MAX));
+
+	for (int i = 0; i < n; ++i)
+	{
+		cin >> testi_num_vec[i];
+		for (int k = 0; k < testi_num_vec[i]; ++k)
+		{
+			int x, y;
+			cin >> x >> y;
+			testi_vec[i][i] = make_pair(x, y);
+		}
+	}
+	
+}
+
+	

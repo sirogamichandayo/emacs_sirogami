@@ -1,0 +1,13 @@
+#ifndef B_H
+#define B_H
+
+#include <memory>
+
+#include "A.hpp"
+
+class B
+{
+	std::shared_ptr<A> a;
+}
+
+#endif

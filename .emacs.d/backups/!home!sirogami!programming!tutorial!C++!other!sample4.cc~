@@ -1,0 +1,9 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+ll num = 10^3;
+
+int main(int argc, char **argv)
+{
+	std::cout << num << std::endl;
+}

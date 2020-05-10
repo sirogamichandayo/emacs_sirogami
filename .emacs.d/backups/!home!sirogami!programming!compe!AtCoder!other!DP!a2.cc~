@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll dp[100010];
+
+int main(int argc, char **argv)
+{
+	ll N;
+	vector<ll> h(N); for (ll i = 0; i < N; ++i) cin >> h[i];
+
+	for (ll i = 0; i < N; ++i)
+	{
+		if (i+1 < N)dp[i+1] = min(dp[i+1], dp[i] + abs(h[i+1]-h[i]));
+		if (i+2 < N)dp[i+2] = min(dp[i+2], dp[i] + abs(h[i+2]-h[i]));
+	}
+		
+	std::cout << dp[N]<< std::endl;
+}

@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+
+int main(int argc, char **argv)
+{
+	std::vector<int> v;
+
+	for (size_t i = 0; i < v.size(); ++i)
+	{
+		// // odd
+		// if (v[i] % 2 == 1) continue;
+
+		// // even
+		// // process
+
+		if (v[i] % 2 == 0)
+		{
+			
+		}
+	}
+}

@@ -1,0 +1,14 @@
+#include <vector>
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	int num{3};
+	vector<bool> v(num, true);
+
+	int sum{0};
+	for (auto e : v)
+		sum += e;
+	assert(sum == num);
+}
+

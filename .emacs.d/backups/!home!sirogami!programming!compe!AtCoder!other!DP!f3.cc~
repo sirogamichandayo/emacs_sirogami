@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+template<class T>
+void chmax(T &a, T b) {if (a < b) a = b;}
+template<class T>
+void chamx(T &a, initializer_list<T> init)
+{
+	chmax(a, *max_element(init.begin(), init.end()));
+}
+
+string s, t;
+ll dp[3010][3010];
+
+int main(int argc, char **argv)
+{
+	cin >> s >> t;
+	ll N{(ll)s.size()}, M{(ll)t.size()};
+
+	for (ll i = 0; i < N; ++i)
+	{
+		for (ll j = 0; j < M; ++j)
+		{
+			
+		}
+	}
+}

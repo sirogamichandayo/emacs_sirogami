@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+constexpr ll INF = 1ll<<60;
+struct grid{ll to; ll cost; ll departure;};
+using Graph = vector<vector<grid>>;
+using P = pair<ll, ll>;
+
+int main(int argc, char **argv)
+{
+	ll N, M, K; cin >> N >> M >> K;
+	vector<ll> T(N);
+	T[0] = 0; for (ll i = 1; i < N; ++i) cin >> T[i];
+
+	Graph G(N);
+	for (ll i = 0; i < N; ++i)
+	{
+		ll a, b, c, d;
+		cin >> a >> b >> c >> d;
+		--a, --b;
+		
+		G[a].push_back(grid{b, c+T[b], d});
+		G[b].push_back(grid{a, c+T[a], d});
+	}
+
+	vector<ll> dist(N, INF);
+	priority_queue<P, vector<P>, greater<P>> que;
+	dist[0] = 0;
+	que.push(P(0, 0));
+
+	while (!que.empty())
+	{
+		P p = que.top(); que.pop();
+		ll now = p.second;
+		if (dist[now] < p.first) continue;
+
+		for (auto &nv : G[now])
+		{
+			if (dist[nv.to] > (dist[now] + (nv.departure - dist[now]%nv.departure)))
+			{
+				dist[nv.to] = dist[now] + (nv.departure - dist[now] % nv.departure);
+				que.push(P(dist[nv.to], nv.to));
+			}
+		}
+	}
+
+	
+}

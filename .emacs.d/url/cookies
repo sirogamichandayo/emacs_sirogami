@@ -1,0 +1,14 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '(("atcoder.jp"
+  [url-cookie "REVEL_SESSION" "f11fb4f76124b04bad6f7a16538c49147a9d3f2a-%00csrf_token%3AkmVB6cAerLqDm6jwIcB%2FY5UXGuuN9aB3DsX0KOfFKW8%3D%00%00_TS%3A1601619319%00" "Fri Oct 02 06:15:19 2020 GMT" "/" "atcoder.jp" nil]))
+)
+(setq url-cookie-secure-storage
+ 'nil)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:

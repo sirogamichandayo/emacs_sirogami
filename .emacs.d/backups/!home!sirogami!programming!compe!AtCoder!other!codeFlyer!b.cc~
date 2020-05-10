@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+vector<ll> X, sum;
+ll c, d, N, Q;
+
+ll solve()
+{
+	ll left = upper_bound(X.begin(), X.end(), c-d) - X.begin();
+	ll mid = upper_bound(X.begin(), X.end(), c) - X.begin();
+	ll right = upper_bound(X.begin(), X.end(), c+d) - X.begin();
+
+	ll res{0};
+	res += d * left;
+	res += d * (N - right);
+	res += sum[right] - sum[left];
+	return res;
+}
+
+int main(int argc, char **argv)
+{
+	cin >> N >> Q;
+	X.resize(N); for (ll i = 0; i < N; ++i) cin >> X[i];
+	sum.resize(N+1, 0); for (ll i = 0; i < N; ++i) sum[i+1] = sum[i] + X[i];
+
+	for (ll i = 0; i < Q; ++i)
+	{
+		cin >> c >> d;
+		ll res = solve();
+		std::cout << res << std::endl;
+	}
+}

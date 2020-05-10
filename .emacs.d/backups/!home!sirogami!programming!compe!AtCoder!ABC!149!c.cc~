@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+vector<bool> getPrimeVec(ll max)
+{
+	vector<bool> v(max, true);
+	v[0] = false; v[1] = false;
+
+	for (l = 2; )
+}

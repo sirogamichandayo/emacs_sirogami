@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll dp[100010];
+
+int main(int argc, char **argv)
+{
+	ll N, K; cin >> N >> K;
+	vector<ll> H(N);
+	for (ll i = 0; i < N; ++i) cin >> H[i];
+
+	for (ll i = 0; i < N; ++i)
+	{
+		for (ll k = 1; k <= K; ++k)
+			dp[i+k] = max(dp[i+k], dp[i]+abs(H[i] - H[i+k]));
+	}
+}

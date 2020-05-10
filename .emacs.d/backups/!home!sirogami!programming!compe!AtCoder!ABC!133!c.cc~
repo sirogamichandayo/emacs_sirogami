@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll l, r;
+	cin >> l >> r;
+
+	if (r-l > 2019)
+	{
+		std::cout << 0<< std::endl;
+		return;
+	}
+	else
+	{
+		int ans{INT_MAX};
+		for (ll i = l; i < r-1; ++i)
+		{
+			for (ll j = i+1; j < r; ++j)
+			{
+				ll mi = i % 2019;
+				ll mj = j % 2019;
+				ll tmp = (mi * mj) % 2019;
+				ans = min(ans, tmp);
+			}
+		}
+
+		std::cout << ans<< std::endl;
+	}
+	
+
+}

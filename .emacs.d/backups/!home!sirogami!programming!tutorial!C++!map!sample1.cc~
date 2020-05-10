@@ -1,0 +1,12 @@
+#include <map>
+#include <iostream>
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	map <int, int> m;
+	m.insert(1, 1);
+	m.insert(2, 2);
+
+	std::cout << m.count(1) << std::endl;
+}

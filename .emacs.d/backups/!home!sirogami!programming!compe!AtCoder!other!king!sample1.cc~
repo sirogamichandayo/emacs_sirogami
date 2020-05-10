@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll calc(ll n)
+{
+	if (n >= 10000000000000000ll)
+	if (n % 2 == 0) return n/2;
+	
+}
+
+int main(int argc, char **argv)
+{
+	
+}

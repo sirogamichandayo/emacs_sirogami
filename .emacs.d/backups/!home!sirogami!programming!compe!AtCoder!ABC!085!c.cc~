@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int N;
+int Y;
+
+int main(int argc, char **argv)
+{
+	cin >> N >> Y;
+
+	
+	
+}

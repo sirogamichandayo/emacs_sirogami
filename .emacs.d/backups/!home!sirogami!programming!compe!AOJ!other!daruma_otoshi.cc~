@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+template<class T>
+bool chmin(T &a, T b)
+{
+	if (a > b)
+	{
+		a = b;
+		return false;
+	}
+	return true;
+}
+
+template<class T>
+bool chmax(T &a, T b)
+{
+	if (a < b)
+	{
+		a = b;
+		return false;
+	}
+	return true;
+}
+
+template<class T>
+template<class T>
+bool chmin(T &a, initializ
+		   <T> l)
+{
+	return chmin(a, *min_element(l.begin(), l.end()));
+}
+
+bool chmax(T &a, initializ
+		   <T> l)
+{
+	return chmax(a, *max_element(l.begin(), l.end()));
+}
+
+int main(int argc, char **argv)
+{
+	
+}

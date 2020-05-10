@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll n, m;
+	cin >> n >> m;
+	vector<ll> l(m), r(m);
+	for (int i = 0; i < m; ++i)
+		cin >> l[i] >> r[i];
+
+	ll begin{LLONG_MIN}, end{LLONG_MAX};
+	for (int i = 0; i < m; ++i)
+	{
+		begin = max(begin, l[i]);
+		end = max(end, r[i]);
+	}
+
+	if (begin < end )
+		std::cout << end - begin + 1 << std::endl;
+	else
+		std::cout << 0 << std::endl;
+	
+}

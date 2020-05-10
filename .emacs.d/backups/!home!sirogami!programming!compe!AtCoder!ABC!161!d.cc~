@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> num2digit(int num)
+{
+	vector<int> v;
+
+	while (num / 10 != 0)
+	{
+		int a = num % 10;
+		v.push_back(a);
+		int 
+	}
+}
+
+int main(int argc, char **argv)
+{
+	
+}

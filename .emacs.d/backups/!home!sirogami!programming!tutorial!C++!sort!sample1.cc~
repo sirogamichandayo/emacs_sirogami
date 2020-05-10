@@ -1,0 +1,10 @@
+#include <bits/stdc++.h>
+int main(int argc, char **argv)
+{
+	vector<int> v{5, 4, 3, 2, 1, 0};
+	vector<size_t> indices(v.size());
+	iota(indices.begin(), indices.end(), 0);
+
+	
+	
+}

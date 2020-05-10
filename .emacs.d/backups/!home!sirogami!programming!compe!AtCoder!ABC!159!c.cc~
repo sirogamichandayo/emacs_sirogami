@@ -1,0 +1,12 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ld = long double;
+
+int main(int argc, char **argv)
+{
+	ld L; cin >> L;
+
+	ld each = L / 3;
+	std::cout << pow(each, 3.0) << std::endl;
+}

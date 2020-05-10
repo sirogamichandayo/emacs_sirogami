@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int n;
+vector<ll> vec(10000000);
+
+int main(int argc, char **argv)
+{
+	cin >> n;
+	for (int i = 0; i < n; ++i)
+		cin >> vec[i];
+
+	int ans = 0;
+	for (int i = 0; i < n; ++i)
+	{
+		int target = vec[i];
+		for (int j = i; j < n; ++i)
+		{
+			if (target <= vec[j])
+			{
+				++ans;
+				break;
+			}
+		}
+	}
+
+	std::cout << ans << std::endl;
+}

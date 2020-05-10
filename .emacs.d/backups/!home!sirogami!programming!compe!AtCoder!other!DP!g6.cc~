@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using Graph = vector<vector<ll>>;
+
+Graph G;
+ll dp[100010];
+ll branch[100010];
+ll N, M;
+
+int main(int argc, char **argv)
+{
+	cin >> N >> M;
+	G.resize(N, vector<ll>());
+
+	for (ll i = 0; i < M; ++i)
+	{
+		ll a, b; cin >> a >> b; --a, --b;
+		G[a].push_back(b);
+		++branch[b];
+	}
+
+	queue<ll> que;
+	for (ll i = 0; i < N; ++i) if (branch[i] == 0) que.push(i);
+
+	while (!que.empty())
+	{
+		ll v = que.front(); que.pop();
+
+		for (auto &nv : G[v])
+		{
+			branch[nv]--;
+			if (branch[nv] == 0)
+			{
+				que.push(nv);
+				dp[nv] = max(dp[nv], dp[v]+1);
+			}
+		}
+	}
+
+	ll res{0};
+	for (ll i = 0; i < N; ++i) res = max(res, dp[i]);
+	std::cout << res << std::endl;
+	
+}

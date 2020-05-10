@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string s;
+
+int main(int argc, char **argv)
+{
+	cin >> s;
+
+	for (size_t i = 0; i < s.size() - 2; ++i)
+	{
+		string part = s.substr(i, 3);
+		int x = stoi(part);
+		
+	}
+}

@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+template<class T>
+void chmin(T &a, T b)
+{
+	if (a > b) a = b;
+}
+
+constexpr ll INF = 1ll<<60;
+ll N, W;
+constexpr ll MAX_V{100010}, MAX_N{110};
+ll dp[MAX_N][MAX_V];
+vector<ll> w, v;
+
+int main(int argc, char **argv)
+{
+	cin >> N >> W;
+	w.resize(N), v.resize(N);
+	for (ll i = 0; i < N; ++i) cin >> w[i] >> v[i];
+
+	for (ll ni = 0; ni < MAX_N; ++ni) for (ll vi = 0; vi < MAX_V; ++vi) dp[ni][vi] = -INF;
+	dp[0][0] = 0;
+
+	for (ll ni = 0; ni < MAX_N; ++ni)
+	{
+		for (ll vi = 0; vi < MAX_V; ++vi)
+		{
+			if (vi - v[ni] >= 0)
+				chmin(dp[ni+1][vi], dp[ni][vi-v[ni]]+w[ni]);
+			chmin(dp[ni+1][vi], dp[ni][vi]);
+		}
+	}
+
+	ll v_res{0};
+	for (; v_res < MAX_V; ++v_res)
+	{
+		if (dp[N][v_res] > W) break;
+	}
+
+	std::cout << v_res << std::endl;
+	
+	
+}

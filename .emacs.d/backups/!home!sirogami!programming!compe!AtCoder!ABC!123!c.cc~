@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	vector<ll> city(6, 0);
+	cin >> city[0] ;
+	vector<ll> h(5);
+	for (int i = 0; i < n; ++i) cin >> h[i];
+	int A{0}, B{1}, C{2}, D{3}, E{4};
+
+
+	for (ll step = 0;; ++step)
+	{
+		
+	}
+}

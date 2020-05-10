@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ld = long double;
+
+ld dp[3010][3010];
+ll N;
+
+int main(int argc, char **argv)
+{
+	cin >> N;
+	vector<ld> P(N);
+	for (ll i = 0; i < N; ++i) cin >> P[i];
+
+	for (ll i = 0; i < N; ++i)
+	{
+		for (ll j = 0; j < N; ++j)
+		{
+			dp[i+1][j+1] += dp[i][j] * P[i+1];
+			dp[i+1][j] += dp[i][j] * (1 - P[i+1]);
+		}
+	}
+
+	ld res{0.0};
+	for (ll i = (N+1)/2; i <= N; ++i) res += dp[N][i];
+	std::cout << res << std::endl;
+}

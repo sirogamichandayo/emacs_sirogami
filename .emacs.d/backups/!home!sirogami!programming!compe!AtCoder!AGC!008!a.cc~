@@ -1,0 +1,19 @@
+#include <bits/std++.h>
+using namespace std;
+using ll = long long;
+
+
+int main(int argc, char **argv)
+{
+	ll A, B; cin >> A >> B;
+
+	ll res{0};
+
+	if (B > A)
+		res = B - A;
+	else
+		res = A - B + 2;
+
+	
+	
+}

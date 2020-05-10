@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+
+constexpr ll MOD = 998244353;
+constexpr ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+
+vector<ll> fac(300001); //n!(mod M)
+vector<ll> ifac(300001); //k!^{M-2} (mod M)
+
+ll mpow(ll x, ll n){ //x^n(mod 
+    ll ans = 1;
+    while(n != 0){
+        if(n&1) ans = ans*x % MOD;
+        x = x*x % MOD;
+        n = n >> 1;
+    }
+    return ans;
+}
+
+ll comb(ll a, ll b){ //aCbmod
+    if(a == 0 && b == 0)return 1;
+    if(a < b || a < 0)return 0;
+    ll tmp = ifac[a-b]* ifac[b] % MOD;
+    return tmp * fac[a] % MOD;
+}
+
+void init()
+{
+	fac[0] = 1;
+    ifac[0] = 1;
+    for(ll i = 0; i<300000; i++){
+        fac[i+1] = fac[i]*(i+1) % MOD; // 
+        ifac[i+1] = ifac[i]*mpow(i+1, MOD-2) % MOD; 
+    }
+}
+
+
+int main(int argc, char **argv)
+{
+	init();
+	
+	ll N, M, K; cin >> N >> M >> K;
+
+	vector<ll> sum(N+1, 0);
+	sum[0] = 1;
+	for (ll i = 0; i < N; ++i)
+		(sum[i+1] = sum[i] * (M-1)) %= MOD;
+	
+	ll res{0};
+	for (ll c = 0; c <= K; ++c)
+	{
+		ll tmp{(M * sum[N-c-1])%MOD};
+		(res += (comb(N-1, c) * tmp) % MOD) %= MOD;
+	}
+
+	std::cout << res << std::endl;
+}

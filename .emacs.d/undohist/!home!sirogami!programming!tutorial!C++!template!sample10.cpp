@@ -1,0 +1,3 @@
+
+((digest . "8a7c734ded0859e7c3436cd0695b4108") (undo-list nil ("o;
+" . 473) ((marker . 473) . -3) ((marker . 473) . -3) ((marker . 473) . -3) ((marker . 473) . -3) ((marker) . -1) ("	Coordinate co" . -473) ((marker . 473) . -14) ((marker . 473) . -1) ((marker . 473) . -1) ((marker . 473) . -1) ((marker) . -12) ((marker . 473) . -14) ((marker . 473) . -14) ((marker . 473) . -14) 487 (t 24196 20457 729270 770000) nil (474 . 484) nil ("Coordiante" . -474) ((marker . 473) . -10) ((marker . 473) . -2) ((marker . 473) . -2) ((marker . 473) . -2) 484 nil (488 . 489) nil (474 . 488) nil (472 . 474) nil (120 . 122) ("{" . -120) (120 . 121) (t 24196 19988 358691 423000) nil (120 . 121) nil undo-tree-canary))

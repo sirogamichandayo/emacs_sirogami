@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll N, D;
+	vector<ll>T(D); for (ll i = 0; i < D; ++i) cin >> T[i];
+	vector<ll> C(N);
+	vector<vector<ll>> A(D);
+
+	for (ll i = 0; i < N; ++i)
+	{
+		ll a, b; cin >> a >> b;
+		for (ll j = 0;j < D; ++j)
+		{
+			if (a <= T[j] && T[j]) <= b A[j].push_back(i);
+		}
+		cin >> C[i];
+	}
+
+	for (ll i = 0; i < N; ++i)
+	{
+		for (ll j = 0; j < (ll)A[i].size();)
+	}
+	
+
+	
+}

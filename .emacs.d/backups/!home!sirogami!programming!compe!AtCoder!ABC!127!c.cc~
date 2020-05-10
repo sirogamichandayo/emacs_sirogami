@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll n, m;
+	vector<ll> l(m), r(m);
+
+	for (ll i = 0;i < m; ++i)
+		cin >> l[i] >> r[m];
+
+	ll MAX = 100010;
+	vector<ll> table(MAX);
+	for (ll i = 0; i < m; ++i)
+	{
+		++table[l[i]];
+		--table[++r[i]]
+	}
+
+	for (ll i = 0; i < MAX-1; ++i)
+	{
+		table[i+1] += table[i];
+	}
+
+	ll c{0};
+	for (ll i= 0; i < MAX; ++i)
+	{
+		if (table[i] == m) ++c
+	}
+
+	std::cout << c << std::endl;
+	
+}

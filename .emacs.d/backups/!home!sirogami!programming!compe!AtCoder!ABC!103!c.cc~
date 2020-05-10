@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+ll GCD(ll a, ll b)
+{
+	if (b == 0) return a;
+	else return GCD(b, a%b);
+}
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<ll> A(N); for (ll i = 0; i < N; ++i) cin >> A[i];
+
+	ll g{0};
+	ll sum{1};
+	for (ll i = 0; i < N; ++i)
+	{
+		g = GCD(A[i], g);
+		sum *= A[i];
+	}
+	std::cout << sum * g - 1 << std::endl;
+}

@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	while (true)
+	{
+		ll n, x; cin >> n >> x;
+		if (n == 0 && x == 0) break;
+
+		ll c{0};
+		for (ll i = 1; i <= n-2; ++i)
+		{
+			for (ll j = i+1; j <= n-1; ++j)
+			{
+				ll k = n - (i + j);
+				if (i < k && i < k)
+					++c;
+			}
+		}
+		std::cout << c << std::endl;
+	}
+}

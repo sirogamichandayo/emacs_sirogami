@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll n, q; string str;
+	cin >> n >> q >> str;
+
+	vector<ll> ac(n-1, 0);
+	for (int i = 0; i < n-1; ++i)
+	{
+		if (str[i] == 'A' && str[i+1] == 'C')
+			++ac[i];
+	}
+
+	vector<ll> sum_ac(n, 0);
+	for (int i = 1; i < n; ++i) sum_ac[i] = sum_ac[i-1] + ac[i];
+
+	
+}

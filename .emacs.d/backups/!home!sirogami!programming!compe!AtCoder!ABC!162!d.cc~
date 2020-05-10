@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	string str; cin >> str;
+	int N = (int)str.size();
+
+
+	ll sum{0};
+	char rgb[3];
+	for (ll j = 0; j < N-2; ++j)
+	{
+		rgb[0] = str[j];
+		for (ll i = j+1; i < N-1; ++i)
+		{
+			if (str[i] == rgb[0])
+				continue;
+			rgb[1] = str[i];
+			for (ll k = k+i; k < N; ++k)
+			{
+				if (str[k] == rgb[0] || str[k] == rgb[1]) continue;
+				if (j - i == k - j) continue;
+				++sum;
+			}
+		}
+	}
+}

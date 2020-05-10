@@ -1,0 +1,11 @@
+#include <queue>
+#include <iostream>
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	queue<int> q;
+
+	que.push(1);
+	
+}

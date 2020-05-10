@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> factorization(int num)
+{
+	vector<int> v;
+	for (int i = 2; i < static_cast<int>(sqrt(num)); ++i)
+	{
+		if (num % i == 0)
+			v.push_back(i);
+	}
+	return v;
+}
+
+int main(int argc, char **argv)
+{
+	vector<int> v = factorization(100);
+
+	for (auto e : v)
+		std::cout << e << std::endl;
+}

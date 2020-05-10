@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int N;
+vector<int> vec;
+
+int main(int argc, char **argv)
+{
+	cin >> N;
+	vec.resize(N);
+
+	
+}

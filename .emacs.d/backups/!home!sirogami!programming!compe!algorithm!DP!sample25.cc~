@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+template<class T>
+void chmin(T &a, T b) {if (a > b) a = b;}
+ll dp[30][50010];
+
+int main(int argc, char **argv)
+{
+	ll N, M; cin >> N >> M;
+	vector<ll> coin(N); for (ll i = 0; i < M; ++i) cin >> coin[i];
+
+	memset(dp, 0, sizeof dp);
+	for (ll i = 0; i < M; ++i)
+	{
+		for (ll j = 0;j <= N; ++j)
+		{
+			chmin(dp[i+1][j], dp[i][j]);
+			if (j-coin[i]>=0)chmin(dp[i+1][j], dp[i][j-coin[i]]+1);
+		}
+	}
+	std::cout << coin[M][N] << std::endl;
+}

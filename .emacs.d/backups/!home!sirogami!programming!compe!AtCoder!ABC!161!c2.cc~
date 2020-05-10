@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long int N, K;
+
+int main(int argc, char **argv)
+{
+	cin >> N >> K;
+	long long int c{0};
+
+	c = N % K;
+	std::cout << min{c, K-c }<< std::endl;
+}

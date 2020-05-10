@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	int k;
+	cin >> k;
+
+	vector<long long> a;
+	for (int i = 0; i < 10; ++i)
+		a.push_back(i);
+	
+	while (true)
+	{
+		vector<long long> old;
+		swap(old, a);
+
+		if (k <= (a.size()))
+		{
+			std::cout << a[k-1] << std::endl;
+		}
+		k -= a.size();
+
+		for (auto x : old)
+		{
+			int last = x % 10;
+			for (int i = -1; i <= 1; ++i)
+			{
+				int dx = last + i;
+				if (dx < 0 || 9 < dx) continue;
+				else
+				{
+					a.push_back(x*10 + dx);
+				}
+			}
+		}
+	}
+}

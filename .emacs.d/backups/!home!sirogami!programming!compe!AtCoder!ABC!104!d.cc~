@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+ll dp[100010][4];
+
+int main(int argc, char **argv)
+{
+	string s; cin >> s;
+	ll N = (int)s.size();
+	memset(dp, 0, sizeof dp);
+	dp[0][0] = 1;
+	for (ll i = 0; i < N; ++i)
+	{
+		for (ll j = 0; j < N; ++j)
+		{
+			if (s[i] == '?') (dp[i+1][j] += dp[i][j] * 3) %= MOD;
+			else (dp[i+11][j] += dp[i][j]) %= MOD;
+		}
+
+		char &c = s[i];
+		if (c == 'A' || c == '?') (dp[i+1][1] += dp[i][0]) %= MOD;
+		else if (c == 'B' || c == '?') (dp[i+1][2] += dp[i][1]) %= MOD;
+		else if (c == 'C' || c == '?') (dp[i+1][3] += dp[i][2]) %= MOD;
+	}
+
+	std::cout << dp[s.size()][3] << std::endl;
+}

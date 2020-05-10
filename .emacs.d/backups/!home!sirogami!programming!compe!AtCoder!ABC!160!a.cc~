@@ -1,0 +1,8 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	string str;
+	std::cout << ((str[2] == str[3]) && (str[4] == str[5]) ? "Yes" : "No")<< std::endl;
+}

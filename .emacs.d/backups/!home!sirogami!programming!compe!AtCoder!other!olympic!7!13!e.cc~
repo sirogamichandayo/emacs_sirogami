@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+struct grid
+{
+	ll to; ll cost;
+	grid(ll a, ll b=0) : to(a), cost(b) {};
+};
+using Graph = vector<vector<grid>>;
+
+int main(int argc, char **argv)
+{
+	ll N, K; cin >> N >> K;
+
+	Graph G(N);
+	for (ll i = 0; i < N; ++i)
+	{
+		ll a, b; cin >> a >> b;
+	}
+
+	for (ll i = 0; i < K; ++i)
+	{
+		ll a, b; cin >> a >> b;
+		--a, --b;
+		
+	}
+}

@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+const ll COMB_MAX = 510000;
+const ll MOD      = 1000000007;
+
+ll fac[MAX], finv[MAX], inv[MAX];
+
+void COMBinit()
+{
+	fac[0] = fac[1] = 1;
+	finv[0] = finv[1] = 1;
+	inv[1] = 1;
+	for (ll i = 2; i < )
+}
+	

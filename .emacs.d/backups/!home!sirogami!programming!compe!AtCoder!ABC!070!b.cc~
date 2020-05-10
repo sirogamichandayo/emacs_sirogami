@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int A, B, C, D;
+
+int solve()
+{
+	if (B < C) return 0;
+	
+}
+
+int main(int argc, char **argv)
+{
+	cin >> A >> B >> C >> D;
+
+	if (C < A)
+	{
+		int tmp = A;
+		A = C;
+		C = tmp;
+
+		tmp = B;
+		D = B;
+		B = tmp;
+	}
+
+	std::cout << solve() << std::endl;
+}

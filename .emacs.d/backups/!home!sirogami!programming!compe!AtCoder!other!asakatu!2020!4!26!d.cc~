@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<ll> A(N);
+	for (ll i = 0; i < N; ++i) cin >> A[i];
+
+	vector<ll> sum(N, 0);
+	sum[0] = A[0];
+	for (ll i = 1; i < N; ++i)
+		sum[i] = sum[i-1] + A[i];
+
+	for (auto &e : sum)
+		std::cout << e << std::endl;
+	
+}

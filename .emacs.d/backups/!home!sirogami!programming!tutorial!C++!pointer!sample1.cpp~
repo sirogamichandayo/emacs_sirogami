@@ -1,0 +1,14 @@
+#include <iostream>
+#include <memory>
+
+std::shared_ptr<int> test()
+{
+	std::unique_ptr<int> hoge(new int(5));
+	return hoge;
+}
+
+int main(int argc, char **argv)
+{
+	std::unique_ptr<int> t = test();
+	std::cout << *t << std::endl;
+}

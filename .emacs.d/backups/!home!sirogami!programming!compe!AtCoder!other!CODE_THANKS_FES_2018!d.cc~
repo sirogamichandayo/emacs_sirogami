@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	string s; cin >> s;
+
+	char c{s[0]};
+
+	int ans{1};
+	for (int i = 0; i < s.size()-1; ++i)
+	{
+		if (c >= s[i])
+	}
+}

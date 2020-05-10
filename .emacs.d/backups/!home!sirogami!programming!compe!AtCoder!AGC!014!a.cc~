@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll a, b, c;
+	cin >> a >> b >> c;
+	ll a_{a}, b_{b}, c_{c};
+
+	for (ll i = 0;;++i)
+	{
+		if (i != 0)
+		{
+			if (a == a_ && b == b_ && c == c_)
+			{
+				std::cout << -1 << std::endl;
+				return 0;
+			}
+		}
+
+		if (a % 2 == 1 || b % 2 == 1 || c % 2 == 1)
+		{
+			std::cout << i << std::endl;
+			return 0;
+		}
+
+		a = (b + c) / 2;
+		b = (a + c) / 2;
+		c = (a + b) / 2;
+	}
+}

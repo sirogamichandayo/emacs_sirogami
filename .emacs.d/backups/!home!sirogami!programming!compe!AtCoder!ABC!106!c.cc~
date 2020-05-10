@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	string str; ll k; cin >> str >> k;
+
+	if (s[0] == '1' && k == 1)
+		std::cout << 1 << std::endl;
+}

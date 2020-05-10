@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+unsigned long int A, B, X;
+
+int main(int argc, char **argv)
+{
+	cin >> A >> B >> X;
+
+	unsigned long int count = 0;
+
+	for (unsigned long int i = A; i <= B; ++i)
+		if (i % X == 0) count++;
+	std::cout << count << std::endl;
+}

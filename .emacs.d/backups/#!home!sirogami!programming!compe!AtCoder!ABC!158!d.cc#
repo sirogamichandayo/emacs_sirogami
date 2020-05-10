@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+struct S
+{
+	ll t{0};
+	ll f{0};
+	ll c{};
+};
+
+int main(int argc, char **argv)
+{
+	string str; cin >> str;
+	ll Q; cin >> Q;
+	vector<S> query(Q);
+	std::cout << query.size() << std::endl;
+	for (ll i = 0;  i < Q; ++i)
+	{
+		auto &&e = query[i];
+		cin >> e.t;
+		if (e.t == 1) continue;
+		cin >> e.f;
+		cin >> e.c;
+	}
+
+	bool is_rev{false};
+	for (auto &e : query)
+	{
+		if (e.t == 1)
+		{
+			is_rev ^= true;
+			continue
+		}
+
+		if ((!is_rev && e.f == 2) || (is_rev && e.f == 1))
+			str += e.c;
+		else
+			str.insert(str.begin(), e.c);
+	}
+	if (is_rev)
+		reverse(str.begin(), str.end());
+	std::cout << str << std::endl;
+}

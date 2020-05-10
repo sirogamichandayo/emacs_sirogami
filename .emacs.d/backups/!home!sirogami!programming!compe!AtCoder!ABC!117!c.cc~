@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(int argc, char **argv)
+{
+	ll N, M;  cin >> N >> M;
+	vector<ll> X(N); for (ll i = 0; i < N; ++i)
+					 {
+						 ll a; cin >> a; --a;
+						 X[i] = a;
+					 }
+
+	ll m = *max_element(X.begin(), X.end());
+	vector<bool> is_target(m, false);
+	for (ll i = 0; i < N; ++i)
+		is_target[X[i]] = true;
+
+	ll each_koma_size = m / 2;
+
+	ll ma{-(1ll << 60)};
+	for (ll i = 0; i < m;)
+	{
+		while (!is_target[i]) {++i};
+		ll j{i};
+		ll tmp_sum{0};
+		for (; j <= each_komo_size; ++j)
+		{
+			if (is_target[j]) ++tmp_sum;
+		}
+		ma = max(ma, tmp_sum);
+	}
+
+	std::cout << ma << std::endl;
+}

@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll N, D; cin >> N >> D;
+	vector<ll> X(N);
+	for (ll i = 0; i < N; ++i) cin >> X[i];
+
+	for (ll mid = 0; mid < D; ++mid)
+	{
+		
+	}
+}

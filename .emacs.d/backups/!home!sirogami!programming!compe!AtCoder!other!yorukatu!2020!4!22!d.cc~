@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll N, M; cin >> N >> M;
+	vector<ll> A(N), B(M), C(M);
+	vector<vector<ll>> BC(N+1);
+	for (ll i = 0; i < N; ++i)
+		cin >> A[i];
+	for (ll i = 0; i < M; ++i)
+	{
+		cin >> B[i] >> C[i];
+		BC[B[i]].push_back(C[i]);
+	}
+
+	for (auto &e_vec : BC)
+	{
+		for (auto &e : e_vec)
+			std::cout << e << " ";
+		std::cout << std::endl;
+	}
+}

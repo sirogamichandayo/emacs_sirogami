@@ -1,0 +1,17 @@
+#include <iostream>
+
+template<class T>
+constexpr T pi = T(3.1415926535897932385L);
+
+template<>
+constexpr int pi = 4;
+
+int main(int argc, char **argv)
+{
+	int pi1 = pi<float>;
+	int pi2 = pi<int>;
+
+	std::cout << pi1 << std::endl;
+	std::cout << pi2 << std::endl;
+		
+}

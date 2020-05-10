@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 998244353;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	map<ll, ll> m;
+	for (ll i = 0; i < N; ++i)
+	{
+		ll a; cin >> a;
+		++m[a];
+	}
+
+	if (m[0] != 1)
+	{
+		std::cout << 0 << std::endl;
+	}
+	else
+	{
+		ll pred = m.rbegin()->first;
+		ll prec = m.rbegin()->second;
+		
+		ll res = m.rbegin()->second;
+
+		for (auto it = next(m.rbegin()); it != m.rend(); ++it)
+		{
+			if (pred == it->first+1)
+			{
+				std::cout << "pres : " << res << std::endl;
+				for (ll i = 0; i < prec; ++i)
+					(res *= it->second) %= MOD;
+				pred = it->first;
+				prec = it->second;
+			}
+			else
+				res = 0;
+		}
+
+		std::cout << res << std::endl;
+	}
+}

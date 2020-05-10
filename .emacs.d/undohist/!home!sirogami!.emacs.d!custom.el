@@ -1,5 +1,31 @@
 
-((digest . "8981c151d14f99885198613f282922b0") (undo-list (504 . 743) ("(custom-set-faces
+((digest . "a5ae727c62fe73060b82b4448e3e5570") (undo-list (522 . 761) ("(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )" . -522) (519 . 521) (285 . 286) (" " . 285) ("
+" . -519) (285 . 286) (518 . 519) (284 . 285) (" " . 284) (274 . 518) (" " . 274) (1 . 275) ("(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+	(hl-todo dashboard gtags package-utils imenu-list rings disable-mouse howm mykie flycheck-pos-tip flycheck elscreen popwin undo-tree undohist moccur-edit auto-complete helm-c-moccur helm-descbinds helm heroku-theme heroku))))" . -1) (t 24202 44013 331034 854000) (512 . 751) ("(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )" . -512) (509 . 511) (285 . 286) (" " . 285) ("
+" . -509) (285 . 286) (508 . 509) (284 . 285) (" " . 284) (274 . 508) (" " . 274) (1 . 275) ("(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+	(dashboard gtags package-utils imenu-list rings disable-mouse howm mykie flycheck-pos-tip flycheck elscreen popwin undo-tree undohist moccur-edit auto-complete helm-c-moccur helm-descbinds helm heroku-theme heroku))))" . -1) (t 24193 37266 749933 721000) (504 . 743) ("(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.

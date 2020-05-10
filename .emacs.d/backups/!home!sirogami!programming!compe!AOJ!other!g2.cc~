@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+ll N, M;
+pair<ll, ll> dist[20][20];
+pair<ll, ll> dp[(1<<20)+1][20];
+
+int main(int argc, char **argv)
+{
+	cin >> N >> M;
+	for (ll i = 1; i < N; ++i) for (ll j = 0; j < N; ++j) dist[i][j] = pair<ll, ll>(INF, INF);
+	for (ll i = 0; i < M; ++i)
+	{
+		ll a, b, c, d; cin >> a >> b >> c >> d;
+		--a, --b;
+		dist[a][b] = pair<ll, ll>(c, d);
+		dist[b][a] = pair<ll, ll>(c, d);
+	}
+
+	ll SMAX = 1<<N;
+	for (ll i = 0; i < SMAX; ++i) for (ll j = 0; j < N; ++j) dp[i][j] = pair<ll, ll>(INF, 0);
+	dp[0][0] = make_pair(0, 1);
+
+	for (ll i = 0; i < SMAX; ++i)
+	{
+		for (ll j = 0; j < N; ++j)
+		{
+			if (i & (i << j))
+			{
+				for (ll k = 0; k < N; ++k)
+				{
+					if (dist[j][k].first == INF) continue;
+					ll c = dp[j][i-(1<<j)].first + dist[j][k].first;
+
+					if (c <= dist[j][k].second)
+					{
+						if (dp[k][i].first > c)
+							dp[k][i] = pair<ll, ll>(c, 0);
+						else if  (dp[k][i].first == c)
+							dp[k][i].second += dp[i][(i-(1<<j))].second;
+					}
+				}
+			}
+		}
+	}
+
+	if (dp[0][(1<<N)-1].first != INF)
+	{
+		std::cout << dp[0][(1<<N)-1].first << " " << dp[0][(1<<N)-1].second << std::endl;
+	}
+	else
+		std::cout << "IMPOSSIBLE" << std::endl;
+}
+

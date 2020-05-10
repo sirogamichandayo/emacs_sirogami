@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	int n, q;
+	cin >> n >> q;
+	string str;
+	cin >> str;
+
+	vector<int> l(q+1), r(q+1);
+	for (int i = 0; i < q; ++i)
+		cin >> l[i] >> r[i];
+
+	
+}

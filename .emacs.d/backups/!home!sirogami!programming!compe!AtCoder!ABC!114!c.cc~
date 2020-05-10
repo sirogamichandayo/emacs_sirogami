@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> t_num{3, 5, 7};
+
+vector<int> func1(int num)
+{
+	vector<int> v;
+	for (int e : t_num)
+	{
+		v.push_back(10*num + e);
+	}
+	return v;
+}
+
+int main(int argc, char **argv)
+{
+	
+}

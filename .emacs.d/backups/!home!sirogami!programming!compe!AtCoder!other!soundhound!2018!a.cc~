@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+
+	ll MAX = 1000000000000000;
+	ll l_base{140}, r_base{169};
+	vector<pair<ll, ll>> range;
+	while (true)
+	{
+		range.push_back(pair<ll, ll>(l_base, r_base));
+		if (l_base*2 > MAX || r_base*2 > MAX) break;
+		l_base *= 2;
+		r_base *= 2;
+	}
+
+	
+}

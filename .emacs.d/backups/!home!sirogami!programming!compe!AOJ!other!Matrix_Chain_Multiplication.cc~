@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+template<class T>
+bool chmin(T &a, T b)
+{
+	if (a > b)
+	{
+		a = b;
+		return false;
+	}
+	return true;
+}
+
+template<class T>
+bool chmax(T &a, T b)
+{
+	if (a < b)
+	{
+		a = b;
+		return false;
+	}
+	return true;
+}
+
+template<class T>
+bool chmax(T &a, initializer_list<T> l)
+{
+	return chmax(a, *max_element(l.begin(), l.end()));
+}
+
+template<class T>
+bool chmin(T &a, initializer_list<T> l)
+{
+	return chmin(a, *min_element(l.begin(), l.end));
+}
+ll dp[110][110];
+ll n;
+pair<int, int> C[110];
+
+int main(int argc, char **argv)
+{
+	cin >> n;
+	for (ll i = 0; i < n; ++i)
+	{
+		ll r, c; cin >> r >> c;
+		C[i] = pair<int, int>(r, c);
+	}
+
+}
+			

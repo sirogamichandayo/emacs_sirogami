@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+template<class T>
+void chmin(T &a, T b) {if (a > b) a=b;}
+
+constexpr ll INF = 1ll<<60;
+ll N, M;
+ll C[20], X[20010];
+ll dp[20010][270];
+
+void init()
+{
+	for (ll i = 0; i < 20010; ++i)
+		for (ll j = 0; j < 270; ++j)
+			dp[i][j] = INF;
+}
+
+ll round(ll a)
+{
+	if (a < 0) return a;
+	else if (a > 255) return 255;
+	else return a;
+}
+
+ll dist(ll a, ll b)
+{
+	return pow(a-b, 2);
+}
+
+int main(int argc, char **argv)
+{
+	while (cin >> N >> M, N+M)
+	{
+		for (ll i = 0; i < M; ++i) cin >> C[i];
+		for (ll i = 0; i < N; ++i) cin >> X[i];
+		init();
+		for (ll i = 0; i < M; ++i) dp[0][round(128+C[i])] = dist(round(128+C[i]), X[0]);
+
+		for (ll n = 0; n < N; ++n)
+		{
+			for (ll a = 0; a <= 255; ++a)
+			{
+				for (ll m = 0; m < M; ++m)
+				{
+					ll tmp = round(a+C[m]);
+					chmin(dp[n+1][tmp], dp[n][a]+dist(tmp, X[n+1]));
+				}
+			}
+		}
+		ll res{INF};
+		for (ll i = 0; i <= 255; ++i) chmin(res, dp[N-1][i]);
+		std::cout << res << std::endl;
+		
+	}
+}

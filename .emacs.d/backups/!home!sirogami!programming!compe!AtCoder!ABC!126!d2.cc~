@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+using Graph = vector<vector<pair<long long, long long>>>;
+
+Graph g;
+vector<long long> dist;
+
+void dfs(long long cv, long long pv, long long d)
+{
+	dist[cv] = d;
+
+	for (auto e : g[cv])
+	{
+		if (dist[e.first] != -1) continue;
+		if (e.first == pv) continue;
+		dfs(e.first, cv, d+e.second);
+	}
+}
+
+int main(int argc, char **argv)
+{
+	long long n; cin >> n;
+	vector<long long> u(n-1), v(n-1), w(n-1);
+	for (long long i = 0; i < n-1; ++i) cin >> u[i] >> v[i] >> w[i];
+
+	vector<long long> ans(n+1);
+	g.resize(n+1); dist.resize(n+1, -1);
+	for (long long i = 0; i < n-1; ++i)
+	{
+		g[u[i]].push_back(pair<long long, long long>(v[i], w[i]));
+		g[v[i]].push_back(pair<long long, long long>(u[i], w[i]));
+	}
+	dfs(1, -1, 0);
+
+	for (long long i = 1; i < n + 1; ++i) ans[i] = dist[i] % 2;
+
+	for (long long i = 1; i < n + 1; ++i)
+		std::cout << ans[i] << std::endl;
+}
