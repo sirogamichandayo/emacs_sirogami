@@ -1,0 +1,71 @@
+template <long long mod> struct Fp
+{
+	long long val;
+
+	constexpr Fp(long long x = 0) : val((x%mod)%mod) {}
+	constexpr Fp operator-() const
+	{
+		return Fp(-val);
+	}
+
+	constexpr Fp& operator += (const Fp<mod>& r)
+	{
+		if ((val += r.val) >= mod) val -= mod;
+		return *this;
+	}
+
+	constexpr Fp& operator -= (const Fp<mod>& r)
+	{
+		if ((val += mod-r.val) >= mod) val -= mod;
+		return *this;
+	}
+
+	constexpr Fp& operator *= (const Fp<mod>& r)
+	{
+		(val *= r.val) %= mod;
+		return *this;
+	}
+
+	constexpr Fp operator - (const Fp<mod>& r) const
+	{
+		Fp<mod> res(*this);
+		return res -= r;
+	}
+
+	constexpr Fp operator * (const Fp<mod> &r) const
+	{
+		Fp<mod> res(*this);
+		return res *= r;
+	}
+
+	constexpr Fp modpow(long long t) const
+	{
+		if (!t) return 1;
+		Fp<mod> a = modpow(t>>1);
+		a *= a;
+		if (t&1) a *= *this;
+		return a;
+	}
+
+	constexpr Fp inv() const
+	{
+		return modpow(mod-2);
+	}
+
+	constexpr bool operator == (const Fp<mod>& r) const
+	{
+		return this->val == r.val;
+	}
+
+	constexpr bool operator != (const Fp<mod>& r) const
+	{
+		return this->val != r.val;
+	}
+
+	friend constexpr ostream& operator << (ostream &os, const Fp<mod>& x)
+	{
+		return os << x.val;
+	}
+};
+
+using mint = Fp<1e9+7>;

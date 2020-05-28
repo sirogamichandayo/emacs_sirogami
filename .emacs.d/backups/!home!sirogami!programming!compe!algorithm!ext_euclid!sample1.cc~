@@ -3,21 +3,28 @@ using namespace std;
 
 using ll = long long;
 
-ll extGCD(ll a, ll b, ll &x, ll &y)
+void extGCD(ll a, ll b, ll &x, ll &y)
 {
 	if (b == 0)
 	{
 		x = 1;
 		y = 0;
-		return a;
+		return;
 	}
+	// q = a/b;
+	
+	extGCD(b, a%b, x, y);
+	int tmp = x;
+	x = y;
+	y = tmp - a / b * y;
 
-	ll d = extGCD(b, a&b, y, x);
-	y = y - a/b * x;
-	return b;
+	// x := y
+	// y := x - a/b * y;
 }
 
 int main(int argc, char **argv)
 {
-	
+	ll x{0}, y{0};
+	extGCD(111, 30, x, y);
+	std::cout << x << y << std::endl;
 }

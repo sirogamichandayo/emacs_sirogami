@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(int argc, char **argv)
+{
+	ll X, Y, A, B, C; cin >> X >> Y >> A >> B >> C;
+	priority_queue<ll> a, b, c;
+	for (ll i = 0; i < A; ++i) {ll tmp; cin >> tmp; a.push(tmp);}
+	for (ll i = 0; i < B; ++i) {ll tmp; cin >> tmp; b.push(tmp);}
+	for (ll i = 0; i < C; ++i) {ll tmp; cin >> tmp; c.push(tmp);}
+
+	ll res{0};
+	for (ll i = 0; i < X-C; ++i)
+	{
+		res += a.top();
+		a.pop();
+	}
+	for (ll i = 0; i < Y-C; ++i)
+	{
+		res += b.top();
+		a.pop();
+	}
+
+	
+
+	std::cout << res << std::endl;
+}

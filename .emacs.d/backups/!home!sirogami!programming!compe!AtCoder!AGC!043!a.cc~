@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+
+constexpr ll MOD = 1e9+7;
+constexpr ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+char F[110][110];
+ll dist[110][110];
+
+ll dx[2] {0, 1};
+ll dy[2] {1, 0};
+
+int main(int argc, char **argv)
+{
+	ll H, W; cin >> H >> W;
+	REP(h, H)REP(w, W) cin >> F[h][w];
+
+	ll res;
+
+	if (F[0][0] == '#') {res = 1; F[0][0] = '.';}
+	else res = 0;
+
+	queue<pair<ll, ll>> que, que2;
+	que.push(pair<ll, ll>(0, 0));
+	while (true)
+	{
+		while (!que.empty())
+		{
+			auto now = que.front(); que.pop();
+			ll h = now.first;
+			ll w = now.second;
+
+			REP(i, 2)
+			{
+				ll nh = h + dy[i];
+				ll nw = w + dx[i];
+
+				if (nh == H-1 && nw == W-1)
+					goto exit;
+
+				if (nh >= H && nw >= w) continue;
+				
+				F[nh][nw] = '.';
+			}
+		}
+
+		que.push(pair<ll, ll>(0, 0));
+		while (!que.empty())
+		{
+			auto now = que.front(); que.pop();
+			ll h = now.first;
+			ll w = now.second;
+
+			REP(i, 2)
+			{
+				ll nh = h + dy[i];
+				ll nw = w + dx[i];
+
+				
+			}
+		}
+		++res;
+	}
+
+ exit:
+	std::cout << res << std::endl;
+}

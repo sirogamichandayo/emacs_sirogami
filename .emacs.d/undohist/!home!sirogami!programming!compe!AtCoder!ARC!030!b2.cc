@@ -1,0 +1,2 @@
+
+((digest . "17e10e6ad775a75fd21ef2eec6c4048e") (undo-list (573 . 574) nil (nil rear-nonsticky nil 572 . 573) (nil fontified nil 95 . 573) (nil fontified nil 94 . 95) (nil category c->-as-paren-syntax 94 . 95) (nil fontified nil 91 . 94) (nil fontified nil 90 . 91) (nil category c-<-as-paren-syntax 90 . 91) (nil fontified nil 85 . 90) (nil fontified nil 84 . 85) (nil fontified nil 80 . 84) (nil fontified nil 59 . 80) (nil fontified nil 54 . 59) (nil fontified nil 1 . 54) (1 . 573) (t . -1)))

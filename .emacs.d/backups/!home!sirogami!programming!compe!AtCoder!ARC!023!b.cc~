@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+constexpr ll MOD = 1000000007;
+constexpr ll INF = 1ll<<60;
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	string s; cin >> s;
+	ll res;
+	if (s.size() & 1 && s[N/2] == 'b')
+	{
+		ll hand{0};
+		ll ok{true};
+		ll l, r;
+		l = r = N/2;
+
+		while (true)
+		{
+			if ((r - l + 1) == (ll)s.size())
+				break;
+			--l, ++r;
+			++hand;
+			if (hand % 3 == 1)
+			{
+				if (s[l] != 'a' || s[r] != 'c')
+				{
+					ok = false;
+					break;
+				}
+					
+			}
+			else if (hand % 3 == 2)
+			{
+				if (s[l] != 'c' || s[r] != 'a')
+				{
+					ok = false;
+					break;
+				}
+			}
+			else
+			{
+				if (s[l] != 'b' || s[r] != 'b')
+				{
+					ok = false;
+					break;
+				}
+			}
+		}
+
+		if (ok) res = hand;
+		else res = -1;
+	}
+	else
+		res = -1;
+	std::cout << res << std::endl;
+}

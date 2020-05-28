@@ -4,32 +4,32 @@ using ll = long long;
 
 ll getHeight(ll x, ll cx, ll y, ll cy, ll h)
 {
-	return max(h - abs(x - cx) - abs(y - cy), 0);
+	return max(h - abs(x - cx) - abs(y - cy), 0ll);
 }
 
 int main(int argc, char **argv)
 {
 	ll N; cin >> N;
-	vector<ll> x(N), y(N), h(N);
+	vector<ll> X(N), Y(N), H(N);
+	int index{-1};
 	for (ll i = 0; i < N; ++i)
-		cin >> x[i] >> y[i] >> h[i];
+	{
+		cin >> X[i] >> Y[i] >> H[i];
+	}
 
 	ll x, y, h;
-	for (x = 1; x <= 100; ++x)
+	for (x = 0; x <= 100; ++x)
 	{
-		for (y = 1; y <= 100; ++y)
+		for (y = 0; y <= 100; ++y)
 		{
-			for (h = 1;; ++h)
+			h = 
+			bool flag{true};
+			for (ll i = 0; i < N; ++i)
 			{
-				bool flag{true};
-				for (ll i = 0; i < n; ++i)
-				{
-					if (h[i] != getHeight(x[i], x, y[i], y, h))
-						flag = false;
-				}
-				if (flag) goto exit;
 			}
+			if (flag) goto exit;
 		}
 	}
  exit:
+	std::cout << x << " " << y << " " << h << std::endl;
 }

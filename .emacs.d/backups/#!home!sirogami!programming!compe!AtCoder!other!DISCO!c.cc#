@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+
+constexpr ll MOD = 1e9+7;
+constexpr ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+ll f[310][310];
+char g[310][310];
+
+
+
+int main(int argc, char **argv)
+{
+	ll H, W, K; cin >> H >> W >> K;
+	vector<ll> p;
+	REP(h, H) REP(w, W)
+	{
+		char c; cin >> c;
+		g[h][w] = c;
+	}
+
+	ll t{1};
+	REP(h, H)
+	{
+		bool ok{false};
+		REP(w, W)
+			if (g[h][w] == '#') ok = true;
+		
+		++t;
+	}
+	
+	
+	
+}

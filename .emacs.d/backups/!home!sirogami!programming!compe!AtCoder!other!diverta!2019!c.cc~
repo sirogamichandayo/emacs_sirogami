@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+
+constexpr ll MOD = 1e9+7;
+constexpr ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<ll> A(N); REP(i, N) cin >> A[i];
+	sort(ALL(A));
+
+	vector<pair<ll, ll>> res;
+	if (A.front() >= 0)
+	{
+		res.emplace_back(pair<ll, ll>(A[0], A[1]));
+		A.push_back(A[0] - A[1]);
+		A.erase(A.begin(), A.begin()+2);;
+		sort(ALL(A));
+	}
+	else if (A.back() <= 0)
+	{
+		res.emplace_back(pair<ll, ll>(A[N-2], A[N-1]));
+		A.push_back(A[N-2] - A[N-1]);
+		A.erase(prev(A.end(), 2), A.end());
+		sort(ALL(A));
+	}
+
+	queue<ll> p, m;
+	for (auto &e : A)
+	{
+		if (e <= 0)
+			p.push(e);
+		else
+			m.push(e);
+	}
+
+	std::cout << "psize : " << p.size() << std::endl;
+	std::cout << "msize : " << m.size() << std::endl;
+	
+
+
+
+	REP(i, N-1)
+		std::cout << res[i].first << " " << res[i].second << std::endl;
+}

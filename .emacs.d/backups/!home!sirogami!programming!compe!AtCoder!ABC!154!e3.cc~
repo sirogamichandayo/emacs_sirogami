@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+
+constexpr ll MOD = 1e9+7;
+constexpr ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+ll dp[10010][2][110];
+
+int main(int argc, char **argv)
+{
+	string S;
+	ll D;
+	cin >> D >> S;
+	memset(dp, 0, sizeof dp);
+	dp[0][0][0] = 1;
+	ll N = S.size();
+	
+	REP(i, N)
+	{
+		REP(k, D)
+		{
+			REP(m, 10)
+				dp[i+1][true][(k+m)%D] += dp[i][true][k]
+
+			ll Ni = S[i] - '0';
+
+			REP(m, Ni)
+				(dp[i+1][true][(k+m)%D] += dp[i][false][k]) %= MOD; 
+
+			(dp[i+1][false][(k+Ni)%D] += dp[i][false][k]) %= MOD; 
+		}
+	}
+
+	std::cout << dp[N][false][0] + dp[N][true][0] - 1 << std::endl;
+}

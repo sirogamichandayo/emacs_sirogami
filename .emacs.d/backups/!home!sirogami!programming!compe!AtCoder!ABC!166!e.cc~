@@ -2,3 +2,28 @@
 using namespace std;
 using ll = long long;
 constexpr ll MOD = 1000000007;
+
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+	vector<pair<ll, ll>> H(N);
+	for (ll i = 0; i < N; ++i)
+	{
+		ll h; cin >> h;
+		H[i] = pair<ll, ll>(i+1, h);
+	}
+
+	sort(H.begin(), H.end(), [](auto &a, auto &b)
+							 {
+								 return a.second < b.second;
+							 });
+
+	ll res{0};
+	for (ll i = 0; i < N; ++i)
+	{
+		
+		
+	}
+
+}

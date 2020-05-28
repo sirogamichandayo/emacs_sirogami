@@ -1,6 +1,5 @@
 ;;; test
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; base
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -54,6 +53,13 @@
 ;; fack C-x C-c
 (defalias 'exit 'save-buffers-kill-emacs)
 (global-unset-key (kbd "C-x C-c"))
+
+;; buffer copy
+;; (global-set-key (kbd "C-c C-y") (lambda()
+;; 								  (interactive)
+;; 								  (kbd "C-x h")
+;; 								  (kbd "M-w")))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; keybinding
@@ -242,8 +248,15 @@
 ;; window
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; window size
+(define-key global-map (kbd "M-<up>") 'enlarge-window)
+(define-key global-map (kbd "M-<down>") 'shrink-window)
+(define-key global-map (kbd "M-<right>") 'enlarge-window-horizontally)
+(define-key global-map (kbd "M-<left>") 'shrink-window-horizontally)
+
 ;; load theme
 (load-theme 'heroku t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; color
@@ -339,30 +352,83 @@
 	  "template<>\C-b")
 (fset 'c-else-if
 	  "else if ()\C-b")
-(fset 'compe-change-min-max
-   "template<class T>\C-mbool chmin(T &a, T b\C-e\C-m{\C-mif (a > b\C-e\C-m{\C-mif\C-h\C-ha = b;\C-mreturn false;\C-n\C-mreturn true;\C-n\C-m\C-mtemplate<class T>\C-mbool chmax(T &a, T b\C-e\C-m{\C-mif (a < b\C-e\C-m{\C-ma = b;\C-mreturn false;\C-n\C-mreturn true;\C-n\C-m\C-mtemplate<class T>\C-mbool chmax(T &a, initializer_list<T> l\C-e\C-m{\C-mreturn chmax(a, *min_\C-umax_element(l.begin(), l.end()\C-e;\C-n\C-m\C-mtemplate(clas\C-u\C-f\C-h\C-h<class T>\C-mbool chmin(T &a, initializer_list<T> l\C-e\C-m{\C-mreturn chmin(a, *min_element(l.begin(), l.end\C-e;")
-(fset 'compe-base
-   [?# ?i ?n ?c ?l ?u ?d ?e ?  ?< ?b ?i ?t ?s ?/ ?s ?t ?d ?c ?+ ?+ ?. ?h ?> ?\C-m ?u ?s ?i ?n ?g ?  ?n ?a ?m ?e ?s ?p ?a ?c ?e ?  ?s ?t ?d ?\; ?\C-m ?\C-m ?u ?s ?i ?n ?g ?  ?l ?l ?  ?= ?  ?l ?o ?n ?g ?  ?l ?o ?n ?g ?\; ?\C-m ?\C-m ?c ?o ?n ?s ?t ?e ?x ?p ?r ?  ?l ?l ?  ?m ?o ?d ?\C-, ?\M-u ?  ?= ?  ?1 ?e ?9 ?+ ?7 ?\; ?\C-m ?c ?o ?n ?s ?t ?e ?x ?p ?r ?  ?l ?l ?  ?i ?n ?f ?\C-, ?\M-u ?  ?= ?  ?1 ?l ?l ?< ?< ?6 ?0 ?\; ?\C-m ?\C-m ?# ?d ?e ?f ?i ?n ?e ?  ?f ?o ?r ?\C-, ?\M-u ?\( ?i ?, ?a ?, ?b ?\C-e ?  ?f ?o ?r ?  ?\( ?l ?l ?  ?i ?= ?\( ?a ?\C-f ?\; ?i ?< ?\( ?b ?\C-f ?\; ?+ ?+ ?i ?\C-e ?\C-m ?# ?d ?e ?f ?i ?n ?e ?  ?r ?e ?p ?\C-, ?\M-u ?\( ?i ?, ?n ?\C-e ?  ?f ?o ?r ?\C-, ?\M-u ?\( ?i ?, ?0 ?, ?n ?\C-e ?\C-m ?# ?d ?e ?f ?i ?n ?e ?  ?a ?l ?l ?\C-, ?\M-u ?\( ?v ?\C-f ?  ?\( ?v ?\C-f ?. ?b ?e ?g ?i ?n ?\( ?\) ?, ?\( ?v ?\C-f ?. ?e ?n ?d ?\( ?\C-e ?\C-m ?\C-m])
-(fset 'compe-dx4-dy4
-	  "int dx[4\C-e{0, 1, 0, -1\C-e;\C-mint dy[4\C-f{1, 0, -1, 0\C-e;\C-m")
+(fset 'c-branket
+   [?\M-a tab ?\( ?\C-f ?\C-h ?\C-e ?\) ? ])
 (fset 'compe-rep
-	  "REP()\C-b")
+	  "\C-eREP()\C-b")
 (fset 'compe-for
-	  "FOR()\C-b")
+	  "\C-efor()\C-b")
+(fset 'compe-all
+	  "ALL()\C-b")
+(fset 'c++-vector-base
+	  "vector<>\C-b")
+(fset 'c++-vector-vector-ll
+	  "vector<vector<ll>>")
 (fset 'c++-vector-ll
 	  "vector<ll> ")
 (fset 'c++-vector-pair-ll-ll
 	  "vector<pair<ll, ll>> ")
+(fset 'c++-vector-push-back
+	  "\C-e.push_back()\C-b")
 (fset 'c++-pair-ll-ll
 	  "pair<ll, ll>(,)\C-b\C-b")
 (fset 'c++-pair-first
 	  ".first")
 (fset 'c++-pair-second
 	  ".second")
-(fset 'c++-std-count-res
+(fset 'c++-std-output-res
 	  "std::cout << res << std::endl;")
+(fset 'c++-std-output-fixed
+   "\C-ccoofixed << setprecision(10\C-f << ")
 (fset 'c++-std-output-yes-no
-   "std::cout << (ok ? \"Yes\C-f : \"No\C-f\C-f << std::endl;")
+	  "std::cout << (ok ? \"Yes\C-f : \"No\C-f\C-f << std::endl;")
+(fset 'c++-comma-indent
+	  "\C-e;\C-m")
+
+(defalias 'compe-base
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/base.cc")))
+(defalias 'compe-dinic
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/dinic.cc")))
+(defalias 'compe-eratos
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/eratos.cc")))
+(defalias 'compe-min-max
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/min_max.cc")))
+(defalias 'compe-to-digit
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/to_digit.cc")))
+(defalias 'compe-union-find
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/union_find.cc")))
+(defalias 'compe-bipartite-matching
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/bipartite_matching.cc")))
+(defalias 'compe-dx4-dy4
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/dy4_dy4.cc")))
+(defalias 'compe-gcd-lcm
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/gcd_lcm.cc")))
+(defalias 'compe-modint
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/modint.cc")))
+(defalias 'compe-to-divisor
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/to-divisor.cc")))
 
 ;; c
 (defun my-c-mode-hook ()
@@ -385,12 +451,14 @@
   (setq c-basic-offset 4)
   (c-set-offset 'substatement-open 0)
   (define-key c++-mode-map (kbd "C-c c [") 'indent-and-brackets)
+  (define-key c++-mode-map (kbd "C-c c 9") 'c-branket)
+  (define-key c++-mode-map (kbd "C-c c 0") 'c-branket)
+  
   
   (define-key c++-mode-map (kbd "C-c c i q") 'c-include-quort)
   (define-key c++-mode-map (kbd "C-c c i ,") 'c-include-angle-brackets)
   
   (define-key c++-mode-map (kbd "C-c c e") 'c-else-if)
-
   
   (define-key c++-mode-map (kbd "C-c c c s") 'c++-constexpr)
   
@@ -405,7 +473,10 @@
   (define-key c++-mode-map (kbd "C-c c o p") 'c++-pretty-function-and-std-output)
   (define-key c++-mode-map (kbd "C-c c o o") 'c++-std-output)
   (define-key c++-mode-map (kbd "C-c c o r") 'c++-std-output-res)
+  (define-key c++-mode-map (kbd "C-c c o f") 'c++-std-output-fixed)
   (define-key c++-mode-map (kbd "C-c c o y n") 'c++-std-output-yes-no)
+  
+  (define-key c++-mode-map (kbd "C-c c ;") 'c++-comma-indent)
   
   (define-key c++-mode-map (kbd "C-c c m") 'c-main)
   
@@ -420,17 +491,18 @@
   (define-key c++-mode-map (kbd "C-c c s t") 'c++-static)
   
   (define-key c++-mode-map (kbd "C-c c t") 'c++-template)
-  
-  (define-key c++-mode-map (kbd "C-c c c c m") 'compe-change-min-max)
-  (define-key c++-mode-map (kbd "C-c c c c b") 'compe-base)
-  (define-key c++-mode-map (kbd "C-c c c c x y") 'compe-dx4-dy4)
+
   (define-key c++-mode-map (kbd "C-c c r") 'compe-rep)
   (define-key c++-mode-map (kbd "C-c c f") 'compe-for)
+  (define-key c++-mode-map (kbd "C-c c a") 'compe-all)
+
+  (define-key c++-mode-map (kbd "C-c c l 1") 'c++-vector-ll)
+  (define-key c++-mode-map (kbd "C-c c l 2") 'c++-vector-vector-ll)
+  (define-key c++-mode-map (kbd "C-c c l p l l") 'c++-vector-pair-ll-ll)
+  (define-key c++-mode-map (kbd "C-c c l p b") 'c++-vector-push-back)
   
+  (define-key c++-mode-map (kbd "C-c c c c b") 'compe-base)
   
-  
-  (define-key c++-mode-map (kbd "C-c c v l") 'c++-vector-ll)
-  (define-key c++-mode-map (kbd "C-c c v p l l") 'c++-vector-pair-ll-ll)
   
   (define-key c++-mode-map (kbd "C-c C-n") (lambda()
                                              (interactive)
@@ -441,9 +513,11 @@
 
   (define-key c++-mode-map (kbd "C-M-n") 'c-end-of-defun)
   (define-key c++-mode-map (kbd "C-M-p") 'c-beginning-of-defun)
+  
+  (define-key c++-mode-map (kbd "C-a") 'c-beginning-of-statement)
+  (define-key c++-mode-map (kbd "M-a") 'move-beginning-of-line)
+  
 
-  (define-key c++-mode-map (kbd "C-TAB") 'c-indent-line-or-region)
-ppp
   (add-to-list 'flycheck-clang-args "-Wall")
   (setq flycheck-clang-language-standard "c++17")
   (setq flycheck-gcc-language-standard "c++17"))
