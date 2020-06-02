@@ -349,7 +349,7 @@
 (fset 'c++-static-cast
 	  "static_cast<>()\C-b\C-b\C-b")
 (fset 'c++-template
-	  "template<>\C-b")
+	  "template <>\C-b")
 (fset 'c-else-if
 	  "else if ()\C-b")
 (fset 'c-branket
@@ -366,12 +366,16 @@
 	  "vector<vector<ll>>")
 (fset 'c++-vector-ll
 	  "vector<ll> ")
+(fset 'c++-vector-double
+	  "vector<double> ")
+(fset 'c++-vector-string
+	  "vector<string> ")
 (fset 'c++-vector-pair-ll-ll
 	  "vector<pair<ll, ll>> ")
 (fset 'c++-vector-push-back
 	  "\C-e.push_back()\C-b")
 (fset 'c++-pair-ll-ll
-	  "pair<ll, ll>(,)\C-b\C-b")
+	  "pair<ll, ll> ")
 (fset 'c++-pair-first
 	  ".first")
 (fset 'c++-pair-second
@@ -388,7 +392,8 @@
 (defalias 'compe-base
   (lambda()
 	(interactive)
-	(insert-file "~/.emacs.d/compe/base.cc")))
+	(insert-file "~/.emacs.d/compe/base.cc")
+	(goto-line 14)))
 (defalias 'compe-dinic
   (lambda()
 	(interactive)
@@ -428,7 +433,19 @@
 (defalias 'compe-to-divisor
   (lambda()
 	(interactive)
-	(insert-file "~/.emacs.d/compe/to-divisor.cc")))
+	(insert-file "~/.emacs.d/compe/to_divisor.cc")))
+(defalias 'compe-seg-tree
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/seg_tree.cc")))
+(defalias 'compe-prime-factor
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/prime_factor.cc")))
+(defalias 'compe-combination
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/combination.cc")))
 
 ;; c
 (defun my-c-mode-hook ()
@@ -468,7 +485,7 @@
   
   (define-key c++-mode-map (kbd "C-c c p f") 'c++-pair-first)
   (define-key c++-mode-map (kbd "C-c c p s") 'c++-pair-second)
-  (define-key c++-mode-map (kbd "C-c c p l l") 'c++-pair-ll-ll)
+  (define-key c++-mode-map (kbd "C-c c p l") 'c++-pair-ll-ll)
   
   (define-key c++-mode-map (kbd "C-c c o p") 'c++-pretty-function-and-std-output)
   (define-key c++-mode-map (kbd "C-c c o o") 'c++-std-output)
@@ -496,9 +513,14 @@
   (define-key c++-mode-map (kbd "C-c c f") 'compe-for)
   (define-key c++-mode-map (kbd "C-c c a") 'compe-all)
 
+  (define-key c++-mode-map (kbd "C-c c l d") 'c++-vector-double)
+  (define-key c++-mode-map (kbd "C-c c l s") 'c++-vector-string)
   (define-key c++-mode-map (kbd "C-c c l 1") 'c++-vector-ll)
+  (define-key c++-mode-map (kbd "C-c c l b") 'c++-vector-base)
+  
   (define-key c++-mode-map (kbd "C-c c l 2") 'c++-vector-vector-ll)
-  (define-key c++-mode-map (kbd "C-c c l p l l") 'c++-vector-pair-ll-ll)
+  (define-key c++-mode-map (kbd "C-c c l p l") 'c++-vector-pair-ll-ll)
+  
   (define-key c++-mode-map (kbd "C-c c l p b") 'c++-vector-push-back)
   
   (define-key c++-mode-map (kbd "C-c c c c b") 'compe-base)

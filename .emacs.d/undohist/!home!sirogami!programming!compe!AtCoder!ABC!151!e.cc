@@ -1,0 +1,5 @@
+
+((digest . "ac2cc48748fdb25ec67c768232e1188f") (undo-list nil (3327 . 3328) nil ("+" . -3327) ((marker . 3328) . -1) ("h" . -3328) ((marker . 3328) . -1) ("-" . -3329) ((marker . 3328) . -1) 3330 nil (3328 . 3330) nil ("		(res -= tmp*A[i]) %= MOD;
+" . 3340) ((marker . 3340) . -28) ((marker . 3340) . -28) ((marker . 3340) . -28) ((marker . 3340) . -2) ((marker . 3340) . -13) ((marker . 3340) . -14) ((marker . 3340) . -7) ((marker . 3340) . -7) ((marker . 3340) . -18) ((marker . 3340) . -18) ((marker . 3340) . -28) ((marker . 3340) . -28) ((marker . 3340) . -28) ((marker . 3340) . -28) ((marker . 3340) . -18) ((marker . 3340) . -18) ((marker . 3340) . -18) ((marker . 3340) . -18) ((marker . 3340) . -18) nil ("		res += MOD;
+" . 3340) ((marker . 3340) . -14) ((marker . 3340) . -14) ((marker . 3340) . -14) nil ("		(res += tmp*A[N-1-i]) %= MOD;
+" . 3340) ((marker . 3340) . -2) ((marker . 3340) . -14) ((marker . 3340) . -21) ((marker . 3340) . -32) ((marker . 3340) . -32) (t 24278 21982 514723 937000) nil (3338 . 3339) nil undo-tree-canary))

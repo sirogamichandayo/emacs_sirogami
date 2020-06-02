@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using P = pair<ll, ll>;
+
+constexpr ll MOD = 1e9+7;
+constexpr ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+ll N, Q;
+string S;
+ll sum[500010];
+
+int main(int argc, char **argv)
+{
+	cin >> N >> S >> Q;
+	sum[0] = 1;
+	
+	
+
+	REP(i, Q)
+	{
+		
+	}
+}

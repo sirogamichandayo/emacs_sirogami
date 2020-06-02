@@ -1,0 +1,2 @@
+
+((digest . "1e38d1cd40001640696036bbcd5a3e78") (undo-list nil ("p" . -708) ((marker . 708) . -1) 709 nil ("p" . -698) ((marker . 708) . -1) 699 nil ("p" . -673) ((marker . 708) . -1) 674 nil ("p" . -597) ((marker) . -1) ((marker . 708) . -1) 598 (t 24272 54299 988230 313000) nil (712 . 713) nil (711 . 712) nil (707 . 711) nil ("_" . -707) ((marker . 708) . -1) ("_" . -708) ((marker . 708) . -1) 709 nil undo-tree-canary))

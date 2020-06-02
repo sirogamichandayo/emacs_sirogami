@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using P = pair<ll, ll>;
+
+constexpr ll MOD = 1e9+7;
+constexpr ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+long long gcd(long long a, long long b)
+{
+	if (b == 0) return a;
+	else return gcd(b, a&b);
+}
+
+long long lcm(long long a, long long b)
+{
+	return a/gcd(a, b) * b;
+}
+
+ll N;
+ll A[100010];
+ll L[100010], R[100010];
+
+int main(int argc, char **argv)
+{
+	cin >> N;
+	REP(i, N) cin >> A[i];
+
+	for (ll i = 1; i <= N; ++i) L[i] = gcd(L[i], A[i-1]);
+	for (ll i = 1; i <= N; ++i) R[N-i] = gcd(R[N-i+1], A[N-i]);
+
+	ll res{0};
+	
+	
+}
