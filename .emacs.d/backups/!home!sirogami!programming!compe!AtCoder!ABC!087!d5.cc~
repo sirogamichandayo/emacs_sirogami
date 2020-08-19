@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using P = pair<ll, ll>;
+
+const ll MOD = 1e9+7;
+// const ll MOD = 998244353;
+const ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+const ll MAXN = 100010;
+ll N, M;
+ll f[MAXN], sum[MAXN];
+
+ll Find(ll x)
+{
+	if (x == f[x]) return x;
+	ll tmp = Find(f[x]);
+	sum[x] += sum[f[x]];
+	return f[x] = tmp;
+}
+
+int main(int argc, char **argv)
+{
+	cin >> N >> M;
+	REP(i, N) f[i] = i, sum[i] = 0;
+
+	REP(i, M)
+	{
+		ll l, r, d; cin >> l >> r >> d;
+		--l, --r;
+
+		ll a = Find(l);
+		ll b = Find(r);
+
+		if (a == b)
+		{
+			if (sum[l]-sum[r] != d)
+			{
+				std::cout << "No" << std::endl;
+				return 0;
+			}
+		}
+		else
+		{
+			f[a] = b;
+			a = sum[r]-sum[l]+d;
+		}
+	}
+
+	std::cout << "Yes" << std::endl;
+	return 0;
+}

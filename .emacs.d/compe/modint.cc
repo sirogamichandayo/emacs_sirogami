@@ -1,5 +1,6 @@
 template<int mod> struct Fp {
     long long val;
+	
     constexpr Fp(long long v = 0) noexcept : val(v % mod) {
         if (val < 0) val += mod;
     }
@@ -59,4 +60,4 @@ template<int mod> struct Fp {
 		return res;
 	}
 };
-using mint = Fp<1000000007>;
+using mint = Fp<MOD>;

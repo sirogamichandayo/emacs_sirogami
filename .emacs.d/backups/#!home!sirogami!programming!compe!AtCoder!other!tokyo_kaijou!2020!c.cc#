@@ -1,0 +1,120 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using P = pair<ll, ll>;
+
+const ll MOD = 1e9+7;
+// const ll MOD = 998244353;
+const ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+
+template <typename T>
+struct SegTree
+{
+        ll N;
+        vector<T> dat, lazy;
+        SegTree(ll n) : N(), dat(n*4, INF), lazy(n*4, INF)
+        {
+                ll x{1};
+                while (n > x) x <<= 1;
+                N = x;
+        }
+
+	void set(vector<T> &v)
+	{
+		for (ll i = 0; i < v.size(); ++i)
+			dat[i+N-1] = v[i];
+	}
+
+	void build()
+	{
+		for (ll i = N-2; i >= 0; --i)
+			dat[i] = min(dat[2*i+1], dat[2*i+2]);
+	}
+
+        // lazy
+        void eval(ll k)
+        {
+                if (lazy[k] == INF) return;
+                if (k < N - 1) // is not leaf
+                {
+                        lazy[k*2 + 1] += lazy[k];
+                        lazy[k*2 + 2] += lazy[k];
+                }
+                dat[k] += lazy[k];
+                lazy[k] = INF;
+        }
+
+        void update(ll a, ll b, T x, ll k, ll l, ll r)
+        {
+                eval(k);
+                if (a <= l && r <= b)
+                {
+                        lazy[k] = x;
+                        eval(k);
+                }
+                else if (a < r && l < b)
+                {
+                        update(a, b, x, k*2+1, l, (l+r)/2);
+                        update(a, b, x, k*2+1, (l+r)/2, r);
+                        dat[k] = min(dat[k*2+1], dat[k*2+2]);
+                }
+        }
+
+        void update(ll a, ll b, T x) {update(a, b, x, 0, 0, N);}
+
+        T query_sub(ll a, ll b, ll k, ll l, ll r)
+        {
+                eval(k);
+                if (r <= a || b <= l) return INF;
+                if (a <= l && r <= b) return dat[k];
+                T vl = query_sub(a, b, k*2+1, l, (l+r)/2);
+                T vr = query_sub(a, b, k*2+2, (l+r)/2, r);
+                return min(vl, vr);
+        }
+
+        T query(ll a, ll b) {return query_sub(a, b, 0, 0, N);}
+
+        // debug
+        inline T operator[](ll a) {return query(a, a+1);}
+        void print()
+        {
+                for (ll i = 0; i < 2*N - 1; ++i)
+                {
+                        std::cout << (*this)[i];
+                        if (i != N) std::cout << ",";
+                }
+                std::cout << std::endl;
+        }
+};
+
+int main(int argc, char **argv)
+{
+	ll N, K; cin >> N >> K;
+	ll MAX = 200010;
+	vector<ll> imos(MAX+10, 0);
+
+	REP(i, N)
+	{
+		ll a; cin >> a;
+		ll l = i - a;
+		ll r = i + a + 1;
+		imos[max(l, 0ll)]++;
+		imos[min(r, MAX)]--;
+	}
+
+	SegTree<ll> st(MAX);
+	st.set(imos);
+	st.build();
+	
+	REP(i, K)
+	{
+		
+	}
+
+}

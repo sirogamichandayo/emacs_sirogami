@@ -16,7 +16,6 @@ struct SegTree
 	void set(long long i, T x) {dat[i+N-1] = x;};
 	void set(vector<T> &v)
 	{
-		assert(N == v.size());
 		for (long long i = 0; i < N; ++i)
 			set(i, v[i]);
 	}
@@ -34,7 +33,7 @@ struct SegTree
 		while (i > 0)
 		{
 			i = (i-1)/2;
-			dat[i] = f(dat[i*2+1], dat[i*2+1]);
+			dat[i] = f(dat[i*2+1], dat[i*2+2]);
 		}
 	}
 

@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using P = pair<ll, ll>;
+
+const ll MOD = 1e9+7;
+// const ll MOD = 998244353;
+const ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+#define DEBUG(x) ;
+#define DEBUG(x) std::cerr << #x << " : " << (x) << std::endl;
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+ll modpow(ll a, ll n, ll mod)
+{
+    if (mod <= 0) return 0;
+    ll res = 1;
+    while (n > 0) {
+        if (n & 1) res = res * a % mod;
+        a = a * a % mod;
+        n >>= 1;
+	}
+	return res;
+}
+   
+
+int main(int argc, char **argv)
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	auto f = [](ll n) -> ll
+			 {
+				 ll cnt{0};
+				 while (true)
+				 {
+					 if (n == 0) return cnt;
+					 ++cnt;
+					 n %= __builtin_popcount(n);
+				 }
+			 };
+
+	
+	ll N;
+	string S;
+	cin >> N >> S;
+
+	ll cnt1{0};
+	for (auto e : S) cnt1 += e-'0';
+
+	ll s1, s2;
+	s1 = s2 = 0;
+	REP(i, N)
+	{
+		if (S[i] == '1')
+		{
+			(s1 += modpow(2, N-1-i, cnt1-1)) %= (cnt1 - 1);
+			(s2 += modpow(2, N-1-i, cnt1+1)) %= (cnt1 + 1);
+		}
+	}
+
+	REP(i, N)
+	{
+		ll res;
+		if (S[i] == '1')
+		{
+			if (cnt1 == 1)
+				res = 0;
+			else
+				res = f(s1 - modpow(2, N-1-i, cnt1-1)) + 1;
+		}
+		else
+			res = f(s2 + modpow(2, N-1-i, cnt1+1)) + 1;
+
+		std::cout << res << std::endl;
+	}
+	
+	return 0;
+}

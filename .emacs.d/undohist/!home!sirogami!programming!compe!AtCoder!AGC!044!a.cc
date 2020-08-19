@@ -1,0 +1,2 @@
+
+((digest . "4e367cf02a5eeeeb3de3dd2fc62839d4") (undo-list nil ("/" . -1) ((marker . 1) . -1) ((marker . 1) . -1) ((marker . 1) . -1) ((marker . 1) . -1) ("w" . -2) ((marker . 1) . -1) ((marker . 1) . -1) 3 nil (2 . 3) nil (1 . 2) (t 24285 11112 261965 660000) nil (412 . 414) nil ("e" . -412) ((marker . 1) . -1) ((marker . 412) . -1) ((marker . 412) . -1) 413 nil (412 . 413) nil undo-tree-canary))

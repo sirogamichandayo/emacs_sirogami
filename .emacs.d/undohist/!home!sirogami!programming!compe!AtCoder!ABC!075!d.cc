@@ -1,0 +1,2 @@
+
+((digest . "5f9dd699dda645f3f95e8eed3efb632e") (undo-list nil (825 . 827) nil ("^" . -825) ((marker . 827) . -1) ((marker . 825) . -1) ((marker . 825) . -1) ("^" . -826) ((marker . 827) . -1) ((marker . 825) . -1) ((marker . 825) . -1) 827 nil (825 . 827) nil ("and" . -825) ((marker . 827) . -3) 828 nil (399 . 401) (t 24279 19911 216639 117000) nil (823 . 826) nil ("&" . -823) ((marker . 827) . -1) ("&" . -824) ((marker . 827) . -1) 825 (t 24279 19845 309264 428000) nil undo-tree-canary))

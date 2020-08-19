@@ -1,0 +1,3 @@
+
+((digest . "8065767052f69506e6d6eb710c208e3e") (undo-list nil (658 . 659) nil (670 . 671) nil (666 . 670) nil (664 . 666) nil (660 . 664) nil (658 . 660) nil (657 . 658) nil (655 . 657) nil (650 . 655) nil (644 . 645) (" " . 644) (649 . 650) (644 . 645) ("	" . 644) ((marker . 659) . -1) (648 . 649) nil (645 . 648) nil (644 . 645) nil ("std::
+" . 644) ((marker) . -6) ((marker) . -6) ((marker . 644) . -6) ((marker) . -5) ((marker) . -6) ((marker) . -6) ("	" . -644) ((marker . 659) . -1) ((marker . 644) . -1) ((marker . 644) . -1) ((marker . 644) . -1) ((marker) . -1) 645 nil ("cout << <<" . -650) ((marker . 659) . -10) ((marker) . -8) ((marker) . -9) 660 nil undo-tree-canary))

@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using P = pair<ll, ll>;
+
+const ll MOD = 1e9+7;
+// const ll MOD = 998244353;
+const ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+#define DEBUG(x) ;
+#define DEBUG(x) std::cerr << #x << " : " << (x) << std::endl;
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+
+
+int main(int argc, char **argv)
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	ll N, M; cin >> N >> M;
+	vector<ll> A(M);
+	REP(i, M) cin >> A[i], --A[i];
+
+	vector<vector<ll>> B(M, vector<ll>(N));
+	REP(i, M)REP(j, N) cin >> B[i][j], --B[i][j];
+
+	vector<ll> sco(N, 0);
+
+	REP(i, M)
+	{
+		ll t = A[i];
+
+		ll cnt{0};
+		REP(j, N)
+		{
+			if (t == B[i][j])
+				++sco[i];
+			else
+				++cnt;
+		}
+		sco[t] += cnt;
+	}
+
+	
+	return 0;
+}

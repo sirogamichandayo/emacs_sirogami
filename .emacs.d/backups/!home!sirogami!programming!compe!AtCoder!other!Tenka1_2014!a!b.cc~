@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using P = pair<ll, ll>;
+
+const ll MOD = 1e9+7;
+// const ll MOD = 998244353;
+const ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+string S;
+
+int main(int argc, char **argv)
+{
+	cin >> S;
+	ll N = S.size();
+	REP(i, N)
+	{
+		if (S[i] == 'C')
+		{
+			ll j = i + 1;
+			for (; j <= i+2; ++j)
+				S[j] = '-';
+			i = j;
+		}
+	}
+
+	priority_queue<P,
+				   vector<P>,
+				   greater<P>> que;
+	priority_queue<P,
+				   vector<P>,
+				   greater<P>> dam;
+
+	ll res{0};
+	ll com{0};
+	ll cnt{5};
+
+	ll i{0};
+	while (i < N || que.size() || dam.size())
+	{
+		while (que.size() && que.top().first <= i)
+		{
+			cnt += que.top().second;
+			que.pop();
+		}
+
+		while (dam.size() && dam.top().first <= i)
+		{
+			++com;
+			res += dam.top().second;
+			dam.pop();
+		}
+
+		if (i >= N)
+		{
+			++i;
+			continue;
+		}
+		char c = S[i];
+		if (c == 'N' && cnt)
+		{
+			--cnt;
+			que.push(P(i+7, 1));
+			dam.push(P(i+2, 10+(com/10)));
+		}
+		else if (c == 'C' && cnt >= 3)
+		{
+			cnt -= 3;
+			que.push(P(i+9, 3));
+			dam.push(P(i+4, 50+(com/10)*5));
+		}
+		++i;
+	}
+
+	std::cout << res << std::endl;
+}

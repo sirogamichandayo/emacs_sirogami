@@ -1,0 +1,4 @@
+
+((digest . "663d905417f0d7731456ebf1ce21e5c0") (undo-list nil (678 . 682) nil ("i" . -678) ((marker . 682) . -1) ((marker . 678) . -1) ((marker . 678) . -1) ((marker . 678) . -1) 679 (t 24379 29002 310396 97000) nil (678 . 679) nil ("res" . -678) ((marker . 682) . -3) 681 nil ("		
+" . 660) nil (", abs(x - i));
+" . 660) ((marker . 660) . -7) ((marker . 660) . -7) ((marker . 663) . -15) ((marker . 663) . -15) ("		res = min(res" . -660) ((marker . 682) . -15) ((marker . 660) . -2) ((marker . 660) . -2) ((marker . 660) . -3) ((marker . 660) . -3) ((marker . 660) . -3) ((marker . 660) . -3) 675 nil (654 . 655) nil (646 . 654) nil (642 . 646) nil (641 . 642) nil (635 . 640) nil (634 . 636) nil (625 . 634) nil (621 . 625) nil (622 . 624) ("			" . 622) ((marker . 682) . -3) ((marker . 656) . -3) (625 . 626) ("}" . -625) (625 . 626) nil (621 . 625) nil undo-tree-canary))

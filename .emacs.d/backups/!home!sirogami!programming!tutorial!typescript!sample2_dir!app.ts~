@@ -1,0 +1,18 @@
+import * as c3 from 'c3'
+
+let chart = c3.generate({
+	bindto: '#chart',
+	data:
+	{
+		type: 'dount',
+		columns:
+		[
+			['good', 60],
+			['bad', 50]
+		]
+	},
+	donut:
+	{
+		title: 'Typescript'
+	}
+});

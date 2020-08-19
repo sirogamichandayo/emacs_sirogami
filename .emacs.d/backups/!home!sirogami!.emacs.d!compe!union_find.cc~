@@ -1,16 +1,16 @@
 struct UnionFind
 {
-	vector<ll> par;
+	vector<long long> par;
 
-	void init(ll n) {par.assign(n, -1);}
+	void init(long long n) {par.assign(n, -1);}
 
-	ll root(ll x)
+	long long root(long long x)
 	{
 		if (par[x] < 0) return x;
 		else return par[x] = root(par[x]);
 	}
 
-	bool merge(ll x, ll y)
+	bool merge(long long x, long long y)
 	{
 		x = root(x);
 		y = root(y);
@@ -21,12 +21,12 @@ struct UnionFind
 		return true;
 	}
 
-	bool issame(ll x, ll y)
+	bool issame(long long x, long long y)
 	{
 		return root(x) == root(y);
 	}
 
-	ll size(ll x)
+	long long size(long long x)
 	{
 		return -par[root(x)];
 	}

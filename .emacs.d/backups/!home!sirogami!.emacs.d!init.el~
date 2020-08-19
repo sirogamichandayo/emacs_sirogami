@@ -46,6 +46,10 @@
 (setq auto-save-file-name-transforms
       `((".*" ,(expand-file-name "~/.emacs.d/backups/") t)))
 
+;; font size
+(setq font-height 150)
+(face-remap-add-relative 'default :height font-height)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; aslias
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -192,13 +196,6 @@
             ((floatp recenter3-last-op)
              (recenter (round (* recenter3-last-op (window-height))))))))))
 (define-key global-map (kbd "C-l") 'recenter3)
-
-;; 
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mode line
@@ -360,20 +357,54 @@
 	  "\C-efor()\C-b")
 (fset 'compe-all
 	  "ALL()\C-b")
-(fset 'c++-vector-base
+(fset 'compe-debug
+	  "DEBUG();\C-b")
+
+(fset 'c++-vector-normal-1
 	  "vector<>\C-b")
-(fset 'c++-vector-vector-ll
-	  "vector<vector<ll>>")
-(fset 'c++-vector-ll
+(fset 'c++-vector-normal-2
+	  "vector<vector<>>\C-b\C-b")
+
+(fset 'c++-vector-bool-1
+	  "vector<bool> ")
+(fset 'c++-vector-bool-2
+	  "vector<vector<bool>> ")
+
+
+(fset 'c++-vector-ll-1
 	  "vector<ll> ")
-(fset 'c++-vector-double
+(fset 'c++-vector-ll-2
+	  "vector<vector<ll>> ")
+
+(fset 'c++-vector-double-1
 	  "vector<double> ")
-(fset 'c++-vector-string
+(fset 'c++-vector-double-2
+	  "vector<vector<double>> ")
+
+(fset 'c++-vector-string-1
 	  "vector<string> ")
-(fset 'c++-vector-pair-ll-ll
+(fset 'c++-vector-string-2
+	  "vector<vector<string>> ")
+
+(fset 'c++-vector-pair-ll-ll-1
 	  "vector<pair<ll, ll>> ")
-(fset 'c++-vector-push-back
+(fset 'c++-vector-pair-ll-ll-2
+	  "vector<vector<pair<ll, ll>>> ")
+
+(fset 'c++-stl-push-back
 	  "\C-e.push_back()\C-b")
+(fset 'c++-stl-pop-back
+	  "\C-e.pop_back()\C-b")
+(fset 'c++-stl-emplace-back
+	  "\C-e.emplace_back()\C-b")
+
+(fset 'c++-stl-push-front
+	  "\C-e.push_front()\C-b")
+(fset 'c++-stl-pop-front
+	  "\C-e.pop_front()\C-b")
+(fset 'c++-stl-emplace-front
+	  "\C-e.emplace_front()\C-b")
+
 (fset 'c++-pair-ll-ll
 	  "pair<ll, ll> ")
 (fset 'c++-pair-first
@@ -433,11 +464,15 @@
 (defalias 'compe-to-divisor
   (lambda()
 	(interactive)
-	(insert-file "~/.emacs.d/compe/to-divisor.cc")))
+	(insert-file "~/.emacs.d/compe/to_divisor.cc")))
 (defalias 'compe-seg-tree
   (lambda()
 	(interactive)
 	(insert-file "~/.emacs.d/compe/seg_tree.cc")))
+(defalias 'compe-seg-tree-weight
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/seg_tree_weight.cc")))
 (defalias 'compe-prime-factor
   (lambda()
 	(interactive)
@@ -446,6 +481,14 @@
   (lambda()
 	(interactive)
 	(insert-file "~/.emacs.d/compe/combination.cc")))
+(defalias 'compe-z-algorithm
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/z_algorithm.cc")))
+(defalias 'compe-make-vec
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/make_vec.cc")))
 
 ;; c
 (defun my-c-mode-hook ()
@@ -470,7 +513,6 @@
   (define-key c++-mode-map (kbd "C-c c [") 'indent-and-brackets)
   (define-key c++-mode-map (kbd "C-c c 9") 'c-branket)
   (define-key c++-mode-map (kbd "C-c c 0") 'c-branket)
-  
   
   (define-key c++-mode-map (kbd "C-c c i q") 'c-include-quort)
   (define-key c++-mode-map (kbd "C-c c i ,") 'c-include-angle-brackets)
@@ -505,23 +547,42 @@
   
 ;;  (define-key c++-mode-map (kbd "C-c c r") 'c-return)
   
-  (define-key c++-mode-map (kbd "C-c c s t") 'c++-static)
+;;  (define-key c++-mode-map (kbd "C-c c s t") 'c++-static)
   
   (define-key c++-mode-map (kbd "C-c c t") 'c++-template)
 
   (define-key c++-mode-map (kbd "C-c c r") 'compe-rep)
   (define-key c++-mode-map (kbd "C-c c f") 'compe-for)
   (define-key c++-mode-map (kbd "C-c c a") 'compe-all)
+  (define-key c++-mode-map (kbd "C-c c d") 'compe-debug)
 
-  (define-key c++-mode-map (kbd "C-c c l d") 'c++-vector-double)
-  (define-key c++-mode-map (kbd "C-c c l s") 'c++-vector-string)
-  (define-key c++-mode-map (kbd "C-c c l 1") 'c++-vector-ll)
-  (define-key c++-mode-map (kbd "C-c c l b") 'c++-vector-base)
+  (define-key c++-mode-map (kbd "C-c c l d 1") 'c++-vector-double-1)
+  (define-key c++-mode-map (kbd "C-c c l d 2") 'c++-vector-double-2)
   
-  (define-key c++-mode-map (kbd "C-c c l 2") 'c++-vector-vector-ll)
-  (define-key c++-mode-map (kbd "C-c c l p l") 'c++-vector-pair-ll-ll)
+  (define-key c++-mode-map (kbd "C-c c l s 1") 'c++-vector-string-1)
+  (define-key c++-mode-map (kbd "C-c c l s 2") 'c++-vector-string-2)
   
-  (define-key c++-mode-map (kbd "C-c c l p b") 'c++-vector-push-back)
+  (define-key c++-mode-map (kbd "C-c c l 1") 'c++-vector-ll-1)
+  (define-key c++-mode-map (kbd "C-c c l 2") 'c++-vector-ll-2)
+  
+  (define-key c++-mode-map (kbd "C-c c l n 1") 'c++-vector-normal-1)
+  (define-key c++-mode-map (kbd "C-c c l n 2") 'c++-vector-normal-2)
+  
+  (define-key c++-mode-map (kbd "C-c c l b 1") 'c++-vector-bool-1)
+  (define-key c++-mode-map (kbd "C-c c l b 2") 'c++-vector-bool-2)
+  
+  (define-key c++-mode-map (kbd "C-c c l p l 1") 'c++-vector-pair-ll-ll-1)
+  (define-key c++-mode-map (kbd "C-c c l p l 2") 'c++-vector-pair-ll-ll-2)
+
+  ;; stl
+  (define-key c++-mode-map (kbd "C-c c s p b") 'c++-stl-push-back)
+  (define-key c++-mode-map (kbd "C-c c s o b") 'c++-stl-pop-back)
+  (define-key c++-mode-map (kbd "C-c c s e b") 'c++-stl-emplace-back)
+  
+  (define-key c++-mode-map (kbd "C-c c s p f") 'c++-stl-push-front)
+  (define-key c++-mode-map (kbd "C-c c s o f") 'c++-stl-pop-front)
+  (define-key c++-mode-map (kbd "C-c c s e f") 'c++-stl-emplace-front)
+  
   
   (define-key c++-mode-map (kbd "C-c c c c b") 'compe-base)
   
@@ -631,6 +692,24 @@
   )
 (add-hook 'sdl-mode-hook 'my-sdl-mode-hook)
 
+
+;; Rust
+(add-to-list 'exec-path (expand-file-name "~/.cargo/bin"))
+(require 'company-racer)
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-racer))
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'rust-mode-hook #'flycheck-rust-setup)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; typescript
+(package-install 'typescript-mode)
+(require 'typescript-mode)
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -717,7 +796,7 @@
   (if (ring-empty-p jump-back!--marker-ring)
       (error "No further undo information")
     (let ((marker (ring-ref jump-back!--marker-ring 0))
-          (repeat-key (vector last-input-event)))
+          (repeat-key (last-input-event)))
       (ring-remove jump-back!--marker-ring 0)
       (if (= (point-marker) marker)
           (jump-back!)

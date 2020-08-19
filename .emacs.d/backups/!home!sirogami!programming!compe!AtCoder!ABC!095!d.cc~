@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using P = pair<ll, ll>;
+
+const ll MOD = 1e9+7;
+// const ll MOD = 998244353;
+const ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+
+int main(int argc, char **argv)
+{
+	ll N, C; cin >> N >> C;
+	vector<ll> X(N), V(N);
+	REP(i, N) cin >> X[i] >> V[i];
+
+	vector<ll> sumlx(N+1, 0), sumlv(N+1, 0), sumrx(N+1, 0), sumrv(N+1, 0);
+	REP(i, N)
+		sumrx[i+1] = sumrx[i] + X[i];
+	REP(i, N)
+		sumrv[i+1] = sumrv[i] + V[i];
+	for (ll i = N; i > 0; --i)
+		
+}

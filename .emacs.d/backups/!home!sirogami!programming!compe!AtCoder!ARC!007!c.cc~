@@ -1,0 +1,109 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+
+constexpr ll MOD = 1e9+7;
+constexpr ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+int main(int argc, char **argv)
+{
+	string s1, s2;
+	cin >> s1;
+	s2 = s1;
+	ll N = s1.size();
+
+	ll cnt{1};
+	while (true)
+	{
+		vector<string> V;
+		REP(i, 2*N-1)
+		{
+			string tmp;
+			if (i < N)
+				tmp = s1.substr(N-i-1, i+1);
+			else
+				tmp = s1.substr(0, N-(i-N+1));
+			V.push_back(tmp);
+			// std::cout << tmp << std::endl;
+		}
+		vector<string> V2;
+
+		REP(i, 2*N-1)
+		{
+			string tmp;
+			if (i < N)
+				tmp = s2.substr(0, i+1);
+			else
+				tmp = s2.substr(i-N+1, N-(i-N+1));
+			V2.push_back(tmp);
+			//std::cout << tmp << std::endl;
+		}
+
+		ll j;
+		ll tmp{0};
+		ll NNN{0};
+		for (ll i = 0; i < 2*N-1; ++i)
+		{
+			string t1, t2;
+			if (i < N)
+			{
+				t1 = s1.substr(N-i-1, i+1);
+				t2 = s2.substr(0, i+1);
+			}
+			else
+			{
+				t1 = s1.substr(0, N-(i-N+1));
+				t2 = s2.substr(i-N+1, N-(i-N+1));
+			}
+
+			assert(t1.size() == t2.size());
+
+			ll NN = t1.size();
+			ll tmpp{0};
+			REP(i, NN)
+			{
+				tmpp += (t2[i] == 'x' && t1[i] == 'o');
+			}
+
+			if (tmp < tmpp)
+			{
+				tmp = tmpp;
+				j = i;
+				NNN = NN;
+			}
+		}
+
+		ll l1, l2;
+		if (j < N)
+		{
+			l1 = N-j-1;
+			l2 = 0;
+		}
+		else
+		{
+			l1 = 0;
+			l2 = j-N+1;
+		}
+
+		while (NNN--)
+		{
+			if (s1[l1] == 'o')
+				s2[l2] = 'o';
+			++l1;
+			++l2;
+		}
+
+		if (tmp != 0)
+			++cnt;
+		if (find(ALL(s2), 'x') == s2.end())
+		{
+			std::cout << cnt << std::endl;
+			return 0;
+		}
+	}
+}

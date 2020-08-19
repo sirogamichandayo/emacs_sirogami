@@ -1,11 +1,14 @@
 #include <algorithm>
 #include <vector>
+#include <iostream>
 using namespace std;
 
 int main(int argc, char **argv)
 {
-	vector<int> v{3, 1, 4, 6, 5};
+	vector<int> v{0, 2, 3, 4, 6, 8, 10};
 
-	auto it = upper_bound(v.begin(), v.end(), 3);
-	std::cout << *it << std::endl;
+	auto it1 = upper_bound(v.begin(), v.end(), 3);
+	auto it2 = lower_bound(v.begin(), v.end(), 3);
+	std::cout << *it1 << std::endl;
+	std::cout << *it2 << std::endl;
 }

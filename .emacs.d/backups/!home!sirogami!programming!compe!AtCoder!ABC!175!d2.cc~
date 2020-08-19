@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using P = pair<ll, ll>;
+
+const ll MOD = 1e9+7;
+// const ll MOD = 998244353;
+const ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+#define DEBUG(x) ;
+#define DEBUG(x) std::cerr << #x << " : " << (x) << std::endl;
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+ll N, K;
+
+int main(int argc, char **argv)
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	cin >> N >> K;
+	vector<ll> P(N); REP(i, N) cin >> P[i], --P[i];
+	vector<ll> C(N); REP(i, N) cin >> C[i];
+
+	ll res{-INF};
+	REP(init, N)
+	{
+		ll co = init;
+		vector<ll> sum;
+		ll t{0};
+		while (true)
+		{
+			co = P[co];
+			t += C[co];
+			sum.push_back(t);
+			if (init == co)
+				break;
+		}
+
+		ll M = sum.size();
+
+		if (M >= K)
+		{
+			res = max(res, *max_element(sum.begin(), sum.begin()+K));
+		}
+		else // M < K
+ 		{
+			ll p = K / M;
+			if (sum.back() > 0)
+			{
+				ll b = sum.back();
+				ll tmp = max(p * b + *max_element(sum.begin(), sum.begin()+K%M),
+							 (p-1)*b + *max_element(ALL(sum)));
+				res = max(res, tmp);
+			}
+			else
+			{
+				res = max(res, *max_element(ALL(sum)));
+			}
+		}
+
+	}
+
+	std::cout << res << std::endl;
+	
+	return 0;
+}
