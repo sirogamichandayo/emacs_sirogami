@@ -1,0 +1,6 @@
+CXX=g++
+CXXFLAGS=-D_DEBUG -g3 -O0 -D_FORTIFY_SOURCE=2 -D_GLIBCXX_DEBUG -ftrapv -fstack-protector-all -fno-omit-frame-pointer -fsanitize=address
+
+%: %.cc
+	$(CXX) $(CXXFLAGS) -o $@ $<
+	./$@

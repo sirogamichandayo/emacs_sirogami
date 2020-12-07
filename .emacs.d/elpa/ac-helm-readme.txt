@@ -1,4 +1,5 @@
 Auto Complete with Helm.  It enables us to narrow candidates
+Auto Complete with Helm.  It enables us to narrow candidates
 with helm interface.  If you have helm-match-plugin.el,
 candidates can be narrowed many times.
 

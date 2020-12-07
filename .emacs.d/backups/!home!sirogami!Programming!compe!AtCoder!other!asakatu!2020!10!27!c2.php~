@@ -1,0 +1,18 @@
+<?php
+$n = fgets(STDIN);
+$A = explode(' ', fgets(STDIN));
+$min = 200;
+for ($i = 0; $i < $n; ++$i)
+{
+    $a = $A[i];
+    $cnt = 0;
+    while ($a % 2 == 0)
+    {
+        ++$cnt;
+        $a /= 2;
+    }
+    $min = min($cnt, $min);
+}
+
+echo $min;
+?>

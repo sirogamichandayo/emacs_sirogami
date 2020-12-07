@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using P = pair<ll, ll>;
+
+const ll MOD = 1e9+7;
+// const ll MOD = 998244353;
+const ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+#define DEBUG(x) ;
+#define DEBUG(x) std::cerr << #x << " : " << (x) << std::endl;
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+int main(int argc, char **argv)
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	ll N, X, M; cin >> N >> X >> M;
+	vector<ll> his;
+	vector<bool> is(100000+10, false);
+
+	std::cout << "pas"<< std::endl;
+	ll res{0};
+	ll m{-1};
+	ll l;
+	REP(i, N)
+	{
+		his.push_back(X);
+		if (is[X])
+		{
+			m = X;
+			l = i;
+			break;
+		}
+		else
+			is[X] = true;
+		res += X;
+		(X *= X) %= M;
+	}
+
+	if (m == -1)
+	{
+		std::cout << res << std::endl;
+		return 0;
+	}
+
+	ll rem = N - l;
+	ll sum = accumulate(his.begin()+l, his.end(), 0ll);
+	ll cs = his.size() - l;
+	res += sum * (rem / cs);
+	res += accumulate(his.begin()+l, his.begin()+l+(rem%cs), 0ll);
+	
+	std::cout << res << std::endl;
+	return 0;
+}

@@ -1,0 +1,134 @@
+//////////////////////////////
+// Check before you submit!!!
+// #define _ATCODER_LIBRARY
+
+const long long MOD = 1e9+7;
+// const long long MOD = 998244353;
+/////////////////////////////
+
+#include <bits/stdc++.h>
+#ifdef _ATCODER_LIBRARY
+#include <atcoder/all>
+using namespace atcoder;
+#endif
+using namespace std;
+
+#define DEBUG(x);
+#ifdef _DEBUG
+#define DEBUG(x) std::cerr << #x << " : " << (x) << std::endl;
+#define GLIBCXX_DEBUG
+#define GLIBCXX_DEBUG_PEDANTIC
+#endif
+
+const long long INF = 1LL << 60;
+using ll = long long;
+using P = pair<ll, ll>;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+template<typename T>istream& operator>>(istream&i,vector<T>&v)
+{REP(j,v.size())i>>v[j];return i;}
+template<typename T>string join(vector<T>&v)
+{stringstream s;REP(i,v.size())s<<' '<<v[i];return s.str().substr(1);}
+template<typename T>ostream& operator<<(ostream&o,vector<T>&v)
+{if(v.size())o<<join(v);return o;}
+template<typename T1,typename T2>istream& operator>>(istream&i,pair<T1,T2>&v)
+{return i>>v.fi>>v.se;}
+template<typename T1,typename T2>ostream& operator<<(ostream&o,pair<T1,T2>&v)
+{return o<<v.fi<<","<<v.se;}
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+template<int mod> struct Fp {
+    long long val;
+	
+    constexpr Fp(long long v = 0) noexcept : val(v % mod) {
+        if (val < 0) val += mod;
+    }
+    constexpr int getmod() { return mod; }
+    constexpr Fp operator - () const noexcept {
+        return val ? mod - val : 0;
+    }
+    constexpr Fp operator + (const Fp& r) const noexcept { return Fp(*this) += r; }
+    constexpr Fp operator - (const Fp& r) const noexcept { return Fp(*this) -= r; }
+    constexpr Fp operator * (const Fp& r) const noexcept { return Fp(*this) *= r; }
+    constexpr Fp operator / (const Fp& r) const noexcept { return Fp(*this) /= r; }
+    constexpr Fp& operator += (const Fp& r) noexcept {
+        val += r.val;
+        if (val >= mod) val -= mod;
+        return *this;
+    }
+    constexpr Fp& operator -= (const Fp& r) noexcept {
+        val -= r.val;
+        if (val < 0) val += mod;
+        return *this;
+    }
+    constexpr Fp& operator *= (const Fp& r) noexcept {
+        val = val * r.val % mod;
+        return *this;
+    }
+    constexpr Fp& operator /= (const Fp& r) noexcept {
+        long long a = r.val, b = mod, u = 1, v = 0;
+        while (b) {
+            long long t = a / b;
+            a -= t * b; swap(a, b);
+            u -= t * v; swap(u, v);
+        }
+        val = val * u % mod;
+        if (val < 0) val += mod;
+        return *this;
+    }
+    constexpr bool operator == (const Fp& r) const noexcept {
+        return this->val == r.val;
+    }
+    constexpr bool operator != (const Fp& r) const noexcept {
+        return this->val != r.val;
+    }
+    friend constexpr ostream& operator << (ostream &os, const Fp<mod>& x) noexcept {
+        return os << x.val;
+    }
+    friend constexpr Fp<mod> modpow(const Fp<mod> &a, long long n) noexcept {
+        if (n == 0) return 1;
+        auto t = modpow(a, n / 2);
+        t = t * t;
+        if (n & 1) t = t * a;
+        return t;
+    }
+	friend constexpr Fp<mod> modfac(long long l, long long r) noexcept
+	{
+		auto res = Fp<mod>(1);
+		for (Fp<mod> i = l; i < r; ++i) res *= i;
+		return res;
+	}
+};
+using mint = Fp<MOD>;
+
+
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
+
+int main(int argc, char **argv)
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	ll N, K; cin >> N >> K;
+	vector<ll> A(N); REP(i, N) cin >> A[i];
+
+	
+	bool iszero = (find(ALL(A), 0) == A.end());
+	ll n, m;
+	if (N == K)
+	{
+		mint res{1};
+		REP(i, N)
+			res *= A[i];
+		std::cout << res << std::endl;
+		return 0;
+	}
+
+	
+}

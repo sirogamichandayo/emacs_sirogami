@@ -1,0 +1,136 @@
+//////////////////////////////
+// Check before you submit.
+// #define _ATCODER_LIBRARY
+
+const long long MOD = 100000;
+// const long long MOD = 998244353;
+
+/////////////////////////////
+#include <bits/stdc++.h>
+using namespace std;
+#include <boost/multiprecision/cpp_int.hpp>
+using namespace boost::multiprecision;
+
+#ifdef _ATCODER_LIBRARY
+#include <atcoder/all>
+using namespace atcoder;
+#endif
+// _ATCODER_LIBRARY
+
+const long long INF = 1LL << 60;
+const double PI = acos(-1);
+using ll = long long;
+using P = pair<ll, ll>;
+
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+#define SUM(v) accumulate(ALL(v),0ll)
+
+template<typename T>istream& operator>>(istream&i,vector<T>&v){REP(j,v.size())i>>v[j];return i;}
+template<typename T>string join(vector<T>&v){stringstream s;REP(i,v.size())s<<' '<<v[i];return s.str().substr(1);}
+template<typename T>ostream& operator<<(ostream&o,vector<T>&v){if(v.size())o<<join(v);return o;}
+template<typename T>string join(vector<vector<T>>&vv){string s="\n";REP(i,vv.size())s+=join(vv[i])+"\n";return s;}
+template<typename T>ostream& operator<<(ostream&o,vector<vector<T>>&vv){if(vv.size())o<<join(vv);return o;}
+template<typename T1,typename T2>istream& operator>>(istream&i,pair<T1,T2>&v){return i>>v.first>>v.second;}
+template<typename T1,typename T2>ostream& operator<<(ostream&o,pair<T1,T2>&v){return o<<v.first<<","<<v.second;}
+
+#define DEBUG(x);
+
+#ifdef _DEBUG
+#define DEBUG(x) std::cerr << #x << " : " << (x) << std::endl;
+#define GLIBCXX_DEBUG
+#define GLIBCXX_DEBUG_PEDANTIC
+#endif
+// _DEBUG
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+void init_init_init() {ios_base::sync_with_stdio(false);cin.tie(NULL);std::cout<<fixed<<setprecision(10);}
+template<class T>T up(T a, T b){assert(b);return (a+b-1)/b;}
+template<typename... A>bool eq(A const&... a){auto t={a...};assert(t.size());auto tar=*t.begin();for(const auto&e:t)if(tar!=e)return false;return true;}
+
+template<class T>bool chmin(T &a, T b){if(a>b){a=b;return false;}return true;}
+template<class T>bool chmax(T &a, T b){if(a<b){a=b;return false;}return true;}
+template<class T>bool chmax(T &a, initializer_list<T>l){return chmax(a,max(l));}
+template<class T>bool chmin(T &a, initializer_list<T>l){return chmin(a,min(l));}
+
+//////////////////////////////////////////////////////////////////
+// My Library
+//////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////////////////
+// Contest Code
+//////////////////////////////////////////////////////////////////
+
+int N, M, S;
+ll dp[50][4005];
+
+int main(int argc, char **argv)
+{
+	init_init_init();
+
+	ll W, H, N; cin >> W >> H >> N;
+	vector<ll> X(N), Y(N); REP(i, N) cin >> X[i] >> Y[i];
+
+	auto XX = X;
+	auto YY = Y;
+
+	ll resh, resw;
+	resh = resw = -1;
+	ll res{INF};
+
+	sort(ALL(X));
+	sort(ALL(Y));
+
+	if (N & 1)
+	{
+		resh = Y[N/2];
+		resw = X[N/2];
+
+		vector<ll> diff(N);
+		REP(i, N)
+			diff[i] = abs(X[i] - resw) + abs(Y[i] - resh);
+		sort(ALL(diff));
+		ll a{0};
+		REP(i, N-1)
+			a += diff[i];
+		res = a*2 + diff.back();
+	}
+	else
+	{
+		vector<ll> yy{Y[N/2-1], Y[N/2]};
+		vector<ll> xx{X[N/2-1], X[N/2]};
+		DEBUG(yy);
+		DEBUG(xx);
+
+		for (auto h : yy)
+		{
+			for (auto w : xx)
+			{
+				ll su{0};
+				ll ma{0};
+				REP(i, N)
+				{
+					ll d = abs(XX[i]-w) + abs(YY[i]-h);
+					su += d*2;
+					chmax(ma, d);
+				}
+
+				if (res > su - ma)
+				{
+					res = su - ma;
+					resh = h;
+					resw = w;
+				}
+			}
+		}
+	}
+	
+	std::cout << res << std::endl;
+	std::cout << resw << " " << resh << std::endl;
+}

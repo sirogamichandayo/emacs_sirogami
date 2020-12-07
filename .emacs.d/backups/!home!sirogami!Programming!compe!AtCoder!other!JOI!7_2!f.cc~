@@ -1,0 +1,167 @@
+//////////////////////////////
+// Check before you submit.
+// #define _ATCODER_LIBRARY
+
+const long long MOD = 1e9+7;
+// const long long MOD = 998244353;
+
+/////////////////////////////
+#include <bits/stdc++.h>
+using namespace std;
+#include <boost/multiprecision/cpp_int.hpp>
+using namespace boost::multiprecision;
+
+#ifdef _ATCODER_LIBRARY
+#include <atcoder/all>
+using namespace atcoder;
+#endif
+// _ATCODER_LIBRARY
+
+const long long INF = 1LL << 60;
+const double PI = acos(-1);
+using ll = long long;
+using P = pair<ll, ll>;
+
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+#define SUM(v) accumulate(ALL(v),0ll)
+
+template<typename T>istream& operator>>(istream&i,vector<T>&v){REP(j,v.size())i>>v[j];return i;}
+template<typename T>string join(vector<T>&v){stringstream s;REP(i,v.size())s<<' '<<v[i];return s.str().substr(1);}
+template<typename T>ostream& operator<<(ostream&o,vector<T>&v){if(v.size())o<<join(v);return o;}
+template<typename T>string join(vector<vector<T>>&vv){string s="\n";REP(i,vv.size())s+=join(vv[i])+"\n";return s;}
+template<typename T>ostream& operator<<(ostream&o,vector<vector<T>>&vv){if(vv.size())o<<join(vv);return o;}
+template<typename T1,typename T2>istream& operator>>(istream&i,pair<T1,T2>&v){return i>>v.first>>v.second;}
+template<typename T1,typename T2>ostream& operator<<(ostream&o,pair<T1,T2>&v){return o<<v.first<<","<<v.second;}
+
+#define DEBUG(x);
+
+#ifdef _DEBUG
+#define DEBUG(x) std::cerr << #x << " : " << (x) << std::endl;
+#define GLIBCXX_DEBUG
+#define GLIBCXX_DEBUG_PEDANTIC
+#endif
+// _DEBUG
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+void init_init_init() {ios_base::sync_with_stdio(false);cin.tie(NULL);std::cout<<fixed<<setprecision(10);}
+template<class T>T up(T a, T b){assert(b);return (a+b-1)/b;}
+template<typename... A>bool eq(A const&... a){auto t={a...};assert(t.size());auto tar=*t.begin();for(const auto&e:t)if(tar!=e)return false;return true;}
+
+template<class T>bool chmin(T &a, T b){if(a>b){a=b;return false;}return true;}
+template<class T>bool chmax(T &a, T b){if(a<b){a=b;return false;}return true;}
+template<class T>bool chmax(T &a, initializer_list<T>l){return chmax(a,max(l));}
+template<class T>bool chmin(T &a, initializer_list<T>l){return chmin(a,min(l));}
+
+//////////////////////////////////////////////////////////////////
+// My Library
+//////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////////////////
+// Contest Code
+//////////////////////////////////////////////////////////////////
+
+int main(int argc, char **argv)
+{
+	init_init_init();
+
+	ll N, M, C; cin >> N >> M >> C;	
+	vector<vector<P>> G(N);
+	map<P, ll> cost_map;
+	ll sum_path{0};
+	REP(i, M)
+	{
+		ll a, b, c; cin >> a >> b >> c;
+		--a, --b;
+		G[a].push_back({b, c});
+		G[b].push_back({a, c});
+		cost_map[P(b, a)] = c;
+		cost_map[P(a, b)] = c;
+		sum_path += c;
+	}
+
+	vector<ll> dist(N, INF);
+	vector<ll> prever(N, -1);
+	dist[0] = 0;
+	priority_queue<P, vector<P>, greater<P>> que;
+	que.push({0, 0});
+	while (que.size())
+	{
+		auto [di, node] = que.top();
+		que.pop();
+		if (di > dist[node]) continue;
+
+		for (auto nv : G[node])
+		{
+			ll nd = nv.second + di;
+			if (dist[nv.first] > nd)
+			{
+				dist[nv.first] = nd;
+				prever[nv.first] = node;
+				que.push({nd, nv.first});
+			}
+		}
+	}
+
+	DEBUG("pass");
+	auto f = [&](ll X)
+			 {
+				 ll res = sum_path;
+				 set<P> s;
+				 REP(i, N)
+				 {
+					 if (i == 0) continue;
+					 if (dist[i] <= X)
+					 {
+						 DEBUG(i);
+						 ll now = i;
+						 while (true)
+						 {
+							 ll next = prever[now];
+							 if (next == -1) break;
+							 if (s.count(P(now, next)) == 0)
+							 {
+								 res -= cost_map[P(now, next)];
+								 s.insert(P(now, next));
+								 s.insert(P(next, now));
+							 }
+							 now = next;
+						 }
+					 }
+				 }
+
+				 DEBUG(res);
+				 DEBUG(C*X);
+				 return res + C*X;
+			 };
+
+	ll L = 0;
+	ll R = *max_element(ALL(dist));
+	DEBUG(sum_path);
+	ll cnt{100};
+	ll res{INF};
+
+	while (L+2<R)
+	{
+		ll c1 = L + (R - L)/3;
+		ll c2 = R - (R - L)/3;
+
+		if (f(c1) < f(c2)) R = c2;
+		else L = c1;
+
+		DEBUG(c1);
+		DEBUG(f(c1));
+		DEBUG(c2);
+		DEBUG(f(c2));
+		chmin(res, {f(c1), f(c2)});
+	}
+	DEBUG(f(3));
+
+	std::cout << min({res, f(L), f(R)}) << std::endl; 
+}

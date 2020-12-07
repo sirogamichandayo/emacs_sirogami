@@ -1,0 +1,82 @@
+//////////////////////////////
+// Check before you submit.
+// #define _ATCODER_LIBRARY
+
+const long long MOD = 1e9+7;
+// const long long MOD = 998244353;
+
+/////////////////////////////
+#include <bits/stdc++.h>
+using namespace std;
+#include <boost/multiprecision/cpp_int.hpp>
+using namespace boost::multiprecision;
+
+#ifdef _ATCODER_LIBRARY
+#include <atcoder/all>
+using namespace atcoder;
+#endif
+// _ATCODER_LIBRARY
+
+const long long INF = 1LL << 60;
+using ll = long long;
+using P = pair<ll, ll>;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+template<typename T>istream& operator>>(istream&i,vector<T>&v)
+{REP(j,v.size())i>>v[j];return i;}
+template<typename T>string join(vector<T>&v)
+{stringstream s;REP(i,v.size())s<<' '<<v[i];return s.str().substr(1);}
+template<typename T>ostream& operator<<(ostream&o,vector<T>&v)
+{if(v.size())o<<join(v);return o;}
+template<typename T>string join(vector<vector<T>>&vv)
+{string s="\n";REP(i, vv.size())s+=join(vv[i])+"\n";return s;}
+template<typename T>ostream& operator<<(ostream&o,vector<vector<T>>&vv)
+{if(vv.size())o<<join(vv);return o;}
+template<typename T1,typename T2>istream& operator>>(istream&i,pair<T1,T2>&v)
+{return i>>v.fi>>v.se;}
+template<typename T1,typename T2>ostream& operator<<(ostream&o,pair<T1,T2>&v)
+{return o<<v.fi<<","<<v.se;}
+
+#define DEBUG(x);
+
+#ifdef _DEBUG
+#define DEBUG(x) std::cerr << #x << " : " << (x) << std::endl;
+#define GLIBCXX_DEBUG
+#define GLIBCXX_DEBUG_PEDANTIC
+#endif
+// _DEBUG
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+void init_init_init() {ios_base::sync_with_stdio(false);cin.tie(NULL);}
+template<class T>T up(T a, T b){assert(b);return (a+b-1)/b;}
+template<typename... A>bool eq(A const&... a){
+	auto t = {a...};
+	assert(t.size());
+	auto tar = *t.begin();
+	for (const auto &e : t) if (tar != e) return false;;
+	return true;
+}
+
+//////////////////////////////////////////////////////////////////
+// My Library
+//////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////////////////
+// Contest Code
+//////////////////////////////////////////////////////////////////
+
+
+
+int main(int argc, char **argv)
+{
+	init_init_init();
+
+	
+}

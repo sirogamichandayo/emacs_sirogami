@@ -1,0 +1,117 @@
+//////////////////////////////
+// Check before you submit!!!
+#define _ATCODER_LIBRARY
+
+const long long MOD = 1e9+7;
+// const long long MOD = 998244353;
+/////////////////////////////
+
+#include <bits/stdc++.h>
+#ifdef _ATCODER_LIBRARY
+#include <atcoder/all>
+using namespace atcoder;
+#endif
+using namespace std;
+
+#define DEBUG(x);
+#ifdef _DEBUG
+#define DEBUG(x) std::cerr << #x << " : " << (x) << std::endl;
+#define GLIBCXX_DEBUG
+#define GLIBCXX_DEBUG_PEDANTIC
+#endif
+
+const long long INF = 1LL << 60;
+using ll = long long;
+using P = pair<ll, ll>;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+long long modpow(const long long a, const long long n, const long long mod)
+{
+        if (n == 0) return 1;
+        long long t = modpow(a, n / 2, mod);
+        (t = t * t) %= mod;
+        if (n & 1)
+			(t = t * a) %= mod;
+        return t;
+}
+
+
+int main(int argc, char **argv)
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	ll N; cin >> N;
+	vector<ll> A(N); REP(i, N) cin >> A[i];
+	auto it = find(A.begin()+1, A.end(), 0);
+	if (it != A.end())
+	{
+		std::cout << 0 << std::endl;
+		DEBUG("pass1");
+		return 0;
+	}
+
+	vector<ll> modfac(N+10, 1);
+	modfac[0] = 0;
+	for (ll i = 1; i < N+5; ++i)
+	{
+		(modfac[i+1] = modfac[i] * (i+1)) %= MOD;
+		DEBUG(i-1);
+		DEBUG(modfac[i-1]);
+	}
+
+	map<ll, ll> cnt;
+	for (auto a : A) ++cnt[a];
+	ll pre{-1};
+	for (auto p : cnt)
+	{
+		if (pre + 1 != p.first)
+		{
+			std::cout << 0 << std::endl;
+			DEBUG("pass2");
+			return 0;
+		}
+		pre = p.first;
+	}
+
+	ll res{0};
+	ll pre_cnt{0};
+	for (auto p : cnt)
+	{
+		if (res == 0)
+		{
+			DEBUG("pass3");
+			res = 1;
+			pre_cnt = 1;
+		}
+		else
+		{
+			DEBUG(pre_cnt);
+			DEBUG(p.first);
+			DEBUG(p.second);
+			
+			ll tmp = (modpow(2, pre_cnt, MOD) - 1 + MOD) % MOD;
+			
+			DEBUG(modpow(2, pre_cnt, MOD)-1+MOD%MOD);
+			DEBUG(modpow(tmp, p.second, MOD));
+			DEBUG(modpow(2, modfac[p.second-1], MOD));
+			
+			tmp = modpow(tmp, p.second, MOD);
+			(tmp *= modpow(2, modfac[p.second-1], MOD)) %= MOD;
+			
+			(res *= tmp) %= MOD;
+			pre_cnt = p.second;
+
+			DEBUG("----------");
+		}
+	}
+
+	std::cout << res << std::endl; 
+	return 0;
+}

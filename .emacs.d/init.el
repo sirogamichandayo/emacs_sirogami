@@ -1,4 +1,4 @@
-;;; test
+;; test
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; base
@@ -66,9 +66,6 @@
 ;; keybinding
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; mykie
-(require 'mykie)
-
 ;; backspace -> "C-h"
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 ;; forward-word -> "C-." / backward-word -> "C-,"
@@ -98,6 +95,7 @@
 ;; new-and-indent -> "C-m"
 (define-key global-map (kbd "C-m") 'newline-and-indent)
 ;; toggle-truncate-lines -> "C-c l"
+(setq truncate-lines t)
 (define-key global-map (kbd "C-c l") 'toggle-truncate-lines)
 ;; transpose-chars -> "C-t"
 (define-key global-map (kbd "C-t") 'other-window)
@@ -149,15 +147,16 @@
     (set-mark (region-beginning) (region-end))
     (move-to-column col)))
 
-;; keybinding move line and region 
-(mykie:set-keys nil
-  "C-<up>" 
-  :default     move-line-up
-  :region      move-region-up
-  "C-<down>"
-  :default     move-line-down
-  :region      move-region-down
-  )
+;; keybinding move line and region
+;; (require 'mykie)
+;; (mykie:set-keys nil
+;;   "C-<up>" 
+;;   :default     move-line-up
+;;   :region      move-region-up
+;;   "C-<down>"
+;;   :default     move-line-down
+;;   :region      move-region-down
+;;   )
 
 ;; duplicate thing
 (require 'duplicate-thing)
@@ -250,7 +249,6 @@
 
 ;; load theme
 (load-theme 'heroku t)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; color
@@ -355,7 +353,7 @@
 (fset 'compe-all
 	  "ALL()\C-b")
 (fset 'compe-debug
-	  "DEBUG();\C-b")
+	  "DEBUG();\C-b\C-b")
 
 (fset 'c++-vector-normal-1
 	  "vector<>\C-b")
@@ -422,11 +420,23 @@
   (lambda()
 	(interactive)
 	(insert-file "~/.emacs.d/compe/base.cc")
-	(goto-line 20)))
+	(goto-line 77)))
 (defalias 'compe-dinic
   (lambda()
 	(interactive)
 	(insert-file "~/.emacs.d/compe/dinic.cc")))
+(defalias 'compe-inverse-element
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/inverse_element.cc")))
+(defalias 'compe-crt
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/chinese_remainder.cc")))
+(defalias 'compe-bit
+  (lambda()
+	(interactive)
+	(insert-file "~/.emacs.d/compe/bit.cc")))
 (defalias 'compe-eratos
   (lambda()
 	(interactive)
@@ -602,10 +612,11 @@
   (define-key c++-mode-map (kbd "C-a") 'c-beginning-of-statement)
   (define-key c++-mode-map (kbd "M-a") 'move-beginning-of-line)
   
-
-  (add-to-list 'flycheck-clang-args "-Wall")
+  (add-to-list 'flycheck-clang-args "-I/home/sirogami/Downloads/boost_1_74_0/")
+  
   (setq flycheck-clang-language-standard "c++17")
   (setq flycheck-gcc-language-standard "c++17"))
+
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 ;; gst mode
@@ -694,23 +705,15 @@
   )
 (add-hook 'sdl-mode-hook 'my-sdl-mode-hook)
 
+;; exec path from shell
+(exec-path-from-shell-initialize)
 
-;; Rust
-(add-to-list 'exec-path (expand-file-name "~/.cargo/bin"))
-(require 'company-racer)
-(with-eval-after-load 'company
-  (add-to-list 'company-backends 'company-racer))
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'rust-mode-hook #'flycheck-rust-setup)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-;; typescript
-(package-install 'typescript-mode)
-(require 'typescript-mode)
-(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+;; go
+(require 'auto-complete)
+(require 'go-autocomplete)
+(require 'auto-complete-config)
+(ac-config-default)
+(add-hook 'go-mode-hook 'flycheck-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other
@@ -730,11 +733,11 @@
 ;; helm-M-x
 (define-key global-map (kbd "M-x") 'helm-M-x)
 
-;; helm keybinding
+(require 'helm-config)
 
 ;;;;;;;;;;
 
-;; auto-complete
+;; ;; auto-complete
 (when (require 'auto-complete-config nil t)
   (ac-config-default)
   (setq ac-use-menu-map t)
@@ -820,21 +823,6 @@
 (define-key global-map (kbd "C-M-,") 'flycheck-previous-error)
 (define-key global-map (kbd "C-c d") 'flycheck-list-errors)
 
-;; howm
-(setq howm-directory (concat user-emacs-directory "howm"))
-(setq howm-file-name-format "%Y/%m/%Y-%m-%d.howm")
-(when (require 'howm-mode nil t)
-  (define-key global-map(kbd "C-x C-c") 'howm-menu)
-  (set-face-foreground 'howm-mode-title-face "gray90")
-  )
-(defun howm-save-buffer-and-kill ()
-  (interactive)
-  (when (and (buffer-file-name)
-             (howm-buffer-p))
-    (save-buffer)
-    (kill-buffer nil)))
-(define-key howm-mode-map (kbd "C-c C-c") 'howm-kill-all)
-
 ;; 3 split
 (defun split-window-horizontally-n (num_wins)
   (interactive "p")
@@ -849,22 +837,8 @@
 (global-disable-mouse-mode)
 (put 'erase-buffer 'disabled nil)
 
-;; imenu
-(define-key global-map (kbd "C-x i") 'imenu-list)
-
-;; gtabs
-(require 'gtags)
-(define-key global-map (kbd "C-c g t") 'gtags-find-tag)
-(define-key global-map (kbd "C-c g r") 'gtags-find-rtag)
-(define-key global-map (kbd "C-c g s") 'gtags-find-symbol)
-(define-key global-map (kbd "C-c g /") 'gtags-pop-stack)
-(setq gtags-select-mode-hook
-	  '(lambda ()
-		 (local-set-key (kbd "C-m") 'gtags-select-tag)))
-
 ;; title
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 (setq dashboard-banner-logo-title "Urusainaxa bukkorosuyo?")
 (setq dashboard-startup-banner "~/.emacs.d/picture/tica.png")
-

@@ -1,0 +1,16 @@
+<?php
+$res = 0;
+list($N, $A, $B) = explode(' ', fgets(STDIN));
+$res = 0;
+for ($i = 1; $i <= $N; ++$i)
+{
+    $s = "$i";
+    $sum = 0;
+    foreach ($char as $s)
+        $sum += $char - '0';
+    if ($A <= $sum && $sum <= $B)
+        ++$res;
+}
+
+echo $res;
+?>

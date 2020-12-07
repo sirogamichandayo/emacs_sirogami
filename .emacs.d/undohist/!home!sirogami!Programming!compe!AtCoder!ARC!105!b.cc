@@ -1,0 +1,9 @@
+
+((digest . "29087a7e78e1348a0a94ced1c8260444") (undo-list nil ("		DEBUG(*l);
+" . 2478) ((marker . 2478) . -10) ((marker) . -13) ((marker) . -13) ((marker) . -13) nil ("		DEBUG(*r);
+" . 2478) ((marker) . -13) ((marker) . -13) ((marker) . -13) nil ("		DEBUG(\"p[ass3]\");
+" . 2477) ((marker) . -20) ((marker) . -20) ((marker) . -20) nil ("		DEBUG(\"pass1\");
+" . 2362) ((marker) . -18) ((marker) . -18) ((marker) . -18) nil ("		DEBUG(\"pass5\");
+" . 2402) ((marker) . -18) ((marker) . -18) ((marker) . -18) nil ("		DEBUG(\"pass2\");
+" . 2443) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker) . -18) ((marker) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker . 2407) . -18) ((marker) . -18) (t 24451 2937 960370 992000) nil ("l);
+" . 2599) ((marker . 2499) . -4) ("		s.erase(*" . -2599) ((marker . 2478) . -11) ((marker . 2499) . -11) ((marker . 2499) . -11) ((marker . 2499) . -11) 2610 nil undo-tree-canary))

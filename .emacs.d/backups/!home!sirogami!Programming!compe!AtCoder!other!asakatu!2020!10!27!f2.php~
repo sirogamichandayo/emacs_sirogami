@@ -1,0 +1,14 @@
+<?php
+$N = fgets(STDIN);
+$A = explode(' ', fgets(STDIN));
+rsort($A);
+$p = 0;
+for ($i = 0; $i < N; ++$i)
+{
+    if ($i % 2 == 0)
+        $p += $A[$i];
+    else
+        $p -= $A[$i];
+}
+echo $p;
+?>

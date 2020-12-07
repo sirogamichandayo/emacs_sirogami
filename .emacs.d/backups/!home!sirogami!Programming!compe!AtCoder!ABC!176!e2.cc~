@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using P = pair<ll, ll>;
+
+const ll MOD = 1e9+7;
+// const ll MOD = 998244353;
+const ll INF = 1ll<<60;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+#define DEBUG(x) ;
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+
+int main(int argc, char **argv)
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	ll H, W, M; cin >>H >> W >> M;
+	vector<ll> h(M), w(M);
+	REP(i, M) cin >> h[i] >> w[i];
+
+	set<P> is;
+	REP(i, M)
+		is.insert(P{h[i], w[i]});
+
+	map<ll, ll> tate;
+	map<ll, ll> yoko;
+	REP(i, M)
+		tate[h[i]]++;
+	REP(i, M)
+		yoko[w[i]]++;
+
+	vector<P> tatev;
+	vector<P> yokov;
+	for (auto &p : tate)
+		tatev.push_back(P{p.second, p.first});
+	for (auto &p : yoko)
+		yokov.push_back(P{p.second, p.first});
+
+	sort(ALL(tatev), greater<P>());
+	sort(ALL(yokov), greater<P>());
+
+	ll res{0};
+
+	REP(i, (ll)tatev.size()) REP(j, (ll)yokov.size())
+	{
+		auto p1 = tatev[i];
+		auto p2 = yokov[j];
+		ll tmp = p1.first + p2.first;
+
+		if (is.count(P{p1.second, p2.second}))
+			tmp = max(0ll, tmp-1);
+		res = max(res, tmp);
+	}
+	
+	std::cout << res << std::endl;
+	return 0;
+}
+
+
+
+
+
+
+

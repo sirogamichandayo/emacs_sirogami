@@ -1,0 +1,26 @@
+<?php
+$sl = ["dream", "dreamer", "erase", "eraser"];
+for ($i = 0; $i < 4; ++$i)
+    $sl[i] = strrev($sl[i]);
+$S = trim(fgets(STDIN));
+$N = strlen($S);
+$i = 0;
+while ($i < N)
+{
+    $is = false;
+    for ($j = 0; $j < 4; ++$j)
+    {
+        $tmp = substr($S, $i, strlen($sl[$j]));
+        if ($tmp == $sl[$j])
+        {
+            $i += strlen($sl[$j]);
+            $is = true;
+        }
+    }
+    if ($is == false)
+    {
+        echo "No";
+        exit(0);
+    }
+}
+?>

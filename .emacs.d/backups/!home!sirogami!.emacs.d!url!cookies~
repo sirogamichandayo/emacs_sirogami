@@ -3,7 +3,7 @@
 
 (setq url-cookie-storage
  '(("atcoder.jp"
-  [url-cookie "REVEL_SESSION" "3a9088ea1b3194eb59beb667391448c6893d6541-%00_TS%3A1604794282%00%00csrf_token%3AkmVB6cAerLqDm6jwIcB%2FY5UXGuuN9aB3DsX0KOfFKW8%3D%00" "Sun Nov 08 00:11:22 2020 GMT" "/" "atcoder.jp" nil]))
+  [url-cookie "REVEL_SESSION" "43e8af3bba3eda6764a9ff69ca5a4bcf8bc3241f-%00csrf_token%3AkmVB6cAerLqDm6jwIcB%2FY5UXGuuN9aB3DsX0KOfFKW8%3D%00%00_TS%3A1609194808%00" "Mon Dec 28 22:33:28 2020 GMT" "/" "atcoder.jp" nil]))
 )
 (setq url-cookie-secure-storage
  'nil)

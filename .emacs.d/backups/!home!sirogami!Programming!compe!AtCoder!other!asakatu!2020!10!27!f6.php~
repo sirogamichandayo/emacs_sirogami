@@ -1,0 +1,27 @@
+<?php
+$N = trim(fgets(STDIN));
+$t = [0];
+$x = [0];
+$y = [0];
+for ($i = 0; $i < $N; ++$i)
+    list($t[], $x[], $y[]) = explode(' ', trim(fgets(STDIN)));
+for ($i = 0; $i < $N; ++$i)
+{
+    $dt = $t[i+1] - $t[i];
+    $dx = $x[i+1] - $x[i];
+    $dy = $y[i+1] - $y[i];
+    $tmp = $dt - ($dx + $dy);
+    if ($tmp < 0)
+    {
+        echo "No";
+        exit(0);
+    }
+
+    if ($tmp & 1)
+    {
+        echo "No";
+        exit(0);
+    }
+}
+echo "Yes";
+?>

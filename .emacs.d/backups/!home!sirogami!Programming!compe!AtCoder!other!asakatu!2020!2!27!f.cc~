@@ -1,0 +1,60 @@
+//////////////////////////////
+// Check before you submit!!!
+#define _ATCODER_LIBRARY
+
+const long long MOD = 1e9+7;
+// const long long MOD = 998244353;
+/////////////////////////////
+
+#include <bits/stdc++.h>
+#ifdef _ATCODER_LIBRARY
+#include <atcoder/all>
+using namespace atcoder;
+#endif
+using namespace std;
+
+#define DEBUG(x);
+#ifdef _DEBUG
+#define DEBUG(x) std::cerr << #x << " : " << (x) << std::endl;
+#define GLIBCXX_DEBUG
+#define GLIBCXX_DEBUG_PEDANTIC
+#endif
+
+const long long INF = 1LL << 60;
+using ll = long long;
+using P = pair<ll, ll>;
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+int main(int argc, char **argv)
+{
+	ll N; cin >> N;
+
+	vector<ll> v;
+	ll ma{-1};
+	ll fi{-1};
+	for (ll i = 2; i <= N; ++i)
+	{
+		std::cout << "? " << "1 " << i << std::endl;
+		ll tmp; cin >> tmp;
+		if (ma < tmp)
+		{
+			ma = tmp;
+			fi = i;
+		}
+	}
+
+	ma = -1;
+	for (ll i = 1; i <= N; ++i)
+	{
+		std::cout << "? " << fi << " " << i << std::endl;
+		
+	}
+	
+	return 0;
+}

@@ -1,0 +1,4 @@
+<?php
+list[$n, $y] = explode(' ', fgets(STDIN));
+
+?>

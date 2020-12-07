@@ -1,0 +1,157 @@
+//////////////////////////////
+// Check before you submit.
+// #define _ATCODER_LIBRARY
+
+const long long MOD = 1e9+7;
+// const long long MOD = 998244353;
+
+/////////////////////////////
+#include <bits/stdc++.h>
+using namespace std;
+
+#ifdef _ATCODER_LIBRARY
+#include <atcoder/all>
+using namespace atcoder;
+#endif
+// _ATCODER_LIBRARY
+
+const long long INF = 1LL << 60;
+const double PI = acos(-1);
+using ll = long long;
+using P = pair<ll, ll>;
+
+
+#define FOR(i,a,b) for (ll i=(a);i<(ll)(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(v) (v).begin(),(v).end()
+#define SUM(v) accumulate(ALL(v),0ll)
+
+template<typename T>istream& operator>>(istream&i,vector<T>&v){REP(j,v.size())i>>v[j];return i;}
+template<typename T>string join(vector<T>&v){stringstream s;REP(i,v.size())s<<' '<<v[i];return s.str().substr(1);}
+template<typename T>ostream& operator<<(ostream&o,vector<T>&v){if(v.size())o<<join(v);return o;}
+template<typename T>string join(vector<vector<T>>&vv){string s="\n";REP(i,vv.size())s+=join(vv[i])+"\n";return s;}
+template<typename T>ostream& operator<<(ostream&o,vector<vector<T>>&vv){if(vv.size())o<<join(vv);return o;}
+template<typename T1,typename T2>istream& operator>>(istream&i,pair<T1,T2>&v){return i>>v.first>>v.second;}
+template<typename T1,typename T2>ostream& operator<<(ostream&o,pair<T1,T2>&v){return o<<v.first<<","<<v.second;}
+
+#define DEBUG(x);
+
+#ifdef _DEBUG
+#define DEBUG(x) std::cerr << #x << " : " << (x) << std::endl;
+#define GLIBCXX_DEBUG
+#define GLIBCXX_DEBUG_PEDANTIC
+#endif
+// _DEBUG
+
+int dx[4]{0, 1, 0, -1};
+int dy[4]{1, 0, -1, 0};
+
+void init_init_init() {ios_base::sync_with_stdio(false);cin.tie(NULL);std::cout<<fixed<<setprecision(10);}
+template<class T>T up(T a, T b){assert(b);return (a+b-1)/b;}
+template<typename... A>bool eq(A const&... a){auto t={a...};assert(t.size());auto tar=*t.begin();for(const auto&e:t)if(tar!=e)return false;return true;}
+
+template<class T>bool chmin(T &a, T b){if(a>b){a=b;return true;}return false;}
+template<class T>bool chmax(T &a, T b){if(a<b){a=b;return true;}return false;}
+template<class T>bool chmax(T &a, initializer_list<T>l){return chmax(a,max(l));}
+template<class T>bool chmin(T &a, initializer_list<T>l){return chmin(a,min(l));}
+
+//////////////////////////////////////////////////////////////////
+// My Library
+//////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////////////////
+// Contest Code
+//////////////////////////////////////////////////////////////////
+
+ll dp[110][110]{};
+
+int main(int argc, char **argv)
+{
+	init_init_init();
+
+	ll N, M; cin >> N >> M;
+	// finish, _, start
+	vector<tuple<ll, ll, ll, ll>> exams(M);
+	
+	vector<ll> ans(N+1, 0);
+	REP(i, M)
+	{
+		ll a, b, c; cin >> a >> b >> c;
+		exams[i] = {c, b, a, i};
+	}
+	auto exams_ori = exams;
+	sort(ALL(exams));
+
+	vector<bool> is_test_day(N+1, false);
+	vector<bool> is_sta_ind(N+1, false);
+	ll cnt{0};
+	ll now{1};
+	for (auto [hon, pre, sta, ind] : exams)
+	{
+		is_sta_ind[ind] = true;
+
+		ll test_ind{-1};
+		ll d{-1};
+		REP(i, M)
+		{
+			if (is_sta_ind[i])
+			{
+				DEBUG("pass");
+				auto [h, p, s, _] = exams_ori[i];
+				ll tmp{0};
+				for (ll j = now; j < h; ++j)
+					tmp += is_test_day[j];
+				if (h - s - tmp >= p)
+				{
+					test_ind = i;
+					d = p;
+					break;
+				}
+			}
+		}
+
+		if (test_ind == -1)
+		{
+			++now;
+			continue;
+		}
+		++cnt;
+		DEBUG(cnt);
+		is_sta_ind[test_ind]= false;
+		is_test_day[get<0>(exams_ori[test_ind])] = true;
+		
+		while (now <= N)
+		{
+			if (is_test_day[now])
+			{
+				ans[now] = M+1;
+				is_test_day[now] = false;
+			}
+			else
+			{
+				ans[now] = test_ind;
+				--d;
+			}
+
+			++now;
+			if (d == 0) break;
+		}
+		
+		
+	}
+		// 準備可能か
+		// 日は足りるか
+		// そのテストを受けるか
+		// テストの日は一意
+		
+	if (cnt < M)
+		std::cout << -1 << std::endl;
+	else
+	{
+		REP(i, N)
+			std::cout << (i?" ":"") << ans[i+1];
+		std::cout << std::endl;
+	}
+}

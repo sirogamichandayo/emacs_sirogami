@@ -1,39 +1,34 @@
 struct Comb
 {
-	const long long mod;
-	vector<long long> fac, ifac;
+	const long long MOD_;
+	vector<long long> fac, finv, inv;
 
-	Comb(long long n, long long m) : mod(m)
+	Comb(long long n, long long m) : MOD_(m)
 	{
 		fac.resize(n+1);
-		ifac.resize(n+1);
+		finv.resize(n+1);
+		inv.resize(n+1);
 
-		fac[0] = 1;
-		ifac[0] = 1;
-		for (long long i = 0; i < n; ++i)
-		{
-			(fac[i+1] = fac[i]*(i+1)) %= mod;
-			(ifac[i+1] = ifac[i]*mpow(i+1, mod-2)) %= mod;
+		fac[0] = fac[1] = 1;
+		finv[0] = finv[1] = 1;
+		inv[1] = 1;
+		for (int i = 2; i <= n; i++){
+			fac[i] = fac[i - 1] * i % MOD_;
+			inv[i] = MOD - inv[MOD%i] * (MOD / i) % MOD_;
+			finv[i] = finv[i - 1] * inv[i] % MOD_;
 		}
-		
 	}
 
-	long long mpow(long long x, long long n)
-	{ 
-		long long ans = 1;
-		while(n != 0){
-			if(n&1) ans = ans*x % mod;
-			x = x*x % mod;
-			n = n >> 1;
-		}
-		return ans;
-	}
-
+	// a_C_b 
+	//      a!
+	// = -------- 
+	//   b!(a-b)!
+	// = a! * (b!)^(-1) * ((a-b)!)^(-1)
+	// = fac[a] * ifac[b] * ifac[a-b]
 	long long comb(long long a, long long b)
-	{ 
-		if(a == 0 && b == 0)return 1;
-		if(a < b || a < 0)return 0;
-		long long tmp = ifac[a-b]* ifac[b] % mod;
-		return tmp * fac[a] % mod;
+	{
+		if (a < b) return 0;
+		if (a < 0 || b < 0) return 0;
+		return fac[a] * (finv[b] * finv[a - b] % MOD_) % MOD_;
 	}
 };
