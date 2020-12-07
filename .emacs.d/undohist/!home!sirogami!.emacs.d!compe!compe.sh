@@ -1,0 +1,3 @@
+
+((digest . "3e6d0feed064197b82d3e3ed7fc28eb2") (undo-list nil ("/compe/base.cc
+" . 32) ((marker . 32) . -14) ((marker . 32) . -14) ((marker . 32) . -14) ((marker . 32) . -14) ((marker . 32) . -14) ((marker) . -15) ((marker) . -15) ((marker) . -15) ("cp ~/.emacs.d" . -32) ((marker . 32) . -13) ((marker . 32) . -3) ((marker . 32) . -3) ((marker . 32) . -3) ((marker . 32) . -3) ((marker) . -13) 45 (t 24526 1620 395492 838000) nil ("/" . -14) ((marker . 32) . -1) 15 nil ("compe/" . -15) ((marker . 32) . -6) 21 nil ("base." . -21) ((marker . 32) . -5) 26 nil ("cc" . -26) ((marker . 32) . -2) 28 nil (4 . 28) ("~/.e" . -4) ((marker . 32) . -4) ((marker*) . 4) 8 nil (6 . 8) nil ("Programming" . -6) ((marker . 32) . -11) 17 nil undo-tree-canary))

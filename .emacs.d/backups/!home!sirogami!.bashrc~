@@ -142,3 +142,6 @@ PATH="$PATH:/home/sirogami/usr/local/bin"
 
 PATH="$PATH:/home/sirogami/Programming/compe/"
 PATH="$PATH:."
+
+# Go lang
+[ -d "$HOME/go" ] && export GOPATH=$HOME/go && export PATH=$GOPATH/bin:$PATH
